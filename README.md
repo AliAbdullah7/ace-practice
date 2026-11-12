@@ -39,7 +39,31 @@ Keep exactly one unambiguous best answer. Verify current official documentation,
 
 Answers and explanations are hidden in the interface until submission. Like any static self-study site, its downloadable source contains the answer key; it is not a secure assessment system.
 
-## Deploy with GitHub Pages
+## Deploy with Render (preferred hosting)
+
+Connect Render to your GitHub account and select `AliAbdullah7/ace-practice` from the connected repository list. Do not use Render's **Public Git Repository** URL-only option: automatic deployments require a connected Git provider.
+
+Use these settings when creating a **Static Site**:
+
+| Setting | Value |
+| --- | --- |
+| Branch | `main` |
+| Root Directory | Leave empty (the website is at the repository root) |
+| Build Command | `npm test && npm run build` |
+| Publish Directory | `dist` |
+| Auto-Deploy | **On Commit** |
+
+Click **Deploy Static Site** (or **Create Static Site**, depending on the dashboard). Render runs the checks, creates `dist/` and publishes that directory. The resulting `onrender.com` URL stays the same for future updates. If you have already created the site, change its existing settings instead of creating a duplicate.
+
+`render.yaml` records the equivalent settings for optional Blueprint setup. Adding that file alone does not create a Render service or configure a service created manually; use the dashboard values above for a manually created site. No backend, start command or secret is needed.
+
+### Future exams on the same site
+
+When requesting another exam, specify the concepts or source question range. Update the questions in this repository, verify the answers, bump the content `version`, run checks and push to `main`. Render then automatically rebuilds and publishes to the **same Render URL**. No new repository or site is needed. Bumping the content version starts a fresh attempt for the replacement exam; previous results are not archived by this single-exam app.
+
+Official references: [Render static sites](https://render.com/docs/static-sites), [automatic deployments and connected Git provider requirement](https://render.com/docs/deploys).
+
+## GitHub Pages (existing alternative)
 
 `.github/workflows/pages.yml` runs checks and publishes after pushes to `main`, or a manual workflow dispatch. It uses GitHub's official Pages actions with scoped permissions and needs no token secret.
 

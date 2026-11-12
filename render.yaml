@@ -1,0 +1,13 @@
+# Optional Blueprint setup. For a site already created in the dashboard,
+# use the same settings there instead of creating a second service.
+services:
+  - type: web
+    name: ace-practice
+    runtime: static
+    branch: main
+    buildCommand: npm test && npm run build
+    staticPublishPath: ./dist
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_VERSION
+        value: '22'
