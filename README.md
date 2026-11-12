@@ -1,0 +1,52 @@
+# Cloud fieldnotes · ACE Practice
+
+[Take the practice exam](https://AliAbdullah7.github.io/ace-practice/)
+
+An unofficial, untimed exam with 40 original scenarios covering a selected set of Google Cloud Associate Cloud Engineer concepts. It is not comprehensive ACE coverage, an official Google exam, or a predictor of certification results. No original source exams or PDFs are included.
+
+## Taking the exam
+
+Choose one of four answers, change or clear it before submission, navigate with Previous/Next or the question map, and flag questions to revisit. The submission dialog reports unanswered questions and lets you return to any of them. Submission locks answers and reveals the score plus explanations for every option and official documentation links. Filter review to incorrect, unanswered or flagged questions. Restart requires confirmation; Cancel or Escape preserves the attempt.
+
+**Answers, flags, position and results are saved locally to one device, browser, browser profile and site origin. They do not sync across devices.** Private browsing, clearing site data, or a content version change may reset the attempt. If storage is unavailable, a warning appears and progress lasts only while the page remains open. With multiple tabs, the last saved tab wins.
+
+Native radio buttons support Tab, arrow keys and Space. Controls have visible focus indicators, dialogs support Escape, and accessible navigator names identify status without depending on color. There is no timer.
+
+## Run locally
+
+Use an HTTP server because questions are loaded with fetch; do not open index.html directly as a file:
+
+```sh
+python3 -m http.server 4173 --bind 127.0.0.1
+```
+
+Open http://127.0.0.1:4173. Taking the exam requires no installation, API key, paid backend, external fonts, analytics or external scripts. A connection is required to load the site; offline use is not promised. Documentation links open on Google's site.
+
+Development checks use Node.js 22 or later and no npm packages:
+
+```sh
+npm test
+npm run build
+```
+
+The build copies an explicit allowlist of seven website files into `dist/`, excluding tests, documentation, Git metadata and unrelated materials.
+
+## Update content
+
+Edit `questions.json`. A question contains a stable `id`, a maintainer `source` concept reference, a `topic`, a self-contained `question`, four `options` with individual `explanation` values, one zero-based `answer` index, and official `docs` links. Index 0 is A; index 3 is D.
+
+Keep exactly one unambiguous best answer. Verify current official documentation, especially IAM scope and service deprecations. The fixed mixed topic order keeps saved attempts stable; answer positions currently occur ten times each. If changing that balance intentionally, update the matching test. Bump the top-level `version` whenever question meaning, order or answer indices change: old attempts are rejected rather than scored against a different key. Update `reviewed` after a content review. See [CONTENT_NOTES.md](CONTENT_NOTES.md) for coverage and modernization.
+
+Answers and explanations are hidden in the interface until submission. Like any static self-study site, its downloadable source contains the answer key; it is not a secure assessment system.
+
+## Deploy with GitHub Pages
+
+`.github/workflows/pages.yml` runs checks and publishes after pushes to `main`, or a manual workflow dispatch. It uses GitHub's official Pages actions with scoped permissions and needs no token secret.
+
+1. Open repository **Settings → Pages** and select **GitHub Actions** as the source.
+2. Push to `main`, or run **Actions → Test and deploy practice exam → Run workflow**.
+3. Wait for both jobs to succeed; the deployment environment links to the live site.
+
+The repository and Pages site are public. Commit only this website and necessary project files. Do not copy source mocks, PDFs, credentials or study directories into it. If adapting to an existing repository, preserve unrelated content and adjust deployment paths deliberately. Relative asset paths support a project URL such as `/ace-practice/` with no custom domain or server routing.
+
+See [TESTING.md](TESTING.md) for verification. Content was reviewed November 12, 2026; product behavior can change.

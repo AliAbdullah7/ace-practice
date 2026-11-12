@@ -1,0 +1,1246 @@
+{
+  "version": "2026-11-12.1",
+  "reviewed": "2026-11-12",
+  "questions": [
+    {
+      "source": 15,
+      "topic": "BigQuery query estimation",
+      "question": "A finance analyst will run a SELECT query against native BigQuery tables using on-demand analysis pricing. It returns only ten summary rows but may scan a large history. Before executing it, how should the analyst estimate the analysis charge?",
+      "options": [
+        {
+          "text": "Multiply the ten output rows by the table\u2019s average row size.",
+          "explanation": "Output size does not represent the amount of input data scanned and billed."
+        },
+        {
+          "text": "Use only the total number of tables named in the query.",
+          "explanation": "Tables vary in size and partition pruning; their count does not estimate processed bytes."
+        },
+        {
+          "text": "Perform a dry run, then use the estimated bytes processed with current on-demand pricing.",
+          "explanation": "On-demand query analysis is based on bytes processed, not the number of result rows. A dry run estimates processing without executing the query."
+        },
+        {
+          "text": "Run the query first with LIMIT 10 to ensure it scans only ten rows.",
+          "explanation": "LIMIT generally restricts output and does not guarantee a smaller scan of native tables."
+        }
+      ],
+      "docs": [
+        {
+          "title": "BigQuery query estimation \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/bigquery/docs/running-queries"
+        }
+      ],
+      "id": "ace-15",
+      "answer": 2
+    },
+    {
+      "source": 1,
+      "topic": "OS Login",
+      "question": "A hospital rotates on-call engineers weekly. They need sudo access to its Linux VM fleet, individual identities for auditing, and access removal through a team group. The VMs have no attached service account and SSH connectivity is already available. Which access design best meets these needs?",
+      "options": [
+        {
+          "text": "Enable OS Login and grant the team group roles/compute.osAdminLogin on the project.",
+          "explanation": "OS Login ties Linux access to individual Google identities; the group binding centrally controls sudo access."
+        },
+        {
+          "text": "Give the team a shared private SSH key and rotate it each week.",
+          "explanation": "A shared key obscures individual identity and requires distributing a secret whenever membership changes."
+        },
+        {
+          "text": "Grant the team group roles/compute.osLogin on the project.",
+          "explanation": "This grants ordinary login, but does not provide the required sudo privileges."
+        },
+        {
+          "text": "Grant each engineer Project Editor and keep metadata SSH keys.",
+          "explanation": "Editor grants broad resource changes rather than focused OS access, and metadata keys need separate lifecycle management."
+        }
+      ],
+      "docs": [
+        {
+          "title": "OS Login \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/compute/docs/oslogin/set-up-oslogin"
+        }
+      ],
+      "id": "ace-01",
+      "answer": 0
+    },
+    {
+      "source": 30,
+      "topic": "Per-node agents",
+      "question": "A GKE Standard cluster uses node autoscaling. A supported third-party telemetry agent must run once on every eligible Linux node, including nodes added tomorrow. How should you deploy the agent?",
+      "options": [
+        {
+          "text": "Use a Deployment with replicas equal to today\u2019s node count.",
+          "explanation": "A Deployment targets a replica count, not one per node, and does not automatically match tomorrow\u2019s node count."
+        },
+        {
+          "text": "Use a StatefulSet with one replica.",
+          "explanation": "A StatefulSet manages stable Pod identities and storage; one replica does not cover all nodes."
+        },
+        {
+          "text": "Use a CronJob that starts one agent each night.",
+          "explanation": "A scheduled job does not maintain continuously running agents on every node."
+        },
+        {
+          "text": "Use a DaemonSet with selectors and tolerations matching the intended nodes.",
+          "explanation": "A DaemonSet maintains an agent Pod on each eligible node and handles changes in node count."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Per-node agents \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/kubernetes-engine/docs/tutorials/automatically-bootstrapping-gke-nodes-with-daemonsets"
+        }
+      ],
+      "id": "ace-30",
+      "answer": 3
+    },
+    {
+      "source": 7,
+      "topic": "Centralized billing",
+      "question": "A design agency has six active projects billed to employees\u2019 separate billing accounts. Finance has set up a new company Cloud Billing account and payment method. An administrator already has all permissions needed to change billing associations. How should the agency consolidate future charges while keeping the existing projects and resources?",
+      "options": [
+        {
+          "text": "Move the projects into a common folder without changing billing associations.",
+          "explanation": "Folders organize resources and IAM inheritance; they do not automatically change who pays."
+        },
+        {
+          "text": "Change each existing project\u2019s billing association to the company billing account.",
+          "explanation": "Project billing associations determine which account pays for future usage; the projects do not need to be recreated."
+        },
+        {
+          "text": "Export all six billing accounts to one BigQuery dataset.",
+          "explanation": "Combined reporting does not consolidate the accounts that receive charges."
+        },
+        {
+          "text": "Create six replacement projects under the company account and discard the originals.",
+          "explanation": "Recreating projects introduces migration work and is unnecessary when billing associations can be changed."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Centralized billing \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/billing/docs/how-to/modify-project"
+        }
+      ],
+      "id": "ace-07",
+      "answer": 1
+    },
+    {
+      "source": 22,
+      "topic": "Infrastructure previews",
+      "question": "A Terraform change adds a firewall rule referencing a new network and removes an old disk. Before applying it through Infrastructure Manager, a reviewer wants to inspect planned creates, changes, and deletes without modifying live resources. What should the engineer do?",
+      "options": [
+        {
+          "text": "Apply the change in production and inspect audit logs afterward.",
+          "explanation": "This modifies live resources before review, defeating the requested pre-apply check."
+        },
+        {
+          "text": "Create an Infrastructure Manager preview and inspect its exported plan.",
+          "explanation": "A preview runs Terraform planning and exposes proposed actions without applying them. It helps review dependencies and impact but cannot guarantee a later apply succeeds."
+        },
+        {
+          "text": "Run only a syntax formatter and treat clean formatting as proof of safe changes.",
+          "explanation": "Formatting does not produce a resource action plan or evaluate dependencies against state."
+        },
+        {
+          "text": "Delete the tracked state and compare resource names by hand.",
+          "explanation": "Deleting state loses resource tracking and is not a safe preview mechanism."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Infrastructure previews \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/infrastructure-manager/docs/preview-deployment-update"
+        }
+      ],
+      "id": "ace-22",
+      "answer": 1
+    },
+    {
+      "source": 8,
+      "topic": "Static internal addresses",
+      "question": "A warehouse controller connects only to 10.24.8.50, which is currently unused in a suitable VPC subnet. A new Compute Engine VM will host its endpoint and might be deleted and recreated during maintenance. The controller configuration cannot be changed. What should you do before deploying the VM?",
+      "options": [
+        {
+          "text": "Reserve 10.24.8.50 as a global external IPv4 address.",
+          "explanation": "The address is private and must be an internal address, not a public global frontend."
+        },
+        {
+          "text": "Let Compute Engine choose any ephemeral internal address and record it.",
+          "explanation": "An arbitrary address will not match the fixed controller endpoint."
+        },
+        {
+          "text": "Set a DNS A record for a new hostname pointing at the VM.",
+          "explanation": "The controller uses a literal address and does not look up the proposed hostname."
+        },
+        {
+          "text": "Reserve 10.24.8.50 as a regional static internal address in that subnet, then assign it to the VM.",
+          "explanation": "A reserved internal address can be retained independently of the VM and assigned to the replacement in its region and subnet."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Static internal addresses \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/compute/docs/ip-addresses/configure-static-internal-ip-address"
+        }
+      ],
+      "id": "ace-08",
+      "answer": 3
+    },
+    {
+      "source": 38,
+      "topic": "Spanner data access",
+      "question": "A database team must read and update rows and apply approved schema changes in one Spanner database. The team must not administer instances or create and delete databases. Membership is maintained in a Google group. Which predefined grant provides the required database operations?",
+      "options": [
+        {
+          "text": "Grant roles/spanner.databaseUser to the group on the database.",
+          "explanation": "Database User supports data reads and writes, SQL DML, and schema updates within the database. It does not grant full instance or database-lifecycle administration; bind it to the group on this database."
+        },
+        {
+          "text": "Grant roles/spanner.viewer to the group.",
+          "explanation": "Viewer is for inspecting Spanner resources and does not provide the required data read/write capability."
+        },
+        {
+          "text": "Grant roles/spanner.databaseReader to the group.",
+          "explanation": "Database Reader supports reading data but not updating the rows required here."
+        },
+        {
+          "text": "Run gcloud iam roles describe roles/spanner.databaseUser and assume that assigns it.",
+          "explanation": "Describing a role only displays its definition; an IAM policy binding is needed to grant it to the group."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Spanner data access \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/spanner/docs/iam"
+        }
+      ],
+      "id": "ace-38",
+      "answer": 0
+    },
+    {
+      "source": 18,
+      "topic": "Storage lifecycle ages",
+      "question": "A bucket stores completed training recordings. Each object should transition from Standard to Coldline after 120 days and become eligible for deletion 540 days after its original creation. Object versioning and retention locks are disabled. Which lifecycle rules express the requested schedule?",
+      "options": [
+        {
+          "text": "SetStorageClass to Coldline with age 120; Delete with age 420.",
+          "explanation": "Subtracting the transition age makes deletion eligible at 420 days from creation, too early."
+        },
+        {
+          "text": "SetStorageClass to Coldline with age 540; Delete with age 120.",
+          "explanation": "The thresholds are reversed and would make deletion eligible before the desired transition."
+        },
+        {
+          "text": "SetStorageClass to Coldline with age 120; Delete with age 540.",
+          "explanation": "The age condition is measured from object creation, so the delete threshold remains 540 rather than the time since transition. Actions are asynchronous; soft delete may retain recoverable data afterward."
+        },
+        {
+          "text": "Change the bucket\u2019s default class to Coldline and schedule no lifecycle rules.",
+          "explanation": "A default class affects new objects and does not implement age-based transitions and deletion for existing objects."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Storage lifecycle ages \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/storage/docs/lifecycle"
+        }
+      ],
+      "id": "ace-18",
+      "answer": 2
+    },
+    {
+      "source": 5,
+      "topic": "Kubernetes contexts",
+      "question": "Your laptop already has kubeconfig contexts named retail-test and retail-live. The current context is retail-test. You need to inspect the API server and default namespace recorded for retail-live without changing the current context or fetching new credentials. Which command is appropriate?",
+      "options": [
+        {
+          "text": "gcloud config configurations describe retail-live",
+          "explanation": "Named gcloud configurations and kubeconfig contexts are different stores; this does not inspect that Kubernetes context."
+        },
+        {
+          "text": "kubectl config current-context",
+          "explanation": "This returns the currently selected context name, which is retail-test, rather than the live context details."
+        },
+        {
+          "text": "kubectl config use-context retail-live",
+          "explanation": "This changes the current context and does not itself display the requested configuration details."
+        },
+        {
+          "text": "kubectl --context=retail-live config view --minify",
+          "explanation": "The explicit context selects retail-live for this invocation; minify limits the displayed configuration without changing current-context."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Kubernetes contexts \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl"
+        }
+      ],
+      "id": "ace-05",
+      "answer": 3
+    },
+    {
+      "source": 16,
+      "topic": "CPU-based VM autoscaling",
+      "question": "A simulation gateway must run directly on Compute Engine VMs under company policy. Requests are stateless, traffic has no predictable schedule, and CPU use closely tracks load. The team wants managed capacity adjustments with little custom automation. Which design fits?",
+      "options": [
+        {
+          "text": "Deploy the gateway to GKE and enable Pod autoscaling.",
+          "explanation": "This uses Kubernetes rather than the directly managed VMs required by policy."
+        },
+        {
+          "text": "Use a fixed-size unmanaged instance group and a CPU dashboard.",
+          "explanation": "A dashboard observes load but does not change capacity, and an unmanaged group does not provide managed autoscaling."
+        },
+        {
+          "text": "Create an instance template and a MIG with CPU-utilization autoscaling.",
+          "explanation": "A MIG uses its template to create consistent VMs, and the autoscaler adjusts the count using CPU demand."
+        },
+        {
+          "text": "Configure a MIG to scale only at 08:00 and 18:00.",
+          "explanation": "Schedule-only scaling cannot react to the unpredictable CPU demand described."
+        }
+      ],
+      "docs": [
+        {
+          "title": "CPU-based VM autoscaling \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/compute/docs/autoscaler"
+        }
+      ],
+      "id": "ace-16",
+      "answer": 2
+    },
+    {
+      "source": 29,
+      "topic": "Temporary object sharing",
+      "question": "A translator outside your organization needs to download one private reference file within the next three hours. They have no Google account. The object must remain private and the download authorization should expire automatically. What is the simplest suitable approach?",
+      "options": [
+        {
+          "text": "Grant allUsers object access and remove it manually tomorrow.",
+          "explanation": "Public access exposes the file broadly and does not implement the required automatic three-hour authorization."
+        },
+        {
+          "text": "Generate a read-only signed URL for the object with a three-hour expiration and share it securely.",
+          "explanation": "A signed URL grants the bearer time-limited access to the specified operation without a Google account. Anyone holding it can use it until expiry; it cannot revoke copies already downloaded."
+        },
+        {
+          "text": "Make the bucket a public website and hide the file\u2019s link.",
+          "explanation": "An unlisted URL is not access control and the object would remain publicly accessible."
+        },
+        {
+          "text": "Send the service account\u2019s private signing key to the translator.",
+          "explanation": "Sharing a signing key gives reusable credentials with far greater power than one temporary download."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Temporary object sharing \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/storage/docs/access-control/signed-urls"
+        }
+      ],
+      "id": "ace-29",
+      "answer": 1
+    },
+    {
+      "source": 3,
+      "topic": "Cloud SQL recovery",
+      "question": "A regional ticketing service uses a small MySQL database. An operator accidentally deleted reservations at 10:12, and the team needs to restore to 10:11 rather than to last night\u2019s backup. For future incidents, which managed database configuration supports that recovery without introducing a globally distributed database?",
+      "options": [
+        {
+          "text": "Use Cloud SQL for MySQL with automated backups and point-in-time recovery, including binary logging.",
+          "explanation": "PITR uses backups and transaction history to recover to a selected time within the retention window."
+        },
+        {
+          "text": "Use Cloud SQL with only a daily backup and no transaction logs.",
+          "explanation": "A backup alone restores its capture time, not an arbitrary time between backups."
+        },
+        {
+          "text": "Use a Cloud SQL read replica as the only recovery mechanism.",
+          "explanation": "Replication normally propagates the accidental delete; it is not a historical recovery mechanism."
+        },
+        {
+          "text": "Use a highly available Cloud SQL instance but disable PITR.",
+          "explanation": "HA handles infrastructure failures; a failover does not undo an application-level deletion."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Cloud SQL recovery \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/sql/docs/mysql/backup-recovery/pitr"
+        }
+      ],
+      "id": "ace-03",
+      "answer": 0
+    },
+    {
+      "source": 32,
+      "topic": "Multi-project monitoring",
+      "question": "An operations team owns a central observability project and needs one dashboard displaying VM metrics from several application projects. The projects should remain separate, and the team can configure the required Monitoring IAM permissions. What should it configure?",
+      "options": [
+        {
+          "text": "Peer all VPCs and assume metrics will appear in the central dashboard.",
+          "explanation": "Network peering provides connectivity, not a Monitoring metrics aggregation scope."
+        },
+        {
+          "text": "Rename the projects with a common prefix and create only a dashboard filter.",
+          "explanation": "A filter cannot make metrics from projects outside the selected metrics scope available."
+        },
+        {
+          "text": "Add the application projects to the central project\u2019s Cloud Monitoring metrics scope and build the dashboard there.",
+          "explanation": "A metrics scope makes metrics from monitored projects available for charts and alerts in the scoping project without moving resources."
+        },
+        {
+          "text": "Move every VM into the observability project.",
+          "explanation": "Resource migration is unnecessary and violates the requirement to keep application projects separate."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Multi-project monitoring \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/monitoring/settings/multiple-projects"
+        }
+      ],
+      "id": "ace-32",
+      "answer": 2
+    },
+    {
+      "source": 12,
+      "topic": "Container deployment",
+      "question": "A team has source code and a Dockerfile for a new inventory worker. They already have a GKE cluster and an Artifact Registry Docker repository, with image-pull permissions configured. What sequence makes the worker run as replicated Pods?",
+      "options": [
+        {
+          "text": "Put the Dockerfile path in the Deployment image field and apply it.",
+          "explanation": "The image field requires a container image reference; Kubernetes does not build a Dockerfile there."
+        },
+        {
+          "text": "Build the image, push it to Artifact Registry, then apply a Deployment manifest referencing that image.",
+          "explanation": "GKE runs container images; the Deployment declares replicas and points to an image the nodes can pull."
+        },
+        {
+          "text": "Upload the source archive to a Cloud Storage bucket and use its gs:// URL as the image.",
+          "explanation": "An ordinary Storage object is not a Docker registry image that the container runtime can pull."
+        },
+        {
+          "text": "Run gcloud app deploy against the Dockerfile to update the cluster.",
+          "explanation": "gcloud app deploy targets App Engine, not a GKE Deployment."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Container deployment \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/kubernetes-engine/docs/deploy-app-cluster"
+        }
+      ],
+      "id": "ace-12",
+      "answer": 1
+    },
+    {
+      "source": 35,
+      "topic": "Billing permission boundaries",
+      "question": "A finance operator has permission to create a new Cloud Billing account and has all required read/view permissions. They must link an existing unbilled project to the new account while receiving no ability to modify its VMs. Which additional permission pairing is essential for the link?",
+      "options": [
+        {
+          "text": "Project Billing Manager on the project only, with no access to the new billing account.",
+          "explanation": "Project-side authority alone cannot authorize charging the destination billing account."
+        },
+        {
+          "text": "Billing Account User on the new account only, with no billing-assignment permission on the project.",
+          "explanation": "Account-side authority alone cannot change the project\u2019s billing assignment."
+        },
+        {
+          "text": "Project Viewer on the project plus Billing Account Viewer on the new account.",
+          "explanation": "Viewer roles provide visibility but do not authorize the billing-assignment mutations required on both resources."
+        },
+        {
+          "text": "Project Billing Manager on the project plus Billing Account User (or an encompassing role) on the new billing account.",
+          "explanation": "Linking needs permission on both resources: createBillingAssignment on the project and resourceAssociations.create on the target account. Read/view prerequisites are already stated."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Billing permission boundaries \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/billing/docs/how-to/billing-access"
+        }
+      ],
+      "id": "ace-35",
+      "answer": 3
+    },
+    {
+      "source": 6,
+      "topic": "Cloud Storage classes",
+      "question": "A studio keeps immutable disaster-recovery copies for seven years. They are read only during a rare disaster, much less than once a year. Millisecond retrieval is acceptable, and higher retrieval charges are acceptable in exchange for the lowest at-rest storage cost. Which storage class best fits?",
+      "options": [
+        {
+          "text": "Archive",
+          "explanation": "Archive fits long-lived, very rarely accessed backups with a 365-day minimum storage duration and online retrieval."
+        },
+        {
+          "text": "Standard",
+          "explanation": "Standard is intended for frequent access and has higher at-rest storage costs."
+        },
+        {
+          "text": "Nearline",
+          "explanation": "Nearline suits roughly monthly access; these backups are far less frequently used."
+        },
+        {
+          "text": "Coldline",
+          "explanation": "Coldline suits roughly quarterly access, but Archive better fits this much longer retention and rarer access."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Cloud Storage classes \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/storage/docs/storage-classes"
+        }
+      ],
+      "id": "ace-06",
+      "answer": 0
+    },
+    {
+      "source": 40,
+      "topic": "HTTPS load balancing",
+      "question": "A public booking site runs in a Compute Engine instance group. Its frontend must terminate client TLS, manage an HTTPS certificate centrally, and route /images and /api requests to different backend services. Which load balancer type best fits?",
+      "options": [
+        {
+          "text": "An external passthrough Network Load Balancer using TCP port 443.",
+          "explanation": "Passthrough forwards connections to backends without terminating client TLS or providing HTTP path routing."
+        },
+        {
+          "text": "An external Application Load Balancer with an HTTPS frontend and URL map.",
+          "explanation": "Application Load Balancing terminates HTTPS and supports HTTP host/path routing to backend services."
+        },
+        {
+          "text": "An internal passthrough Network Load Balancer.",
+          "explanation": "It is private and lacks the requested public HTTPS termination and layer-7 path routing."
+        },
+        {
+          "text": "An external proxy Network Load Balancer with TLS termination.",
+          "explanation": "TLS termination alone does not provide the HTTP URL-map path routing required by this web application."
+        }
+      ],
+      "docs": [
+        {
+          "title": "HTTPS load balancing \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/load-balancing/docs/https"
+        }
+      ],
+      "id": "ace-40",
+      "answer": 1
+    },
+    {
+      "source": 21,
+      "topic": "gcloud configurations",
+      "question": "A consultant uses separate authenticated Google accounts for two clients, with different projects and default zones. They frequently switch clients while creating VMs from the CLI. What minimizes repeated changes and the risk of mixing account and project defaults?",
+      "options": [
+        {
+          "text": "Create a named gcloud configuration for each client, set its account/project/zone, and activate the appropriate one.",
+          "explanation": "Named configurations group CLI properties so the intended account, project and location defaults can be selected together."
+        },
+        {
+          "text": "Set one global project default and change only the account before each operation.",
+          "explanation": "The account and project can become mismatched, and separate zone defaults are not preserved."
+        },
+        {
+          "text": "Create two kubeconfig contexts and use kubectl to select a Compute Engine billing project.",
+          "explanation": "Kubeconfig contexts control Kubernetes access, not gcloud account and Compute Engine defaults."
+        },
+        {
+          "text": "Run gcloud config configurations list to create the VM in both clients.",
+          "explanation": "Listing configurations neither activates the intended settings nor creates VMs."
+        }
+      ],
+      "docs": [
+        {
+          "title": "gcloud configurations \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/sdk/docs/configurations"
+        }
+      ],
+      "id": "ace-21",
+      "answer": 0
+    },
+    {
+      "source": 27,
+      "topic": "Investigating storage activity",
+      "question": "An investigator with the required log permissions must determine whether a particular employee changed bucket labels and downloaded objects yesterday. Cloud Storage Data Access logging was already enabled for the relevant buckets. What is the most direct investigation method?",
+      "options": [
+        {
+          "text": "Inspect only the current objects listed in the bucket console.",
+          "explanation": "Current object state does not provide a historical record of who downloaded objects or changed labels."
+        },
+        {
+          "text": "Use Cloud Trace to list every Storage object read by that employee.",
+          "explanation": "Trace is for distributed request tracing, not the authoritative Cloud Storage audit history."
+        },
+        {
+          "text": "Use Logs Explorer to filter audit entries by principal email, time range, bucket, and relevant methods across Admin Activity and Data Access logs.",
+          "explanation": "Bucket administration and object reads are recorded in different audit categories; query both to connect the actions to the principal."
+        },
+        {
+          "text": "Filter only Admin Activity logs and assume they include every object download.",
+          "explanation": "Object data reads are in Data Access audit logs rather than solely Admin Activity."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Investigating storage activity \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/storage/docs/audit-logging"
+        }
+      ],
+      "id": "ace-27",
+      "answer": 2
+    },
+    {
+      "source": 11,
+      "topic": "Infrastructure as code",
+      "question": "A platform team wants repeatable creation of networks, disks, and VMs from reviewed configuration in version control. They prefer a current Google-managed service that executes Terraform and tracks deployments rather than maintaining their own runner. What should they use?",
+      "options": [
+        {
+          "text": "Cloud Composer with a hand-written DAG for every API call",
+          "explanation": "Composer orchestrates workflows; it is not the direct managed Terraform deployment service requested."
+        },
+        {
+          "text": "An unmanaged instance group with manually created VMs",
+          "explanation": "An unmanaged group organizes existing VMs and does not declaratively provision the network and disk infrastructure."
+        },
+        {
+          "text": "A VM startup script as the only infrastructure definition",
+          "explanation": "A startup script configures the guest after creation; it does not manage the entire resource graph or deployment state."
+        },
+        {
+          "text": "Infrastructure Manager with Terraform configuration",
+          "explanation": "Infrastructure Manager provisions and manages Google Cloud infrastructure from Terraform configurations using a managed execution service."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Infrastructure as code \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/infrastructure-manager/docs/overview"
+        }
+      ],
+      "id": "ace-11",
+      "answer": 3
+    },
+    {
+      "source": 20,
+      "topic": "Windows VM access",
+      "question": "An administrator must use a graphical desktop to configure software on a Windows Server VM. Network routing already allows a private connection from their workstation. No Windows login credentials have been set and ingress is currently denied. Which preparation is needed?",
+      "options": [
+        {
+          "text": "Set a Windows username/password, allow TCP 3389 from the workstation\u2019s trusted source range, and connect with an RDP client.",
+          "explanation": "RDP provides Windows desktop access. Credentials and a permitted network path are both required; scope the firewall source rather than opening access globally."
+        },
+        {
+          "text": "Allow TCP 22 and use the Linux browser SSH workflow.",
+          "explanation": "The described graphical Windows access uses RDP, not the Linux SSH workflow."
+        },
+        {
+          "text": "Set a Windows password but keep all ingress denied.",
+          "explanation": "Credentials do not create a network path through a denying firewall."
+        },
+        {
+          "text": "Allow TCP 1433 and connect using database credentials in SQL Server Management Studio.",
+          "explanation": "A database client connects to SQL Server, not the Windows graphical desktop needed to configure operating-system software."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Windows VM access \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/compute/docs/instances/connecting-to-windows"
+        }
+      ],
+      "id": "ace-20",
+      "answer": 0
+    },
+    {
+      "source": 26,
+      "topic": "Storage upload permissions",
+      "question": "A MIG writes uniquely named daily report objects to one bucket. It must not list, read, delete, or overwrite existing objects. The VMs use a dedicated service account and already have the cloud-platform scope. Which bucket-level role should you grant that service account?",
+      "options": [
+        {
+          "text": "roles/storage.objectViewer",
+          "explanation": "Object Viewer permits reading and listing objects but does not allow creating reports."
+        },
+        {
+          "text": "roles/storage.objectAdmin",
+          "explanation": "Object Admin includes reading, deleting, and modifying objects beyond the requested upload-only access."
+        },
+        {
+          "text": "roles/storage.objectCreator",
+          "explanation": "Object Creator permits creating new objects without read, list or delete permissions; overwriting an existing object also requires deletion permission."
+        },
+        {
+          "text": "roles/storage.admin on the project",
+          "explanation": "Project-wide Storage Admin also permits bucket administration and affects more resources than the single destination bucket."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Storage upload permissions \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/storage/docs/access-control/iam-roles"
+        }
+      ],
+      "id": "ace-26",
+      "answer": 2
+    },
+    {
+      "source": 37,
+      "topic": "App Engine regional placement",
+      "question": "A company\u2019s App Engine application was created in a US location. It now needs a separately deployed App Engine application in an available European location. What should the platform team do?",
+      "options": [
+        {
+          "text": "Change the existing application\u2019s region with gcloud config set compute/region.",
+          "explanation": "The compute default region does not relocate an App Engine application."
+        },
+        {
+          "text": "Create a new Google Cloud project, create its App Engine application in the European location, and deploy the service there.",
+          "explanation": "An App Engine application\u2019s region is fixed after creation, and a project supports one App Engine application. A new project provides a new regional application."
+        },
+        {
+          "text": "Create a second App Engine application in the same project with a different region.",
+          "explanation": "A project cannot contain a second App Engine application to select another region."
+        },
+        {
+          "text": "Deploy another version into the current application and select a European zone.",
+          "explanation": "Versions inherit their application\u2019s regional placement; they do not choose an independent zone or region."
+        }
+      ],
+      "docs": [
+        {
+          "title": "App Engine regional placement \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/appengine/docs/standard/locations"
+        }
+      ],
+      "id": "ace-37",
+      "answer": 1
+    },
+    {
+      "source": 4,
+      "topic": "Managed instance group autohealing",
+      "question": "An image-processing API runs in a regional managed instance group. Sometimes the process hangs while the VM remains running. The team wants unhealthy VMs repaired after three consecutive failed application checks, with checks every 10 seconds and sufficient startup grace time. What should it configure?",
+      "options": [
+        {
+          "text": "Attach a health check only to the load balancer backend service.",
+          "explanation": "Load balancing checks stop routing to unhealthy backends but do not themselves recreate the VMs."
+        },
+        {
+          "text": "Enable CPU autoscaling and set its target to 60%.",
+          "explanation": "Autoscaling adjusts capacity; it does not detect an application hang through the requested health signal."
+        },
+        {
+          "text": "Schedule a restart of every VM every 30 seconds.",
+          "explanation": "Periodic restarts are not based on failed checks and disrupt healthy instances."
+        },
+        {
+          "text": "Attach an application health check to the MIG autohealing policy, with interval 10 seconds and unhealthy threshold 3.",
+          "explanation": "Application-based autohealing detects failures that VM state alone misses and repairs unhealthy instances; startup delay prevents premature repairs."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Managed instance group autohealing \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/compute/docs/instance-groups/autohealing-instances-in-migs"
+        }
+      ],
+      "id": "ace-04",
+      "answer": 3
+    },
+    {
+      "source": 17,
+      "topic": "Billing analytics",
+      "question": "A company needs SQL reports combining daily costs by service across twelve projects billed to one account. It wants to build its own monthly trend forecasts from ongoing billing records. Which data source should it configure?",
+      "options": [
+        {
+          "text": "Enable VPC Flow Logs and aggregate network bytes by project.",
+          "explanation": "Flow logs describe network traffic, not complete service billing records."
+        },
+        {
+          "text": "Download a monthly invoice PDF and use it as the only daily cost reporting source.",
+          "explanation": "An invoice is not an ongoing structured export of daily per-service records suitable for the requested SQL analysis."
+        },
+        {
+          "text": "Use only Cloud Monitoring resource-utilization metrics and apply a single unit price to all services.",
+          "explanation": "Utilization metrics omit billing details such as service-specific SKUs, credits and pricing, so they are not a substitute for billing records."
+        },
+        {
+          "text": "Enable Cloud Billing export to BigQuery and query the exported cost tables.",
+          "explanation": "Billing export provides ongoing detailed cost data suitable for SQL aggregation and custom trend analysis; forecasts require your own analysis."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Billing analytics \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/billing/docs/how-to/export-data-bigquery"
+        }
+      ],
+      "id": "ace-17",
+      "answer": 3
+    },
+    {
+      "source": 9,
+      "topic": "App Engine scaling",
+      "question": "A supported App Engine standard service receives unpredictable bursts. Warmup requests are enabled and handled. The team wants automatic scaling with demand plus two additional instances ready beyond the number calculated to serve current traffic. Which app.yaml setting expresses this intent?",
+      "options": [
+        {
+          "text": "manual_scaling with instances: 2",
+          "explanation": "Manual scaling holds a fixed instance count and does not add capacity automatically with demand."
+        },
+        {
+          "text": "automatic_scaling with min_idle_instances: 2",
+          "explanation": "min_idle_instances specifies additional ready instances beyond calculated demand for a version receiving traffic; warmup handling is required."
+        },
+        {
+          "text": "basic_scaling with max_instances: 2",
+          "explanation": "This caps capacity; it does not request two extra idle instances above demand."
+        },
+        {
+          "text": "automatic_scaling with max_instances: 2",
+          "explanation": "A maximum limits total instances rather than reserving extra idle capacity."
+        }
+      ],
+      "docs": [
+        {
+          "title": "App Engine scaling \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/appengine/docs/standard/reference/app-yaml"
+        }
+      ],
+      "id": "ace-09",
+      "answer": 1
+    },
+    {
+      "source": 34,
+      "topic": "Inspecting IAM bindings",
+      "question": "During an access review, you need to see which principals have roles directly granted on project ledger-prod. You are not trying to list the permissions inside every available role. Which CLI command provides the project\u2019s allow policy bindings?",
+      "options": [
+        {
+          "text": "gcloud iam roles list --project=ledger-prod",
+          "explanation": "This lists role definitions rather than the principals to whom roles are granted."
+        },
+        {
+          "text": "gcloud iam service-accounts list --project=ledger-prod",
+          "explanation": "This lists service account identities, not all user, group and service account role bindings."
+        },
+        {
+          "text": "gcloud projects get-iam-policy ledger-prod",
+          "explanation": "This returns the project-level allow policy and its bindings. Parent inheritance, conditions and deny policies need separate evaluation for a full effective-access review."
+        },
+        {
+          "text": "gcloud config list",
+          "explanation": "This displays local CLI properties rather than the remote project IAM policy."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Inspecting IAM bindings \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/iam/docs/granting-changing-revoking-access"
+        }
+      ],
+      "id": "ace-34",
+      "answer": 2
+    },
+    {
+      "source": 23,
+      "topic": "Streaming data architecture",
+      "question": "A fleet emits continuous sensor events. The system needs a durable ingestion buffer, managed windowed stream transformations, low-latency lookups over large time-series data by device and timestamp, and separate SQL analytics over historical data. Which combination best matches those four roles?",
+      "options": [
+        {
+          "text": "Pub/Sub, Dataflow, Bigtable, and BigQuery, respectively.",
+          "explanation": "Pub/Sub buffers events, Dataflow performs streaming transformations, Bigtable supports key-oriented time-series access, and BigQuery serves analytical SQL."
+        },
+        {
+          "text": "Cloud Storage, Cloud Scheduler, Cloud SQL, and Memorystore, respectively.",
+          "explanation": "Scheduler does not perform windowed streaming transformations and Memorystore is not the historical SQL warehouse required."
+        },
+        {
+          "text": "Pub/Sub, Dataflow, BigQuery, and Bigtable, respectively.",
+          "explanation": "The ingestion and transformation services fit, but the stores are reversed: Bigtable is the device-key lookup store and BigQuery provides the required analytical SQL."
+        },
+        {
+          "text": "Pub/Sub, Dataproc batch jobs, Cloud SQL, and BigQuery, respectively.",
+          "explanation": "The buffer and warehouse fit, but scheduled batch jobs do not meet continuous windowed streaming needs, and Cloud SQL is not the best fit for the very large key-oriented time-series workload."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Streaming data architecture \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/dataflow/docs/overview"
+        }
+      ],
+      "id": "ace-23",
+      "answer": 0
+    },
+    {
+      "source": 10,
+      "topic": "Copying custom IAM roles",
+      "question": "A sandbox project contains a project-level custom role named releaseOperator. A separate production project needs its own independent role definition with the same permissions. You are not trying to copy any user bindings. What is the most direct CLI approach?",
+      "options": [
+        {
+          "text": "Copy the sandbox project IAM policy and apply it unchanged to production.",
+          "explanation": "Policies bind principals to roles; they do not create a project-scoped custom role definition in another project."
+        },
+        {
+          "text": "Use gcloud iam roles copy with the sandbox source project and production destination project.",
+          "explanation": "The copy command creates a role definition at the chosen destination; principal bindings must be managed separately."
+        },
+        {
+          "text": "Grant the sandbox custom role directly on the production project.",
+          "explanation": "A project-level custom role is usable within its owning project, not as a role belonging to another project."
+        },
+        {
+          "text": "Run gcloud iam service-accounts create releaseOperator in production.",
+          "explanation": "A service account is an identity, not a custom role containing permissions."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Copying custom IAM roles \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/iam/docs/creating-custom-roles"
+        }
+      ],
+      "id": "ace-10",
+      "answer": 1
+    },
+    {
+      "source": 39,
+      "topic": "GKE lifecycle management",
+      "question": "A production GKE Standard cluster should prioritize versions that have had more production validation while continuing to receive managed Kubernetes updates. The team wants to set an appropriate maintenance window rather than manually track each patch. Which configuration best fits?",
+      "options": [
+        {
+          "text": "Enable node auto-repair but permanently disable version upgrades.",
+          "explanation": "Repair addresses unhealthy nodes, not ongoing Kubernetes version support and patch management."
+        },
+        {
+          "text": "Select the newest available version once and take no lifecycle action.",
+          "explanation": "A one-time version choice does not keep the cluster patched or supported as versions age."
+        },
+        {
+          "text": "Enroll the cluster in the Stable release channel and use managed upgrades with an appropriate maintenance policy.",
+          "explanation": "Stable prioritizes additional validation before promotion; GKE manages upgrades. Maintenance policies help control timing within support and security constraints."
+        },
+        {
+          "text": "Change the node image to Container-Optimized OS and assume Kubernetes versions no longer need updates.",
+          "explanation": "The node operating system choice is distinct from the Kubernetes release lifecycle."
+        }
+      ],
+      "docs": [
+        {
+          "title": "GKE lifecycle management \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/kubernetes-engine/docs/concepts/release-channels"
+        }
+      ],
+      "id": "ace-39",
+      "answer": 2
+    },
+    {
+      "source": 28,
+      "topic": "Delegating Storage administration",
+      "question": "A data-platform group must create and delete buckets and manage the objects inside them throughout one project. It should receive no compute or database administration privileges. Which predefined project-level role fits the full requested scope?",
+      "options": [
+        {
+          "text": "roles/storage.admin",
+          "explanation": "Storage Admin includes bucket and object administration while limiting the service scope to Cloud Storage."
+        },
+        {
+          "text": "roles/storage.objectAdmin",
+          "explanation": "Object Admin manages objects but does not provide the full bucket creation and deletion administration required."
+        },
+        {
+          "text": "roles/storage.objectCreator",
+          "explanation": "Object Creator is focused on uploading new objects, not managing buckets or existing data."
+        },
+        {
+          "text": "roles/editor",
+          "explanation": "Editor is broad across services and grants far more than Storage administration."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Delegating Storage administration \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/storage/docs/access-control/iam-roles"
+        }
+      ],
+      "id": "ace-28",
+      "answer": 0
+    },
+    {
+      "source": 14,
+      "topic": "Safe infrastructure updates",
+      "question": "An existing Infrastructure Manager deployment manages a production network and VMs. A reviewed Terraform change adds a new subnet; the preview shows only a subnet creation and no changes to running VMs. Which approach best preserves the deployment\u2019s tracked state and minimizes disruption?",
+      "options": [
+        {
+          "text": "Delete the deployment and destroy all resources before recreating it.",
+          "explanation": "Destroying working infrastructure causes disruption and is unnecessary for an additive change."
+        },
+        {
+          "text": "Create a separate deployment using the same resource names and no imports.",
+          "explanation": "A separate state does not automatically adopt existing resources and can cause conflicts."
+        },
+        {
+          "text": "Edit only the live subnet settings and leave the configuration unchanged.",
+          "explanation": "Manual edits create drift and do not record the intended addition in the managed configuration."
+        },
+        {
+          "text": "Update the existing deployment using the revised configuration after reviewing the preview.",
+          "explanation": "An update reconciles the tracked resources with the new configuration. The reviewed plan identifies the expected impact; updates do not inherently guarantee zero downtime."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Safe infrastructure updates \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/infrastructure-manager/docs/update-deployment"
+        }
+      ],
+      "id": "ace-14",
+      "answer": 3
+    },
+    {
+      "source": 31,
+      "topic": "Service API enablement",
+      "question": "An App Engine service has the correct Pub/Sub publisher and subscriber IAM grants. Its first request fails because pubsub.googleapis.com is disabled in its project. What should an authorized operator do without giving the runtime unnecessary administrative privileges?",
+      "options": [
+        {
+          "text": "Wait for the API to enable itself when the service account retries.",
+          "explanation": "Using a service account does not automatically enable a disabled service API."
+        },
+        {
+          "text": "Grant Pub/Sub Admin to the runtime and assume that grant enables the API.",
+          "explanation": "A Pub/Sub IAM grant does not itself enable the service; runtime administration is also unnecessary."
+        },
+        {
+          "text": "Enable the Pub/Sub API in the project using Service Usage or the API Library.",
+          "explanation": "Service enablement is separate from runtime IAM authorization. An operator with service-enablement permission can enable it before the app uses it."
+        },
+        {
+          "text": "Add another subscription without enabling the API.",
+          "explanation": "Creating a subscription requires access to the API and does not solve service disablement."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Service API enablement \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/service-usage/docs/enable-disable"
+        }
+      ],
+      "id": "ace-31",
+      "answer": 2
+    },
+    {
+      "source": 2,
+      "topic": "VPC subnet planning",
+      "question": "A research lab is designing an isolated custom-mode VPC. Its address plan permits any RFC 1918 private IPv4 range, no existing networks overlap, and it wants the largest number of addresses in one subnet among the choices. Which primary range should it select?",
+      "options": [
+        {
+          "text": "172.16.0.0/12",
+          "explanation": "This is private and valid, but its longer prefix leaves fewer host addresses than /8."
+        },
+        {
+          "text": "192.168.0.0/16",
+          "explanation": "This is private and valid, but it is the smallest address block among the three private choices."
+        },
+        {
+          "text": "0.0.0.0/0",
+          "explanation": "A default-route destination is not a valid primary subnet range; it also includes prohibited and non-private addresses."
+        },
+        {
+          "text": "10.0.0.0/8",
+          "explanation": "This is a valid RFC 1918 range and contains more addresses than the /12 and /16 choices."
+        }
+      ],
+      "docs": [
+        {
+          "title": "VPC subnet planning \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/vpc/docs/subnets"
+        }
+      ],
+      "id": "ace-02",
+      "answer": 3
+    },
+    {
+      "source": 36,
+      "topic": "Cross-project service accounts",
+      "question": "An automated job already authenticates as backup-bot from an identity project. It must create standard snapshots of zonal persistent disks in a separate workload project, with snapshots also stored in that workload project. Which authorization approach fits?",
+      "options": [
+        {
+          "text": "Grant backup-bot a suitable snapshot-management role, such as Compute Storage Admin, on the workload project.",
+          "explanation": "A service account can receive IAM grants on resources in another project. A role with disks.createSnapshot and snapshots.create on the target resources authorizes the operation."
+        },
+        {
+          "text": "Grant backup-bot the snapshot role only on the identity project.",
+          "explanation": "Permissions in its home project do not automatically authorize snapshot operations on the workload project\u2019s disks."
+        },
+        {
+          "text": "Copy the service account private key into the disks\u2019 VM metadata.",
+          "explanation": "The job already authenticates. Distributing a key does not grant permission on the target project."
+        },
+        {
+          "text": "Change only the VM\u2019s OAuth scope to Compute read/write.",
+          "explanation": "Access scopes are not a replacement for IAM authorization on the workload project, and the caller is the separate job."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Cross-project service accounts \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/compute/docs/access/iam"
+        }
+      ],
+      "id": "ace-36",
+      "answer": 0
+    },
+    {
+      "source": 24,
+      "topic": "App Engine environment isolation",
+      "question": "An App Engine service has passed testing. Production must have separate project IAM, billing attribution, and resource isolation. The release pipeline retains the source and app.yaml. How should you create the production environment?",
+      "options": [
+        {
+          "text": "Deploy a second version in the test project and call it production.",
+          "explanation": "Versions in one project share the project IAM and billing boundary."
+        },
+        {
+          "text": "Create and configure a new project and App Engine application, then deploy the retained source explicitly to that project.",
+          "explanation": "A new project provides the requested boundary; it must exist and have the necessary setup before deployment. Redeploying source is the supported approach."
+        },
+        {
+          "text": "Run gcloud app deploy with a nonexistent project ID and rely on it to create the project.",
+          "explanation": "Deployment does not automatically create and configure a missing Google Cloud project."
+        },
+        {
+          "text": "Deploy a separate App Engine service in the test project and assign a production service account.",
+          "explanation": "A separate service and runtime identity can separate workloads, but they retain the same project IAM and billing boundary."
+        }
+      ],
+      "docs": [
+        {
+          "title": "App Engine environment isolation \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/appengine/docs/standard/managing-projects-apps-billing"
+        }
+      ],
+      "id": "ace-24",
+      "answer": 1
+    },
+    {
+      "source": 19,
+      "topic": "VM workload identity",
+      "question": "A Compute Engine worker will use Application Default Credentials to call Google Cloud APIs. Security has created a dedicated, minimally privileged service account. The VM should use that identity without storing a private key file. What should you configure?",
+      "options": [
+        {
+          "text": "Add the service account email to a custom metadata key named api-user.",
+          "explanation": "An arbitrary metadata key does not change the VM\u2019s attached identity or ADC behavior."
+        },
+        {
+          "text": "Place a downloaded private key in project-wide metadata.",
+          "explanation": "This exposes a long-lived credential broadly and does not attach the identity to the VM."
+        },
+        {
+          "text": "Give the default VM service account the dedicated account\u2019s display name.",
+          "explanation": "Display names are labels; renaming an account does not change its identity or permissions."
+        },
+        {
+          "text": "Attach the dedicated service account to the VM and use a suitable API access scope such as cloud-platform.",
+          "explanation": "ADC can obtain short-lived credentials for the attached identity from the metadata server. IAM roles determine resource permissions within permitted scopes."
+        }
+      ],
+      "docs": [
+        {
+          "title": "VM workload identity \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/compute/docs/access/service-accounts"
+        }
+      ],
+      "id": "ace-19",
+      "answer": 3
+    },
+    {
+      "source": 13,
+      "topic": "Cloud Marketplace",
+      "question": "A small team needs a temporary evaluation VM for a third-party reporting product. Its vendor provides a maintained, preconfigured Compute Engine solution in Google Cloud Marketplace, which security has approved. The team has no customization requirements and wants the least setup work. How should it deploy?",
+      "options": [
+        {
+          "text": "Launch the vendor\u2019s approved Compute Engine solution from Cloud Marketplace.",
+          "explanation": "The preconfigured solution packages the software and deployment configuration, reducing manual installation work."
+        },
+        {
+          "text": "Create a blank VM and manually install every dependency from source.",
+          "explanation": "This can work, but repeats setup already provided by the approved solution."
+        },
+        {
+          "text": "Create a new GKE cluster and design a chart for the product.",
+          "explanation": "A new cluster and packaging effort add unnecessary work for the stated evaluation VM."
+        },
+        {
+          "text": "Import an unconfigured operating-system image and install the vendor software through a startup script.",
+          "explanation": "Automating installation can help repeated custom deployments, but authoring and maintaining the script adds work compared with the approved preconfigured product."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Cloud Marketplace \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/marketplace/docs/overview"
+        }
+      ],
+      "id": "ace-13",
+      "answer": 0
+    },
+    {
+      "source": 33,
+      "topic": "Fixed-size managed groups",
+      "question": "A legacy leader process cannot have parallel active copies. The team wants a zonal MIG to maintain one VM and replace it if the application fails. Brief recovery downtime is acceptable, and no rollout is in progress. Which configuration best expresses this requirement?",
+      "options": [
+        {
+          "text": "Set CPU autoscaling minimum 1 and maximum 3.",
+          "explanation": "This allows parallel VMs under load, contrary to the single-copy restriction."
+        },
+        {
+          "text": "Use a fixed target size of 1, disable autoscaling, and configure application-based autohealing.",
+          "explanation": "Fixed size maintains the desired count without scaling it with load; autohealing replaces a failed instance. A single VM cannot guarantee uninterrupted service."
+        },
+        {
+          "text": "Use a size-1 unmanaged instance group and assume it repairs failed applications.",
+          "explanation": "An unmanaged group does not maintain or autoheal member VMs like a MIG."
+        },
+        {
+          "text": "Set target size 0 and rely on the load balancer to create the VM.",
+          "explanation": "A load balancer does not provision a backend VM when none exists."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Fixed-size managed groups \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/compute/docs/instance-groups"
+        }
+      ],
+      "id": "ace-33",
+      "answer": 1
+    },
+    {
+      "source": 25,
+      "topic": "Audit access for groups",
+      "question": "An external audit team needs read-only access to BigQuery Data Access audit logs stored in the project\u2019s default Cloud Logging bucket. It must not read the underlying business tables. The team\u2019s membership changes often. Which grant best meets the requirement?",
+      "options": [
+        {
+          "text": "Grant roles/logging.viewer on the project to the group.",
+          "explanation": "Logs Viewer alone does not allow reading Data Access audit logs in the default bucket."
+        },
+        {
+          "text": "Grant roles/bigquery.dataViewer on every business dataset to each auditor.",
+          "explanation": "Dataset access exposes table data and is not the permission for reading entries stored in Cloud Logging."
+        },
+        {
+          "text": "Grant roles/logging.privateLogViewer on the project to the auditors\u2019 Google group.",
+          "explanation": "Private Logs Viewer includes access to Data Access entries in the default log bucket. A group simplifies membership changes without granting business-table access."
+        },
+        {
+          "text": "Grant Project Editor to a shared auditor account.",
+          "explanation": "A shared account loses individual accountability and Editor grants unnecessary modification privileges."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Audit access for groups \u2014 official documentation",
+          "url": "https://docs.cloud.google.com/logging/docs/audit"
+        }
+      ],
+      "id": "ace-25",
+      "answer": 2
+    }
+  ]
+}
