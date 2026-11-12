@@ -6,7 +6,9 @@ An unofficial, untimed exam with 40 original scenarios covering a selected set o
 
 ## Taking the exam
 
-Choose one of four answers, change or clear it before submission, navigate with Previous/Next or the question map, and flag questions to revisit. The submission dialog reports unanswered questions and lets you return to any of them. Submission locks answers and reveals the score plus explanations for every option and official documentation links. Filter review to incorrect, unanswered or flagged questions. Restart requires confirmation; Cancel or Escape preserves the attempt.
+Each question is independent. Choose an answer, then use **Confirm answer** beside **Clear selection** to reveal that question’s result and explanations immediately. You can change or clear a choice before confirming it. Confirmed answers are locked, while other questions remain available to answer independently. There is no whole-exam submission step.
+
+Navigate with Previous/Next or the question map. Flag questions and filter to unconfirmed, incorrect, unanswered or flagged questions. Progress and accuracy count confirmed questions only. Restart requires confirmation; Cancel or Escape preserves the attempt. Existing saved selections are preserved when upgrading from the previous exam mode.
 
 **Answers, flags, position and results are saved locally to one device, browser, browser profile and site origin. They do not sync across devices.** Private browsing, clearing site data, or a content version change may reset the attempt. If storage is unavailable, a warning appears and progress lasts only while the page remains open. With multiple tabs, the last saved tab wins.
 
@@ -37,7 +39,7 @@ Edit `questions.json`. A question contains a stable `id`, a maintainer `source` 
 
 Keep exactly one unambiguous best answer. Verify current official documentation, especially IAM scope and service deprecations. The fixed mixed topic order keeps saved attempts stable; answer positions currently occur ten times each. If changing that balance intentionally, update the matching test. Bump the top-level `version` whenever question meaning, order or answer indices change: old attempts are rejected rather than scored against a different key. Update `reviewed` after a content review. See [CONTENT_NOTES.md](CONTENT_NOTES.md) for coverage and modernization.
 
-Answers and explanations are hidden in the interface until submission. Like any static self-study site, its downloadable source contains the answer key; it is not a secure assessment system.
+Answers and explanations are hidden in the interface until that question is confirmed. Like any static self-study site, its downloadable source contains the answer key; it is not a secure assessment system.
 
 ## Deploy with Render (preferred hosting)
 

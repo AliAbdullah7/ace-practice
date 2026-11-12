@@ -7,3 +7,5 @@
 - Run `npm test` and `npm run build`, then commit and push the authorized update to `main`. Keep the user informed of deployment status; claim a new Render deployment succeeded only after verification.
 - Render dashboard settings: root directory empty, build command `npm test && npm run build`, publish directory `dist`, Auto-Deploy On Commit. The optional `render.yaml` provides equivalent Blueprint settings; it does not configure an existing manually created service by itself.
 - Publish only this website and necessary project files. Never copy original mock questions, source PDFs, credentials or unrelated study materials into the repository.
+
+- Each question is independent: Confirm answer beside Clear selection reveals only that question’s answer and explanations. Keep other questions unconfirmed; do not reintroduce whole-exam submission.

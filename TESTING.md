@@ -1,4 +1,22 @@
-# Verification record
+# Independent-question verification
+
+`npm test` (six tests), `npm run build`, JavaScript syntax and diff whitespace checks pass.
+
+Automated coverage verifies independent confirmations, no confirmation without a selection, locking only the confirmed question, clearing drafts, confirmation-only accuracy, draft-safe results filters, saved-state validation and migration from the former whole-exam format.
+
+Browser checks verified:
+
+- No Finish & submit control; Confirm answer sits beside Clear selection and is disabled until a choice is selected.
+- Confirming Q1 shows only its four explanations; Q2 remains unanswered with no explanation disclosure.
+- Keyboard answer changes and clearing still work.
+- Reload restores an unconfirmed selection without revealing correctness, and restores confirmed explanations.
+- One correct and one incorrect confirmation produce 50% accuracy while remaining selections are excluded.
+- Confirming within the pending filter retains the newly revealed explanation by returning to all questions.
+- At a 390-pixel phone width, both controls share a row, have at least 44-pixel touch heights, and the page has no horizontal overflow.
+
+Earlier verification below describes the previous whole-exam workflow and is retained as history.
+
+# Historical exam-mode verification
 
 ## Automated checks
 
