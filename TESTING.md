@@ -1,3 +1,21 @@
+# Version 2 verification — November 16, 2026
+
+`npm test` passes all 11 tests. `npm run build`, JavaScript syntax checks and `git diff --check` pass. Version 1’s `questions.json` is unchanged.
+
+- Indexed all 322 numbered PDF questions across 202 pages. Checked all 30 selected stems and 117 text choices against normalized PDF extraction. Visually inspected the four embedded command images; copied them without answer annotations. Other images on selected pages are outside the question prompts/options.
+- Automated tests cover both banks, source references, official documentation URLs, separate storage keys, preserved Version 1 key, cross-set restore rejection, independent restart, five-option multiple selection, exact-set scoring, incomplete/corrupt selection rejection, and complete correct attempts for both banks.
+- Browser completed all 30 Version 2 questions with 30/30 and 100%. Each unconfirmed question contained no explanations, review notes, source references or documentation links. Confirmation showed four explanations (five for choose-two), the proper result, and source metadata. Historical notices and corrected-key notices rendered only after confirmation.
+- Verified draft selections, flags, position, confirmed results and the selected version survive switching and reload. Version 1’s pre-existing two confirmations, draft selection and position remained unchanged throughout the Version 2 tests.
+- Confirm with one of the two required selections is disabled. Two selections confirm and lock only that question. The fifth choice is supported. Native controls remain mounted during selection.
+- Restart Cancel preserves the attempt; confirmed restart resets only Version 2. Its test attempt was cleared afterward. Empty incorrect-results filter disables navigation. Flagged review works with choose-two.
+- All four command images loaded. Added readable command text alongside them after observing that the source images alone were too small on a phone.
+- Phone widths 320 and 390 pixels have no horizontal overflow in either set. Desktop layout checked in the existing preview viewport. Browser console reported no warnings/errors.
+- Deployment bundle is an explicit allowlist: eight root website files (including `.nojekyll`) and four command images. No full PDF, original mock HTML, unrelated materials, or credentials are packaged.
+
+These browser checks used Chromium with phone-size viewports, not physical iOS/Android devices or a screen reader. Source-answer and coverage limitations are recorded in [VERSION_2_NOTES.md](VERSION_2_NOTES.md).
+
+---
+
 # Independent-question verification
 
 `npm test` (six tests), `npm run build`, JavaScript syntax and diff whitespace checks pass.

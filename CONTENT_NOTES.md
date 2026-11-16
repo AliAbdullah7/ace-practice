@@ -1,4 +1,4 @@
-# Content coverage and modernization
+# Version 1 content coverage and modernization
 
 Forty original scenarios cover the concepts in questions 1–40 of a private study source. No source question wording, key, PDFs or diagrams are published. The `source` number is a coverage reference, not the displayed question number. Topics are mixed and the four correct-answer positions occur ten times each.
 
@@ -62,3 +62,7 @@ Forty original scenarios cover the concepts in questions 1–40 of a private stu
 Each question links to relevant current official documentation in its results view. These references do not imply Google endorsement.
 
 Spanner Database User includes schema-update permissions. The scenario explicitly requires approved schema changes; it does not imply that this predefined role is DML-only. [Spanner IAM](https://docs.cloud.google.com/spanner/docs/iam).
+
+## Version 2
+
+The separate PDF-derived set is documented in [VERSION_2_NOTES.md](VERSION_2_NOTES.md), including the full 1–50 concept map, original PDF pages, selection limits, key corrections and historical terminology. Version 1 content remains unchanged.

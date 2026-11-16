@@ -9,3 +9,10 @@
 - Publish only this website and necessary project files. Never copy original mock questions, source PDFs, credentials or unrelated study materials into the repository.
 
 - Each question is independent: Confirm answer beside Clear selection reveals only that question’s answer and explanations. Keep other questions unconfirmed; do not reintroduce whole-exam submission.
+
+## Multiple question sets
+
+- Version 1 stays in `questions.json`; Version 2 stays in `questions-v2.json`. Preserve both sets and the original Version 1 storage key when adding or changing sets. Bump only the affected content version.
+- A new set must not replace an existing set unless explicitly requested. Restart affects only the selected set.
+- Version 2 intentionally preserves user-requested selected PDF excerpts and the four image-only command choices. Do not publish the full PDF or mock HTML. Preserve original option counts/order, including the five-choice choose-two question.
+- Record source pages/numbers and keep verified-key corrections, historical limitations and official references in the explanation-only view. See `VERSION_2_NOTES.md` for the source and concept map.

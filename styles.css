@@ -836,3 +836,18 @@ dialog{
 }
 
 .answer-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+
+.version-picker { display:flex; align-items:center; flex-wrap:wrap; gap:18px 28px; padding:0 0 24px; }
+.version-picker>div { flex:0 1 300px; }
+.version-picker label { display:block; font-size:.8rem; font-weight:650; margin-bottom:8px; }
+.version-picker p { color:var(--muted); font-size:.8rem; max-width:340px; }
+#question-heading,.option-text,.explanation h3 { white-space:pre-line; overflow-wrap:anywhere; }
+.command-image { display:block; max-width:100%; height:auto; }
+.option-text { min-width:0; width:100%; }
+.option code { font-size:.85em; }
+.review-note { margin:18px 0; padding:16px; border:1px solid #e0c88f; background:var(--orange-bg); border-radius:10px; }
+.review-note h3 { font-size:.85rem; margin-bottom:6px; }
+.review-note p,.source-reference { font-size:.8rem; line-height:1.65; }
+.source-reference { margin-top:24px; color:var(--muted); }
+.command-text { display:block; white-space:pre-wrap; overflow-wrap:anywhere; font-size:.82rem; line-height:1.7; font-weight:500; }
+.command-image { margin-top:10px; }

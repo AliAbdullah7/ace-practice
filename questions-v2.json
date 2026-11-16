@@ -1,0 +1,1338 @@
+{
+  "version": "pdf-v2-2026-11-16",
+  "reviewed": "November 16, 2026",
+  "questions": [
+    {
+      "id": "pdf-307",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 307,
+        "pages": [
+          188,
+          189
+        ],
+        "printedAnswer": "A"
+      },
+      "conceptRefs": [
+        1
+      ],
+      "topic": "OS Login",
+      "question": "(Your company’s developers use an automation that you recently built to provision Linux VMs in Compute Engine within a Google Cloud project to perform various tasks. You need to manage the Linux account lifecycle and access for these users. You want to follow Google-recommended practices to simplify access management while minimizing operational costs. What should you do?)",
+      "options": [
+        {
+          "text": "Enable OS Login for all VMs. Use IAM roles to grant user permissions.",
+          "explanation": "OS Login ties Linux account access to Google identities and IAM roles, so access can be granted and revoked centrally."
+        },
+        {
+          "text": "Enable OS Login for all VMs. Write custom startup scripts to update user permissions.",
+          "explanation": "Startup scripts duplicate account administration instead of using IAM to manage access."
+        },
+        {
+          "text": "Require your developers to create public SSH keys. Make the owner of the public key the root user.",
+          "explanation": "Making a public-key owner root grants unnecessary privilege and does not manage the account lifecycle centrally."
+        },
+        {
+          "text": "Require your developers to create public SSH keys. Write custom startup scripts to update user permissions.",
+          "explanation": "Individual keys and custom scripts add ongoing administration. OS Login supplies the managed approach."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Set up oslogin",
+          "url": "https://docs.cloud.google.com/compute/docs/oslogin/set-up-oslogin"
+        }
+      ]
+    },
+    {
+      "id": "pdf-270",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 270,
+        "pages": [
+          163
+        ],
+        "printedAnswer": "B"
+      },
+      "conceptRefs": [
+        8
+      ],
+      "topic": "Static internal IP addresses",
+      "question": "You have a VM instance running in a VPC with single-stack subnets. You need to ensure that the VM instance has a fixed IP address so that other services hosted in the same VPC can communicate with the VM. You want to follow Google-recommended practices while minimizing cost. What should you do?",
+      "options": [
+        {
+          "text": "Reserve a new static external IP address and assign the new IP address to the VM.",
+          "explanation": "An external address is unnecessary for communication within the VPC and can add cost."
+        },
+        {
+          "text": "Promote the existing IP address of the VM to become a static external IP address.",
+          "explanation": "Promoting an external address does not reserve the internal address used for communication within the VPC."
+        },
+        {
+          "text": "Reserve a new static external IPv6 address and assign the new IP address to the VM.",
+          "explanation": "An external IPv6 address does not meet the requirement for a fixed internal address on these subnets."
+        },
+        {
+          "text": "Promote the existing IP address of the VM to become a static internal IP address.",
+          "explanation": "Promote the existing ephemeral internal address to static. The VM keeps its current address and the reservation persists."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Configure static internal ip address",
+          "url": "https://docs.cloud.google.com/compute/docs/ip-addresses/configure-static-internal-ip-address"
+        }
+      ],
+      "reviewNote": {
+        "kind": "corrected-key",
+        "text": "PDF key: B. Verified answer: D. Internal VPC communication needs a static internal address; an external-address reservation does not meet that requirement."
+      }
+    },
+    {
+      "id": "pdf-51",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 51,
+        "pages": [
+          33
+        ],
+        "printedAnswer": "A"
+      },
+      "conceptRefs": [
+        4
+      ],
+      "topic": "Managed instance group autohealing",
+      "question": "You need to create an autoscaling managed instance group for an HTTPS web application. You want to make sure that unhealthy VMs are recreated. What should you do?",
+      "options": [
+        {
+          "text": "Create a health check on port 443 and use that when creating the Managed Instance Group.",
+          "explanation": "Associate an application health check with the MIG autohealing policy so unhealthy VMs can be recreated. Use the application port, here 443, and allow health-check probes through the firewall."
+        },
+        {
+          "text": "Select Multi-Zone instead of Single-Zone when creating the Managed Instance Group.",
+          "explanation": "Multiple zones improve placement resilience but do not configure an application autohealing health check."
+        },
+        {
+          "text": "In the Instance Template, add the label ‘health-check’.",
+          "explanation": "An instance label is metadata, not an autohealing policy."
+        },
+        {
+          "text": "In the Instance Template, add a startup script that sends a heartbeat to the metadata server.",
+          "explanation": "Sending a heartbeat from a startup script does not configure the managed health-check and repair mechanism."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Autohealing instances in migs",
+          "url": "https://docs.cloud.google.com/compute/docs/instance-groups/autohealing-instances-in-migs"
+        }
+      ]
+    },
+    {
+      "id": "pdf-107",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 107,
+        "pages": [
+          71,
+          72
+        ],
+        "printedAnswer": "A"
+      },
+      "conceptRefs": [
+        6
+      ],
+      "topic": "Cloud Storage classes",
+      "question": "You are building an archival solution for your data warehouse and have selected Cloud Storage to archive your data. Your users need to be able to access this archived data once a quarter for some regulatory requirements. You want to select a cost-efficient option. Which storage option should you use?",
+      "options": [
+        {
+          "text": "Coldline Storage",
+          "explanation": "Coldline fits data read about once per quarter and has a 90-day minimum storage duration."
+        },
+        {
+          "text": "Nearline Storage",
+          "explanation": "Nearline suits approximately monthly access; quarterly access supports using the colder listed class."
+        },
+        {
+          "text": "Regional Storage",
+          "explanation": "Regional Storage is legacy terminology for a location-specific Standard offering, not the cost-efficient class for this access pattern."
+        },
+        {
+          "text": "Multi-Regional Storage",
+          "explanation": "Multi-Regional Storage is legacy terminology and does not supply the colder class appropriate for quarterly reads."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Storage classes",
+          "url": "https://docs.cloud.google.com/storage/docs/storage-classes"
+        }
+      ]
+    },
+    {
+      "id": "pdf-193",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 193,
+        "pages": [
+          122
+        ],
+        "printedAnswer": "D"
+      },
+      "conceptRefs": [
+        7
+      ],
+      "topic": "Centralized billing",
+      "question": "You have experimented with Google Cloud using your own credit card and expensed the costs to your company. Your company wants to streamline the billing process and charge the costs of your projects to their monthly invoice. What should you do?",
+      "options": [
+        {
+          "text": "Grant the financial team the IAM role of ג€Billing Account Userג€ on the billing account linked to your credit card.",
+          "explanation": "Granting access to the personal billing account does not move project charges to the company account."
+        },
+        {
+          "text": "Set up BigQuery billing export and grant your financial department IAM access to query the data.",
+          "explanation": "Billing export supports analysis; it does not change which account pays for a project."
+        },
+        {
+          "text": "Create a ticket with Google Billing Support to ask them to send the invoice to your company.",
+          "explanation": "Changing an invoice recipient does not associate the projects with the company billing account."
+        },
+        {
+          "text": "Change the billing account of your projects to the billing account of your company.",
+          "explanation": "Change each project’s billing association to the company account. You need the required permissions on both the project and the destination billing account."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Modify project",
+          "url": "https://docs.cloud.google.com/billing/docs/how-to/modify-project"
+        }
+      ]
+    },
+    {
+      "id": "pdf-173",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 173,
+        "pages": [
+          113
+        ],
+        "printedAnswer": "D"
+      },
+      "conceptRefs": [
+        12
+      ],
+      "topic": "Deploying container images to GKE",
+      "question": "You have created an application that is packaged into a Docker image. You want to deploy the Docker image as a workload on Google Kubernetes Engine. What should you do?",
+      "options": [
+        {
+          "text": "Upload the image to Cloud Storage and create a Kubernetes Service referencing the image.",
+          "explanation": "Cloud Storage is not a container image registry, and a Service does not create application Pods."
+        },
+        {
+          "text": "Upload the image to Cloud Storage and create a Kubernetes Deployment referencing the image.",
+          "explanation": "A Deployment manages Pods, but its image must be available from a container registry."
+        },
+        {
+          "text": "Upload the image to Container Registry and create a Kubernetes Service referencing the image.",
+          "explanation": "A registry stores images, but a Service provides networking rather than deploying Pods."
+        },
+        {
+          "text": "Upload the image to Container Registry and create a Kubernetes Deployment referencing the image.",
+          "explanation": "Historically this was the intended answer: store the image in a registry and reference it in a Deployment. Today use Artifact Registry; a Service can then expose the deployed Pods."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Deploying workloads overview",
+          "url": "https://docs.cloud.google.com/kubernetes-engine/docs/how-to/deploying-workloads-overview"
+        },
+        {
+          "title": "Transition from gcr",
+          "url": "https://docs.cloud.google.com/artifact-registry/docs/transition/transition-from-gcr"
+        }
+      ],
+      "reviewNote": {
+        "kind": "legacy",
+        "text": "Historical intended answer: D. Container Registry is retired. For a current deployment, use Artifact Registry and a Kubernetes Deployment; none of these unchanged options names that current registry. Artifact Registry-backed gcr.io repositories are a separate supported case."
+      }
+    },
+    {
+      "id": "pdf-226",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 226,
+        "pages": [
+          140,
+          141
+        ],
+        "printedAnswer": "B"
+      },
+      "conceptRefs": [
+        13
+      ],
+      "topic": "Cloud Marketplace deployment",
+      "question": "Your learn wants to deploy a specific content management system (CMS) solution lo Google Cloud. You need a quick and easy way to deploy and install the solution. What should you do?",
+      "options": [
+        {
+          "text": "Search for the CMS solution in Google Cloud Marketplace. Use gcloud CLI to deploy the solution.",
+          "explanation": "An additional command-line deployment step is unnecessary when the listing supports direct deployment."
+        },
+        {
+          "text": "Search for the CMS solution in Google Cloud Marketplace. Deploy the solution directly from Cloud Marketplace.",
+          "explanation": "Find the available CMS listing and use its Marketplace deployment flow to minimize installation work."
+        },
+        {
+          "text": "Search for the CMS solution in Google Cloud Marketplace. Use Terraform and the Cloud Marketplace ID to deploy the solution with the appropriate parameters.",
+          "explanation": "Writing a Terraform deployment introduces setup work instead of using the listing’s direct deployment path."
+        },
+        {
+          "text": "Use the installation guide of the CMS provider. Perform the installation through your configuration management system.",
+          "explanation": "Manual installation and configuration management involve more setup than deploying a suitable Marketplace package."
+        }
+      ],
+      "answer": 1,
+      "docs": [
+        {
+          "title": "Get products",
+          "url": "https://docs.cloud.google.com/marketplace/docs/get-products"
+        }
+      ]
+    },
+    {
+      "id": "pdf-164",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 164,
+        "pages": [
+          109
+        ],
+        "printedAnswer": "B"
+      },
+      "conceptRefs": [
+        11
+      ],
+      "topic": "Infrastructure as code templates",
+      "question": "Your company wants to standardize the creation and management of multiple Google Cloud resources using Infrastructure as Code. You want to minimize the amount of repetitive code needed to manage the environment What should you do?",
+      "options": [
+        {
+          "text": "Create a bash script that contains all requirement steps as gcloud commands",
+          "explanation": "A sequence of commands does not give the reusable declarative templates and managed dependencies requested here."
+        },
+        {
+          "text": "Develop templates for the environment using Cloud Deployment Manager",
+          "explanation": "This is the historical intended answer: reusable declarative templates reduce repetition. For current deployments, use Terraform or Infrastructure Manager rather than starting with Deployment Manager."
+        },
+        {
+          "text": "Use curl in a terminal to send a REST request to the relevant Google API for each individual resource.",
+          "explanation": "Individual REST calls require repetitive orchestration and dependency handling."
+        },
+        {
+          "text": "Use the Cloud Console interface to provision and manage all related resources",
+          "explanation": "Manual console provisioning is not infrastructure as code and is difficult to reproduce consistently."
+        }
+      ],
+      "answer": 1,
+      "docs": [
+        {
+          "title": "Deprecations",
+          "url": "https://docs.cloud.google.com/deployment-manager/docs/deprecations"
+        },
+        {
+          "title": "Terraform overview",
+          "url": "https://docs.cloud.google.com/docs/terraform/terraform-overview"
+        }
+      ],
+      "reviewNote": {
+        "kind": "legacy",
+        "text": "Historical intended answer: B. Deployment Manager support ended April 1, 2026; new users have been blocked since June 30, 2026. Use Terraform or Infrastructure Manager for new infrastructure. The original choices are preserved; B is scored as the historical intended answer."
+      }
+    },
+    {
+      "id": "pdf-220",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 220,
+        "pages": [
+          137,
+          138
+        ],
+        "printedAnswer": "D"
+      },
+      "conceptRefs": [
+        17
+      ],
+      "topic": "Billing export and analysis",
+      "question": "Your company has multiple projects linked to a single billing account in Google Cloud. You need to visualize the costs with specific metrics that should be dynamically calculated based on company- specific criteria. You want to automate the process. What should you do?",
+      "options": [
+        {
+          "text": "In the Google Cloud console, visualize the costs related to the projects in the Reports section.",
+          "explanation": "Built-in Reports do not provide the requested arbitrary company-specific calculated metrics and automated dashboard workflow."
+        },
+        {
+          "text": "In the Google Cloud console, visualize the costs related to the projects in the Cost breakdown section.",
+          "explanation": "The built-in cost breakdown view does not supply a custom SQL analysis pipeline."
+        },
+        {
+          "text": "In the Google Cloud console, use the export functionality of the Cost table. Create a Looker Studiodashboard on top of the CSV export.",
+          "explanation": "A CSV export requires repeated exports rather than the continuous billing-data export requested."
+        },
+        {
+          "text": "Configure Cloud Billing data export to BigOuery for the billing account. Create a Looker Studio dashboard on top of the BigQuery export.",
+          "explanation": "Export billing data automatically to BigQuery, calculate custom metrics with SQL, and visualize them in Looker Studio."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Export data bigquery",
+          "url": "https://docs.cloud.google.com/billing/docs/how-to/export-data-bigquery"
+        }
+      ]
+    },
+    {
+      "id": "pdf-154",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 154,
+        "pages": [
+          103
+        ],
+        "printedAnswer": "B"
+      },
+      "conceptRefs": [
+        18
+      ],
+      "topic": "Storage lifecycle transitions",
+      "question": "You have been asked to set up Object Lifecycle Management for objects stored in storage buckets. The objects are written once and accessed frequently for 30 days. After 30 days, the objects are not read again unless there is a special need. The object should be kept for three years, and you need to minimize cost. What should you do?",
+      "options": [
+        {
+          "text": "Set up a policy that uses Nearline storage for 30 days and then moves to Archive storage for three years.",
+          "explanation": "Frequent reads during the first 30 days favor Standard rather than Nearline."
+        },
+        {
+          "text": "Set up a policy that uses Standard storage for 30 days and then moves to Archive storage for three years.",
+          "explanation": "Keep frequently read data in Standard for the first 30 days, then use a lifecycle transition to Archive for the long period of rare access."
+        },
+        {
+          "text": "Set up a policy that uses Nearline storage for 30 days, then moves the Coldline for one year, and then moves to Archive storage for two years.",
+          "explanation": "Nearline is a poor fit for the initial frequent access, and the intermediate stages add complexity."
+        },
+        {
+          "text": "Set up a policy that uses Standard storage for 30 days, then moves to Coldline for one year, and then moves to Archive storage for two years.",
+          "explanation": "The extra year in Coldline delays use of the cheaper Archive class without a stated access requirement that needs it."
+        }
+      ],
+      "answer": 1,
+      "docs": [
+        {
+          "title": "Lifecycle",
+          "url": "https://docs.cloud.google.com/storage/docs/lifecycle"
+        },
+        {
+          "title": "Storage classes",
+          "url": "https://docs.cloud.google.com/storage/docs/storage-classes"
+        }
+      ]
+    },
+    {
+      "id": "pdf-187",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 187,
+        "pages": [
+          119,
+          120
+        ],
+        "printedAnswer": "A"
+      },
+      "conceptRefs": [
+        19
+      ],
+      "topic": "VM service account identity",
+      "question": "You will have several applications running on different Compute Engine instances in the same project. You want to specify at a more granular level the service account each instance uses when calling Google Cloud APIs. What should you do?",
+      "options": [
+        {
+          "text": "When creating the instances, specify a Service Account for each instance",
+          "explanation": "Choose each VM’s attached service account at creation and grant only the permissions that its workload needs."
+        },
+        {
+          "text": "When creating the instances, assign the name of each Service Account as instance metadata",
+          "explanation": "Arbitrary instance metadata containing an account name does not attach that identity to the VM."
+        },
+        {
+          "text": "After starting the instances, use gcloud compute instances update to specify a Service Account for each instance",
+          "explanation": "The stated update command is not the command for changing a VM’s attached service account."
+        },
+        {
+          "text": "After starting the instances, use gcloud compute instances update to assign the name of the relevant Service Account as instance metadata",
+          "explanation": "Writing an account name into arbitrary metadata does not change the VM’s authenticated identity."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Service accounts",
+          "url": "https://docs.cloud.google.com/compute/docs/access/service-accounts"
+        }
+      ]
+    },
+    {
+      "id": "pdf-73",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 73,
+        "pages": [
+          51
+        ],
+        "printedAnswer": "B"
+      },
+      "conceptRefs": [
+        20
+      ],
+      "topic": "Windows VM login",
+      "question": "You are setting up a Windows VM on Compute Engine and want to make sure you can log in to the VM via RDP. What should you do?",
+      "options": [
+        {
+          "text": "After the VM has been created, use your Google Account credentials to log in into the VM.",
+          "explanation": "A Google identity is not automatically a Windows guest username and password."
+        },
+        {
+          "text": "After the VM has been created, use gcloud compute reset-windows-password to retrieve the login credentials for the VM.",
+          "explanation": "Use gcloud compute reset-windows-password to create or reset the Windows user password, then connect with RDP. Network reachability and RDP firewall access are also required."
+        },
+        {
+          "text": "When creating the VM, add metadata to the instance using ‘windows-password’ as the key and a password as the value.",
+          "explanation": "A windows-password metadata value is not the supported mechanism for generating guest login credentials."
+        },
+        {
+          "text": "After the VM has been created, download the JSON private key for the default Compute Engine service account. Use the credentials in the JSON file to log in to the VM.",
+          "explanation": "A service account JSON key authenticates Google Cloud API calls; it is not a Windows guest login credential."
+        }
+      ],
+      "answer": 1,
+      "docs": [
+        {
+          "title": "Generating credentials",
+          "url": "https://docs.cloud.google.com/compute/docs/instances/windows/generating-credentials"
+        }
+      ]
+    },
+    {
+      "id": "pdf-120",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 120,
+        "pages": [
+          80,
+          81
+        ],
+        "printedAnswer": "A"
+      },
+      "conceptRefs": [
+        21,
+        46
+      ],
+      "topic": "gcloud named configurations",
+      "question": "You need to manage multiple Google Cloud Platform (GCP) projects in the fewest steps possible. You want to configure the Google Cloud SDK command line interface (CLI) so that you can easily manage multiple GCP projects. What should you?",
+      "options": [
+        {
+          "text": "1. Create a configuration for each project you need to manage. 2. Activate the appropriate configuration when you work with each of your assigned GCP projects.",
+          "explanation": "Create a named configuration for each project and activate the appropriate one. Each can retain its project, account, region, and zone settings."
+        },
+        {
+          "text": "1. Create a configuration for each project you need to manage. 2. Use gcloud init to update the configuration values when you need to work with a non-default project",
+          "explanation": "Repeatedly reinitializing settings is unnecessary when named configurations can be activated directly."
+        },
+        {
+          "text": "1. Use the default configuration for one project you need to manage. 2. Activate the appropriate configuration when you work with each of your assigned GCP projects.",
+          "explanation": "A default configuration alone does not create separate saved settings for the other projects."
+        },
+        {
+          "text": "1. Use the default configuration for one project you need to manage. 2. Use gcloud init to update the configuration values when you need to work with a non-default project.",
+          "explanation": "Rewriting one default configuration repeatedly loses the convenience of independent named configurations."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Configurations",
+          "url": "https://docs.cloud.google.com/sdk/docs/configurations"
+        }
+      ]
+    },
+    {
+      "id": "pdf-110",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 110,
+        "pages": [
+          74
+        ],
+        "printedAnswer": "A"
+      },
+      "conceptRefs": [
+        24
+      ],
+      "topic": "Development and production isolation",
+      "question": "You have successfully created a development environment in a project for an application. This application uses Compute Engine and Cloud SQL. Now, you need to create a production environment for this application. The security team has forbidden the existence of network routes between these 2 environments, and asks you to follow Google-recommended practices. What should you do?",
+      "options": [
+        {
+          "text": "Create a new project, enable the Compute Engine and Cloud SQL APIs in that project, and replicate the setup you have created in the development environment.",
+          "explanation": "Use a separate production project with its own network and resources. Enable the required APIs and reproduce the approved setup without connecting it to development."
+        },
+        {
+          "text": "Create a new production subnet in the existing VPC and a new production Cloud SQL instance in your existing project, and deploy your application using those resources.",
+          "explanation": "Subnets in the same VPC have system-generated routes between them, conflicting with the no-routes requirement."
+        },
+        {
+          "text": "Create a new project, modify your existing VPC to be a Shared VPC, share that VPC with your new project, and replicate the setup you have in the development environment in that new project, in the Shared VPC.",
+          "explanation": "Shared VPC intentionally shares a network across projects, conflicting with the required network isolation."
+        },
+        {
+          "text": "Ask the security team to grant you the Project Editor role in an existing production project used by another division of your company. Once they grant you that role, replicate the setup you have in the development environment in that project.",
+          "explanation": "Broad access to another division’s project does not establish a dedicated, isolated production environment for this application."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Operation best practices",
+          "url": "https://docs.cloud.google.com/architecture/blueprints/security-foundations/operation-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "pdf-190",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 190,
+        "pages": [
+          121
+        ],
+        "printedAnswer": "D"
+      },
+      "conceptRefs": [
+        25
+      ],
+      "topic": "Group-based BigQuery read access",
+      "question": "You are managing a Data Warehouse on BigQuery. An external auditor will review your company's processes, and multiple external consultants will need view access to the data. You need to provide them with view access while following Google-recommended practices. What should you do?",
+      "options": [
+        {
+          "text": "Grant each individual external consultant the role of BigQuery Editor",
+          "explanation": "Editor access allows modifications and exceeds the requested view-only access."
+        },
+        {
+          "text": "Grant each individual external consultant the role of BigQuery Viewer",
+          "explanation": "Individual grants make ongoing membership administration harder than managing a group."
+        },
+        {
+          "text": "Create a Google Group that contains the consultants and grant the group the role of BigQuery Editor",
+          "explanation": "A group simplifies membership, but Editor still grants unnecessary write access."
+        },
+        {
+          "text": "Create a Google Group that contains the consultants, and grant the group the role of BigQuery Viewer",
+          "explanation": "Manage consultants through a Google group and grant read-only data access. The current precise role is BigQuery Data Viewer (roles/bigquery.dataViewer), ideally scoped to the dataset."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Access control",
+          "url": "https://docs.cloud.google.com/bigquery/docs/access-control"
+        }
+      ],
+      "reviewNote": {
+        "kind": "terminology",
+        "text": "The PDF calls the role “BigQuery Viewer.” The current data-reading role is BigQuery Data Viewer (roles/bigquery.dataViewer). Running SQL queries also needs a job-creation permission in the execution project. D is the intended group-based read-access answer."
+      }
+    },
+    {
+      "id": "pdf-113",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 113,
+        "pages": [
+          76
+        ],
+        "printedAnswer": "B"
+      },
+      "conceptRefs": [
+        25,
+        27
+      ],
+      "topic": "Audit log read permissions",
+      "question": "You need to assign a Cloud Identity and Access Management (Cloud IAM) role to an external auditor. The auditor needs to have permissions to review your Google Cloud Platform (GCP) Audit Logs and also to review your Data Access logs. What should you do?",
+      "options": [
+        {
+          "text": "Assign the auditor the IAM role roles/logging.privateLogViewer. Perform the export of logs to Cloud Storage.",
+          "explanation": "Private Logs Viewer supplies read permissions, but exporting to Storage adds work and requires separate destination access."
+        },
+        {
+          "text": "Assign the auditor the IAM role roles/logging.privateLogViewer. Direct the auditor to also review the logs for changes to Cloud IAM policy.",
+          "explanation": "Private Logs Viewer includes access to Data Access logs in the default log bucket. IAM policy changes are recorded in Admin Activity audit logs."
+        },
+        {
+          "text": "Assign the auditor’s IAM user to a custom role that has logging.privateLogEntries.list permission. Perform the export of logs to Cloud Storage.",
+          "explanation": "A custom role with only this one permission is not a complete logging reader role, and exporting adds unnecessary steps."
+        },
+        {
+          "text": "Assign the auditor’s IAM user to a custom role that has logging.privateLogEntries.list permission. Direct the auditor to also review the logs for changes to Cloud IAM policy.",
+          "explanation": "A custom role with only the private-entry permission is incomplete; the predefined role supplies the relevant log-viewing permissions."
+        }
+      ],
+      "answer": 1,
+      "docs": [
+        {
+          "title": "Audit",
+          "url": "https://docs.cloud.google.com/logging/docs/audit"
+        }
+      ]
+    },
+    {
+      "id": "pdf-177",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 177,
+        "pages": [
+          115
+        ],
+        "printedAnswer": "B"
+      },
+      "conceptRefs": [
+        19,
+        26
+      ],
+      "topic": "Dedicated VM identity for bucket access",
+      "question": "You need to manage a third-party application that will run on a Compute Engine instance. Other Compute Engine instances are already running with default configuration. Application installation files are hosted on Cloud Storage. You need to access these files from the new instance without allowing other virtual machines (VMs) to access these files. What should you do?",
+      "options": [
+        {
+          "text": "Create the instance with the default Compute Engine service account Grant the service account permissions on Cloud Storage.",
+          "explanation": "Other default-configured VMs use the same default service account, so granting that identity access also grants it to those workloads."
+        },
+        {
+          "text": "Create the instance with the default Compute Engine service account Add metadata to the objects on Cloud Storage that matches the metadata on the new instance.",
+          "explanation": "Matching metadata is not an IAM authorization mechanism for reading Cloud Storage objects."
+        },
+        {
+          "text": "Create a new service account and assig n this service account to the new instance Grant the service account permissions on Cloud Storage.",
+          "explanation": "Attach a dedicated service account to the new VM and grant it access to the installation objects. Other VMs retain their different identity and do not inherit the grant."
+        },
+        {
+          "text": "Create a new service account and assign this service account to the new instance Add metadata to the objects on Cloud Storage that matches the metadata on the new instance.",
+          "explanation": "A dedicated identity is appropriate, but matching object metadata does not grant read permissions."
+        }
+      ],
+      "answer": 2,
+      "docs": [
+        {
+          "title": "Service accounts",
+          "url": "https://docs.cloud.google.com/compute/docs/access/service-accounts"
+        }
+      ],
+      "reviewNote": {
+        "kind": "corrected-key",
+        "text": "PDF key: B. Verified answer: C. Cloud Storage object metadata does not authorize access. Use a dedicated attached service account and IAM permissions."
+      }
+    },
+    {
+      "id": "pdf-159",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 159,
+        "pages": [
+          106,
+          107
+        ],
+        "printedAnswer": "AB"
+      },
+      "conceptRefs": [
+        18,
+        29
+      ],
+      "topic": "Signed URLs and object expiry",
+      "question": "You are building an application that processes data files uploaded from thousands of suppliers. Your primary goals for the application are data security and the expiration of aged data. You need to design the application to:\n• Restrict access so that suppliers can access only their own data.\n• Give suppliers write access to data only for 30 minutes.\n• Delete data that is over 45 days old.\n\nYou have a very short development cycle, and you need to make sure that the application requires minimal maintenance. Which two strategies should you use? (Choose two.)",
+      "options": [
+        {
+          "text": "Build a lifecycle policy to delete Cloud Storage objects after 45 days.",
+          "explanation": "A lifecycle Delete rule with an age condition automates deletion eligibility for objects older than 45 days. Execution is asynchronous; soft-delete and retention settings can affect final removal."
+        },
+        {
+          "text": "Use signed URLs to allow suppliers limited time access to store their objects.",
+          "explanation": "Create short-lived signed upload URLs for each supplier’s own object path. The URL grants only the signed operation for its validity period."
+        },
+        {
+          "text": "Set up an SFTP server for your application, and create a separate user for each supplier.",
+          "explanation": "Operating an SFTP server and individual accounts adds infrastructure and maintenance, and does not provide the requested managed expiry policy."
+        },
+        {
+          "text": "Build a Cloud function that triggers a timer of 45 days to delete objects that have expired.",
+          "explanation": "One timer per object adds application work; Object Lifecycle Management already handles age-based expiration."
+        },
+        {
+          "text": "Develop a script that loops through all Cloud Storage buckets and deletes any buckets that are older than 45 days.",
+          "explanation": "The requirement concerns object age, not bucket age. Deleting old buckets could remove unrelated or newer objects."
+        }
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "docs": [
+        {
+          "title": "Signed urls",
+          "url": "https://docs.cloud.google.com/storage/docs/access-control/signed-urls"
+        },
+        {
+          "title": "Lifecycle",
+          "url": "https://docs.cloud.google.com/storage/docs/lifecycle"
+        }
+      ]
+    },
+    {
+      "id": "pdf-140",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 140,
+        "pages": [
+          94,
+          95
+        ],
+        "printedAnswer": "D"
+      },
+      "conceptRefs": [
+        32
+      ],
+      "topic": "Monitoring multiple projects",
+      "question": "You are asked to set up application performance monitoring on Google Cloud projects A, B, and C as a single pane of glass. You want to monitor CPU, memory, and disk. What should you do?",
+      "options": [
+        {
+          "text": "Enable API and then share charts from project A, B, and C.",
+          "explanation": "Sharing individual charts is not the shared metrics scope needed for one cross-project monitoring view."
+        },
+        {
+          "text": "Enable API and then give the metrics.reader role to projects A, B, and C.",
+          "explanation": "Assigning a role alone does not configure which projects’ metrics a dashboard can query."
+        },
+        {
+          "text": "Enable API and then use default dashboards to view all projects in sequence.",
+          "explanation": "Viewing dashboards one project at a time does not give the combined view requested."
+        },
+        {
+          "text": "Enable API, create a workspace under project A, and then add project B and C.",
+          "explanation": "The historical workspace approach corresponds to a metrics scope today: use project A as the scoping project and add B and C as monitored projects."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Multiple projects",
+          "url": "https://docs.cloud.google.com/monitoring/settings/multiple-projects"
+        }
+      ],
+      "reviewNote": {
+        "kind": "terminology",
+        "text": "“Workspace” is historical Cloud Monitoring terminology. Today configure a multi-project metrics scope. Memory and detailed guest metrics also require guest metric collection, typically the Ops Agent; enabling the API alone is not sufficient."
+      }
+    },
+    {
+      "id": "pdf-148",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 148,
+        "pages": [
+          99
+        ],
+        "printedAnswer": "D"
+      },
+      "conceptRefs": [
+        34
+      ],
+      "topic": "Inspecting project IAM policy",
+      "question": "A colleague handed over a Google Cloud Platform project for you to maintain. As part of a security checkup, you want to review who has been granted the Project Owner role. What should you do?",
+      "options": [
+        {
+          "text": "In the console, validate which SSH keys have been stored as project-wide keys.",
+          "explanation": "Project SSH keys control certain guest login paths; they do not enumerate Project Owner IAM bindings."
+        },
+        {
+          "text": "Navigate to Identity-Aware Proxy and check the permissions for these resources.",
+          "explanation": "IAP permissions do not list all project-level IAM role assignments."
+        },
+        {
+          "text": "Enable Audit Logs on the IAM & admin page for all resources, and validate the results.",
+          "explanation": "Audit logs describe events and changes, while the question asks for the current role assignments."
+        },
+        {
+          "text": "Use the command gcloud projects get–iam–policy to view the current role assignments.",
+          "explanation": "Read the project IAM policy and inspect its bindings for roles/owner. The current command uses ordinary hyphens: gcloud projects get-iam-policy PROJECT_ID. This command shows the project’s direct policy; also review ancestor policies when auditing inherited access."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Get iam policy",
+          "url": "https://docs.cloud.google.com/sdk/gcloud/reference/projects/get-iam-policy"
+        }
+      ],
+      "reviewNote": {
+        "kind": "source-typo",
+        "text": "The original option uses typographic en dashes in get–iam–policy. To run it, use ordinary ASCII hyphens: gcloud projects get-iam-policy PROJECT_ID."
+      }
+    },
+    {
+      "id": "pdf-59",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 59,
+        "pages": [
+          41
+        ],
+        "printedAnswer": "C"
+      },
+      "conceptRefs": [
+        35
+      ],
+      "topic": "Billing permission boundaries",
+      "question": "You are the organization and billing administrator for your company. The engineering team has the Project Creator role on the organization. You do not want the engineering team to be able to link projects to the billing account. Only the finance team should be able to link a project to a billing account, but they should not be able to make any other changes to projects. What should you do?",
+      "options": [
+        {
+          "text": "Assign the finance team only the Billing Account User role on the billing account.",
+          "explanation": "Billing Account User provides the billing-account side, but not the required project-side billing-assignment permission."
+        },
+        {
+          "text": "Assign the engineering team only the Billing Account User role on the billing account.",
+          "explanation": "This grants the billing-account permission to engineering, contrary to the requested restriction."
+        },
+        {
+          "text": "Assign the finance team the Billing Account User role on the billing account and the Project Billing Manager role on the organization.",
+          "explanation": "Finance needs Billing Account User on the billing account and Project Billing Manager on the projects. Granting the latter at organization level supplies inherited project-side billing permissions."
+        },
+        {
+          "text": "Assign the engineering team the Billing Account User role on the billing account and the Project Billing Manager role on the organization.",
+          "explanation": "This grants the billing roles to the wrong team and fails the requirement to reserve the association task for finance."
+        }
+      ],
+      "answer": 2,
+      "docs": [
+        {
+          "title": "Billing access",
+          "url": "https://docs.cloud.google.com/billing/docs/how-to/billing-access"
+        }
+      ]
+    },
+    {
+      "id": "pdf-130",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 130,
+        "pages": [
+          87,
+          88
+        ],
+        "printedAnswer": "B"
+      },
+      "conceptRefs": [
+        36
+      ],
+      "topic": "Cross-project workload data access",
+      "question": "You manage an App Engine Service that aggregates and visualizes data from BigQuery. The application is deployed with the default App Engine Service account. The data that needs to be visualized resides in a different project managed by another team. You do not have access to this project, but you want your application to be able to read data from the BigQuery dataset. What should you do?",
+      "options": [
+        {
+          "text": "Ask the other team to grant your default App Engine Service account the role of BigQuery Job User.",
+          "explanation": "Job User permits query jobs in that project but does not grant read access to the target dataset."
+        },
+        {
+          "text": "Ask the other team to grant your default App Engine Service account the role of BigQuery Data Viewer.",
+          "explanation": "Grant the calling service account Data Viewer on the other team’s dataset. Query execution also requires jobs.create in the execution project, such as through Job User."
+        },
+        {
+          "text": "In Cloud IAM of your project, ensure that the default App Engine service account has the role of BigQuery Data Viewer.",
+          "explanation": "A grant in the application’s project does not authorize reading a dataset in the other project."
+        },
+        {
+          "text": "In Cloud IAM of your project, grant a newly created service account from the other team the role of BigQuery Job User in your project.",
+          "explanation": "Granting access to a different account does not give the running application’s identity access to the target dataset."
+        }
+      ],
+      "answer": 1,
+      "docs": [
+        {
+          "title": "Access control",
+          "url": "https://docs.cloud.google.com/bigquery/docs/access-control"
+        }
+      ]
+    },
+    {
+      "id": "pdf-206",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 206,
+        "pages": [
+          129
+        ],
+        "printedAnswer": "A"
+      },
+      "conceptRefs": [
+        37
+      ],
+      "topic": "App Engine regional placement",
+      "question": "Users of your application are complaining of slowness when loading the application. You realize the slowness is because the App Engine deployment serving the application is deployed in us-central whereas all users of this application are closest to europe-west3. You want to change the region of the App Engine application to europe-west3 to minimize latency. What’s the best way to change the App Engine region?",
+      "options": [
+        {
+          "text": "Create a new project and create an App Engine instance in europe-west3",
+          "explanation": "An App Engine application’s region cannot be changed after creation. Create a new project with an application in the desired region, redeploy, and migrate traffic."
+        },
+        {
+          "text": "Use the gcloud app region set command and supply the name of the new region.",
+          "explanation": "There is no supported gcloud app region set command for relocating an existing application."
+        },
+        {
+          "text": "From the console, under the App Engine page, click edit, and change the region drop-down.",
+          "explanation": "The application region is not editable in the console after creation."
+        },
+        {
+          "text": "Contact Google Cloud Support and request the change.",
+          "explanation": "Support does not provide an in-place region change; deployment in a new project is required."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Locations",
+          "url": "https://docs.cloud.google.com/appengine/docs/standard/locations"
+        }
+      ]
+    },
+    {
+      "id": "pdf-249",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 249,
+        "pages": [
+          150
+        ],
+        "printedAnswer": "C"
+      },
+      "conceptRefs": [
+        5
+      ],
+      "topic": "GKE kubectl context and credentials",
+      "question": "You used the gcloud container clusters command to create two Google Cloud Kubernetes (GKE) clusters prod-cluster and dev-cluster. • prod-cluster is a standard cluster. • dev-cluster is an auto-pilot duster. When you run the Kubect1 get nodes command, you only see the nodes from prod-cluster Which commands should you run to check the node status for dev-cluster?",
+      "options": [
+        {
+          "text": "gcloud container clusters get-credentials dev-cluster\nkubectl get nodes",
+          "code": true,
+          "image": "assets/pdf-q249-a.png",
+          "explanation": "Get the dev-cluster credentials using gcloud. This updates kubeconfig and switches the current context, so kubectl get nodes addresses that cluster."
+        },
+        {
+          "text": "gcloud container clusters update --generate-password dev-cluster\nkubectl get nodes",
+          "code": true,
+          "image": "assets/pdf-q249-b.png",
+          "explanation": "Updating a cluster password is not how to select its kubectl context and obtain its access configuration."
+        },
+        {
+          "text": "kubectl config get-context dev-cluster\nkubectl cluster-info",
+          "code": true,
+          "image": "assets/pdf-q249-c.png",
+          "explanation": "kubectl config get-context is not a supported command. The plural get-contexts lists contexts but does not switch the active context."
+        },
+        {
+          "text": "kubectl config get-credentials dev-cluster\nkubectl cluster-info",
+          "code": true,
+          "image": "assets/pdf-q249-d.png",
+          "explanation": "kubectl config get-credentials is not a supported command; get-credentials belongs to gcloud container clusters."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Get credentials",
+          "url": "https://docs.cloud.google.com/sdk/gcloud/reference/container/clusters/get-credentials"
+        }
+      ],
+      "reviewNote": {
+        "kind": "corrected-key",
+        "text": "PDF printed key: C; the PDF also has a handwritten correction to A. Verified answer: A. gcloud container clusters get-credentials updates kubeconfig and changes its current context. The four original command images are preserved without annotations."
+      }
+    },
+    {
+      "id": "pdf-303",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 303,
+        "pages": [
+          185,
+          186
+        ],
+        "printedAnswer": "D"
+      },
+      "conceptRefs": [
+        44
+      ],
+      "topic": "Interruptible batch compute",
+      "question": "(You are migrating your company’s on-premises compute resources to Google Cloud. You need to deploy batch processing jobs that run every night. The jobs require significant CPU and memory for several hours but can tolerate interruptions. You must ensure that the deployment is cost-effective. What should you do?)",
+      "options": [
+        {
+          "text": "Containerize the batch processing jobs and deploy them on Compute Engine.",
+          "explanation": "Container packaging alone does not secure discounted interruptible VM capacity."
+        },
+        {
+          "text": "Use custom machine types on Compute Engine.",
+          "explanation": "Custom sizing can reduce overprovisioning, but does not directly use the lower-priced capacity intended for interruptible workloads."
+        },
+        {
+          "text": "Use the M1 machine series on Compute Engine.",
+          "explanation": "A memory-optimized machine series is not the main cost-saving mechanism for jobs that can tolerate interruption."
+        },
+        {
+          "text": "Use Spot VMs on Compute Engine.",
+          "explanation": "Spot VMs offer discounted capacity in exchange for possible preemption. Restartable nightly batch jobs are a good fit."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Spot",
+          "url": "https://docs.cloud.google.com/compute/docs/instances/spot"
+        }
+      ]
+    },
+    {
+      "id": "pdf-54",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 54,
+        "pages": [
+          37,
+          38
+        ],
+        "printedAnswer": "C"
+      },
+      "conceptRefs": [
+        50
+      ],
+      "topic": "Private communication across VPC subnets",
+      "question": "You are given a project with a single virtual private cloud (VPC) and a single subnetwork in the us- central1 region. There is a Compute Engine instance hosting an application in this subnetwork. You need to deploy a new instance in the same project in the europe-west1 region. This new instance needs access to the application. You want to follow Google-recommended practices. What should you do?",
+      "options": [
+        {
+          "text": "1. Create a subnetwork in the same VPC, in europe-west1.2. Create the new instance in the new subnetwork and use the first instance's private address as the endpoint.",
+          "explanation": "Add a subnet in europe-west1 to the existing global VPC. System-generated subnet routes enable private routing; allow the required application traffic with firewall rules."
+        },
+        {
+          "text": "1. Create a VPC and a subnetwork in europe-west1.2. Expose the application with an internal load balancer.3. Create the new instance in the new subnetwork and use the load balancer's address as the endpoint.",
+          "explanation": "A separate VPC and load balancer add complexity and do not by themselves connect the two networks."
+        },
+        {
+          "text": "1. Create a subnetwork in the same VPC, in europe-west1.2. Use Cloud VPN to connect the two subnetworks.3. Create the new instance in the new subnetwork and use the first instance's private address as the endpoint.",
+          "explanation": "Subnets within one VPC do not require a VPN between regions."
+        },
+        {
+          "text": "1. Create a VPC and a subnetwork in europe-west1.2. Peer the 2 VPCs.3. Create the new instance in the new subnetwork and use the first instance's private address as the endpoint.",
+          "explanation": "Separate VPCs and peering can provide connectivity but add unnecessary configuration for this scenario."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Vpc",
+          "url": "https://docs.cloud.google.com/vpc/docs/vpc"
+        },
+        {
+          "title": "Routes",
+          "url": "https://docs.cloud.google.com/vpc/docs/routes"
+        }
+      ],
+      "reviewNote": {
+        "kind": "corrected-key",
+        "text": "PDF key: C, while its own explanation describes A. Verified answer: A. Subnets in a single global VPC use system-generated subnet routes and do not require a VPN between them."
+      }
+    },
+    {
+      "id": "pdf-305",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 305,
+        "pages": [
+          187
+        ],
+        "printedAnswer": "D"
+      },
+      "conceptRefs": [
+        40
+      ],
+      "topic": "HTTPS web application load balancing",
+      "question": "(You are deploying a web application using Compute Engine. You created a managed instance group (MIG) to host the application. You want to follow Google-recommended practices to implement a secure and highly available solution. What should you do?)",
+      "options": [
+        {
+          "text": "Use a proxy Network Load Balancer for the MIG and an A record in your DNS private zone with the load balancer's IP address.",
+          "explanation": "A private DNS record is not the public web application entry point, and a proxy Network Load Balancer does not provide HTTP-layer routing."
+        },
+        {
+          "text": "Use a proxy Network Load Balancer for the MIG and a CNAME record in your DNS public zone with the load balancer's IP address.",
+          "explanation": "A CNAME record must point to a DNS name, not directly to an IP address."
+        },
+        {
+          "text": "Use an Application Load Balancer for the MIG and a CNAME record in your DNS private zone with the load balancer's IP address.",
+          "explanation": "A private DNS zone does not publish the web entry point for public clients; a CNAME cannot directly contain the IP address."
+        },
+        {
+          "text": "Use an Application Load Balancer for the MIG and an A record in your DNS public zone with the load balancer's IP address.",
+          "explanation": "Use an Application Load Balancer for HTTP/HTTPS features and an A record in public DNS pointing to its public IPv4 address. Configure the HTTPS frontend and certificate for TLS termination."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Https",
+          "url": "https://docs.cloud.google.com/load-balancing/docs/https"
+        },
+        {
+          "title": "Records overview",
+          "url": "https://docs.cloud.google.com/dns/docs/records-overview"
+        }
+      ]
+    },
+    {
+      "id": "pdf-240",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 240,
+        "pages": [
+          146
+        ],
+        "printedAnswer": "A"
+      },
+      "conceptRefs": [
+        23
+      ],
+      "topic": "Streaming ingestion and processing",
+      "question": "You are building a data lake on Google Cloud for your Internet of Things (loT) application. The loT application has millions of sensors that are constantly streaming structured and unstructured data to your backend in the cloud. You want to build a highly available and resilient architecture based on Google-recommended practices. What should you do?",
+      "options": [
+        {
+          "text": "Stream data to Pub/Sub, and use Dataflow to send data to Cloud Storage",
+          "explanation": "Use Pub/Sub for scalable event ingestion and Dataflow for managed stream processing, then write the structured and unstructured data to Cloud Storage for the data lake."
+        },
+        {
+          "text": "Stream data to Pub/Sub. and use Storage Transfer Service to send data to BigQuery.",
+          "explanation": "Storage Transfer Service moves stored data; it is not the processing stage for messages arriving from Pub/Sub."
+        },
+        {
+          "text": "Stream data to Dataflow, and use Storage Transfer Service to send data to BigQuery.",
+          "explanation": "Sending data straight to Dataflow omits the decoupled Pub/Sub ingestion layer, and Storage Transfer Service is not a streaming transformation engine."
+        },
+        {
+          "text": "Stream data to Dataflow, and use Dataprep by Trifacta to send data to Bigtable.",
+          "explanation": "This omits the Pub/Sub ingestion buffer and proposes a different destination from the general-purpose data lake described."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Overview",
+          "url": "https://docs.cloud.google.com/pubsub/docs/overview"
+        },
+        {
+          "title": "Overview",
+          "url": "https://docs.cloud.google.com/dataflow/docs/overview"
+        }
+      ]
+    },
+    {
+      "id": "pdf-262",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 262,
+        "pages": [
+          158
+        ],
+        "printedAnswer": "A"
+      },
+      "conceptRefs": [
+        16
+      ],
+      "topic": "VM workload autoscaling",
+      "question": "Your team has developed a stateless application which requires it to be run directly on virtual machines. The application is expected to receive a fluctuating amount of traffic and needs to scale automatically. You need to deploy the application. What should you do?",
+      "options": [
+        {
+          "text": "Deploy the application on a managed instance group and configure autoscaling.",
+          "explanation": "A MIG runs the application directly on VMs and can adjust its instance count using an autoscaling policy."
+        },
+        {
+          "text": "Deploy the application on a Kubernetes Engine cluster and configure node pool autoscaling.",
+          "explanation": "GKE deploys containerized workloads; it does not meet the explicit requirement to run the application directly on VMs."
+        },
+        {
+          "text": "Deploy the application on Cloud Functions and configure the maximum number instances.",
+          "explanation": "Functions do not provide the directly managed VM runtime required by this application."
+        },
+        {
+          "text": "Deploy the application on Cloud Run and configure autoscaling.",
+          "explanation": "Cloud Run deploys containers rather than the directly managed VMs required here."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Autoscaler",
+          "url": "https://docs.cloud.google.com/compute/docs/autoscaler"
+        }
+      ]
+    },
+    {
+      "id": "pdf-202",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 202,
+        "pages": [
+          126
+        ],
+        "printedAnswer": "D"
+      },
+      "conceptRefs": [
+        31
+      ],
+      "topic": "Enabling a service API",
+      "question": "You have created a new project in Google Cloud through the gcloud command line interface (CLI) and linked a billing account. You need to create a new Compute Engine instance using the CLI. You need to perform the prerequisite steps. What should you do?",
+      "options": [
+        {
+          "text": "Create a Cloud Monitoring Workspace.",
+          "explanation": "Monitoring setup is not a prerequisite for creating a Compute Engine VM."
+        },
+        {
+          "text": "Create a VPC network in the project.",
+          "explanation": "A default VPC normally already exists unless disabled by policy. A network must be available, but creating a new one is not the general missing API prerequisite."
+        },
+        {
+          "text": "Enable the compute googleapis.com API.",
+          "explanation": "Enable the Compute Engine API, whose service name is compute.googleapis.com, in the new project before calling its VM APIs."
+        },
+        {
+          "text": "Grant yourself the IAM role of Compute Admin.",
+          "explanation": "The project creator normally has Owner access; blindly adding Compute Admin is not the API-enablement step. Other IAM prerequisites still depend on the environment."
+        }
+      ],
+      "answer": 2,
+      "docs": [
+        {
+          "title": "Enable disable",
+          "url": "https://docs.cloud.google.com/service-usage/docs/enable-disable"
+        },
+        {
+          "title": "Create start instance",
+          "url": "https://docs.cloud.google.com/compute/docs/instances/create-start-instance"
+        }
+      ],
+      "reviewNote": {
+        "kind": "corrected-key",
+        "text": "PDF printed key: D; the PDF has a handwritten correction to C. Verified answer: C in the intended new-project scenario. The actual API identifier is compute.googleapis.com; the source omits its first dot. A network and sufficient IAM permissions must also be present."
+      }
+    }
+  ]
+}
