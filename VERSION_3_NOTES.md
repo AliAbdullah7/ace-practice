@@ -20,7 +20,7 @@ PDF 42 includes an image-only Deployment manifest. Its original embedded image i
 | --- | --- | --- | --- | --- | --- |
 | 1 | 225 | 139, 140 | 53 | 50–60 | Service-account firewall rules |
 | 2 | 41 | 25, 26 | 41 | 1–49 | Parallel composite uploads |
-| 3 | 55 | 38 | 55 | 50–60 | Controlling container log volume |
+| 3 | 55 | 38, 39 | 55 | 50–60 | Controlling container log volume |
 | 4 | 42 | 26, 27 | 42 | 1–49 | Referencing Kubernetes Secrets |
 | 5 | 57 | 39, 40 | 57 | 50–60 | Rolling VM updates without capacity loss |
 | 6 | 43 | 28 | 43 | 1–49 | VM startup time and scaling |

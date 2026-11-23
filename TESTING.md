@@ -13,7 +13,7 @@
 
 Selection/distribution: **9** upper-range and **10** lower-range questions; **11-question shortfall**, with reasons and coverage limits in [VERSION_3_NOTES.md](VERSION_3_NOTES.md). Four printed keys are corrected. Historical/ambiguous source limitations remain explicit after confirmation.
 
-Publication uses the existing repository's `main` branch and existing deployment configuration. Do not infer a Render success from a Git push or GitHub Pages success; the deployment result is reported separately after checking the live workflow.
+Publication uses the existing repository's `main` branch and existing deployment configuration. GitHub Pages build and deployment succeeded for the implementation commit (`11726d0`), and the live site displayed all three versions with Version 3 loaded and explanations hidden. A final page-reference audit added physical page 39 for PDF 55's printed key; its question/options are on page 38. Render status remains unverified; GitHub Pages success is not evidence of Render success.
 
 ---
 
