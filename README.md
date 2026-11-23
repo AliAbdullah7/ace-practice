@@ -2,7 +2,7 @@
 
 [Take the practice exam](https://AliAbdullah7.github.io/ace-practice/)
 
-Two unofficial, untimed Google Cloud Associate Cloud Engineer practice sets: **Version 1**, the existing 40 original scenarios, and **Version 2**, 30 faithfully selected PDF questions matching concepts in mock questions 1–50. Choose a version above the progress strip. Each version keeps its own answers, confirmed results, score, flags and position. Version 1 retains its existing content version and browser storage key, so this upgrade preserves saved attempts. It is not comprehensive ACE coverage, an official Google exam, or a predictor of certification results. The full source exams and PDFs are not included. Version 2 contains only the requested selected question excerpts and four original command-choice images. See [Version 2 selection and coverage](VERSION_2_NOTES.md).
+Three unofficial, untimed Google Cloud Associate Cloud Engineer practice sets: **Version 1**, the existing 40 original scenarios, and **Version 2**, 30 faithfully selected PDF questions matching concepts in mock questions 1–50. **Version 3** adds 19 unused PDF questions within mock 1–60: 9 matching 50–60 and 10 matching 1–49. It deliberately falls 11 short of 30 under the task-match and no-repeat constraints; see [Version 3 selection, gaps and key review](VERSION_3_NOTES.md). Choose a version above the progress strip. Each version keeps its own answers, confirmed results, score, flags and position. Version 1 retains its existing content version and browser storage key, so this upgrade preserves saved attempts. It is not comprehensive ACE coverage, an official Google exam, or a predictor of certification results. The full source exams and PDFs are not included. Version 2 contains only the requested selected question excerpts and four original command-choice images. See [Version 2 selection and coverage](VERSION_2_NOTES.md).
 
 ## Taking the exam
 
@@ -31,13 +31,13 @@ npm test
 npm run build
 ```
 
-The build copies an explicit allowlist of eight website files plus four required command images into `dist/`, excluding tests, documentation, Git metadata and unrelated materials.
+The build copies an explicit allowlist of nine website files plus five required source images into `dist/`, excluding tests, documentation, Git metadata and unrelated materials.
 
 ## Update content
 
-Edit `questions.json` for Version 1 or `questions-v2.json` for Version 2. A question contains a stable `id`, a maintainer `source` reference (Version 2 includes PDF filename, original number, pages and printed key), a `topic`, a self-contained `question`, `options` with individual `explanation` values, a zero-based `answer` index (or an index array for choose-two), and official `docs` links. Index 0 is A; index 4 is E. Version 2 also records `conceptRefs`, optional `reviewNote`, and image/transcription fields for original command choices.
+Edit `questions.json` for Version 1 or `questions-v2.json` for Version 2, or `questions-v3.json` for Version 3. A question contains a stable `id`, a maintainer `source` reference (Version 2 includes PDF filename, original number, pages and printed key), a `topic`, a self-contained `question`, `options` with individual `explanation` values, a zero-based `answer` index (or an index array for choose-two), and official `docs` links. Index 0 is A; index 4 is E. Versions 2 and 3 also record `conceptRefs`, optional `reviewNote`, and image/transcription fields for original command choices.
 
-Preserve the source’s answer count and choice order. Score choose-two with exact-set matching and no partial credit. Verify current official documentation, especially IAM scope and service deprecations. The fixed mixed topic order keeps saved attempts stable; Version 1 answer positions occur ten times each; Version 2 keeps the PDF option order without rebalancing. If changing that balance intentionally, update the matching test. Bump only the affected set’s top-level `version` whenever question meaning, order or answer indices change: old attempts for that set are rejected rather than scored against a different key. The other set is unaffected. Update `reviewed` after a content review. See [CONTENT_NOTES.md](CONTENT_NOTES.md) for coverage and modernization.
+Preserve the source’s answer count and choice order. Score choose-two with exact-set matching and no partial credit. Verify current official documentation, especially IAM scope and service deprecations. The fixed mixed topic order keeps saved attempts stable; Version 1 answer positions occur ten times each; Version 2 keeps the PDF option order without rebalancing. If changing that balance intentionally, update the matching test. Bump only the affected set’s top-level `version` whenever question meaning, order or answer indices change: old attempts for that set are rejected rather than scored against a different key. The other sets are unaffected. Update `reviewed` after a content review. See [CONTENT_NOTES.md](CONTENT_NOTES.md) for coverage and modernization.
 
 Answers and explanations are hidden in the interface until that question is confirmed. Like any static self-study site, its downloadable source contains the answer key; it is not a secure assessment system.
 
@@ -75,4 +75,4 @@ Official references: [Render static sites](https://render.com/docs/static-sites)
 
 The repository and Pages site are public. Commit only this website and necessary project files. Do not copy full source mocks, PDFs, credentials or study directories into it. Publish only explicitly requested excerpts and their necessary assets. If adapting to an existing repository, preserve unrelated content and adjust deployment paths deliberately. Relative asset paths support a project URL such as `/ace-practice/` with no custom domain or server routing.
 
-See [TESTING.md](TESTING.md) for verification. Version 1 was reviewed November 12 and Version 2 November 16, 2026; product behavior can change.
+See [TESTING.md](TESTING.md) for verification. Version 1 was reviewed November 12, Version 2 November 16, and Version 3 November 23, 2026; product behavior can change.

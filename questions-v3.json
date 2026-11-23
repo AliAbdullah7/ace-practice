@@ -1,0 +1,880 @@
+{
+  "version": "ace-v3-2026-11-23",
+  "reviewed": "November 23, 2026",
+  "questions": [
+    {
+      "id": "pdf-v3-225",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 225,
+        "pages": [
+          139,
+          140
+        ],
+        "printedAnswer": "C"
+      },
+      "conceptRefs": [
+        53
+      ],
+      "topic": "Service-account firewall rules",
+      "question": "You have two subnets (subnet-a and subnet-b) in the default VPC. Your database servers are running in subnet-a. Your application servers and web servers are running in subnet-b. You want to configure a firewall rule that only allows database traffic from the application servers to the database servers. What should you do?",
+      "options": [
+        {
+          "text": "* Create service accounts sa-app and sa-db. • Associate service account: sa-app with the application servers and the service account sa-db with the database servers. • Create an ingress firewall rule to allow network traffic from source service account sa-app to target service account sa-db.",
+          "explanation": "This ingress rule identifies both the application VMs and the database VMs by their attached service accounts. Restrict its allowed protocol and port to the database listener; ensure no broader existing rule permits other clients."
+        },
+        {
+          "text": "• Create network tags app-server and db-server. • Add the app-server lag lo the application servers and the db-server lag to the database servers. • Create an egress firewall rule to allow network traffic from source network tag app-server to target network tag db-server.",
+          "explanation": "An egress rule does not accept a source network tag and a target network tag in the manner described. Filter incoming connections at the database targets instead."
+        },
+        {
+          "text": "* Create a service account sa-app and a network tag db-server. * Associate the service account sa-app with the application servers and the network tag db-server with the database servers. • Create an ingress firewall rule to allow network traffic from source VPC IP addresses and target the subnet-a IP addresses.",
+          "explanation": "The proposed rule uses whole subnet IP ranges rather than the selected application identity. It can admit web servers in the application subnet, so it does not enforce the requested separation."
+        },
+        {
+          "text": "• Create a network lag app-server and service account sa-db. • Add the tag to the application servers and associate the service account with the database servers. • Create an egress firewall rule to allow network traffic from source network tag app-server to target service account sa-db.",
+          "explanation": "This mixes a source network tag and target service account in an unsupported rule design. It also uses egress instead of restricting incoming connections to the database."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Service-account firewall rules — official guidance",
+          "url": "https://docs.cloud.google.com/firewall/docs/firewalls"
+        }
+      ],
+      "reviewNote": {
+        "kind": "corrected-key",
+        "text": "Printed PDF key C is corrected to A. A matches the application source service account and database target service account. C instead allows subnet IP ranges and can include the web tier. Configure the actual database protocol/port and remove or override broader existing allow paths; this unchanged option is the best identity-scoped design, not a complete executable rule."
+      }
+    },
+    {
+      "id": "pdf-v3-41",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 41,
+        "pages": [
+          25,
+          26
+        ],
+        "printedAnswer": "B"
+      },
+      "conceptRefs": [
+        41
+      ],
+      "topic": "Parallel composite uploads",
+      "question": "You have 32 GB of data in a single file that you need to upload to a Nearline Storage bucket. The WAN connection you are using is rated at 1 Gbps, and you are the only one on the connection. You want to use as much of the rated 1 Gbps as possible to transfer the file rapidly. How should you upload the file?",
+      "options": [
+        {
+          "text": "Use the GCP Console to transfer the file instead of gsutil.",
+          "explanation": "Switching to the console does not explicitly split this one large file into concurrent transfers. It does not address the requested use of the available bandwidth."
+        },
+        {
+          "text": "Enable parallel composite uploads using gsutil on the file transfer.",
+          "explanation": "Parallel composite uploads transfer separate pieces concurrently and compose the destination object. This can improve throughput for one large file; the final speed still depends on the client and network."
+        },
+        {
+          "text": "Decrease the TCP window size on the machine initiating the transfer.",
+          "explanation": "A smaller TCP window can limit the data in flight and reduce throughput. It does not provide parallel transfer of the file."
+        },
+        {
+          "text": "Change the storage class of the bucket from Nearline to Multi-Regional.",
+          "explanation": "Storage class controls storage and access pricing characteristics. Changing class does not parallelize the upload or enlarge the network connection."
+        }
+      ],
+      "answer": 1,
+      "docs": [
+        {
+          "title": "Parallel composite uploads — official guidance",
+          "url": "https://docs.cloud.google.com/storage/docs/parallel-composite-uploads"
+        }
+      ],
+      "reviewNote": {
+        "kind": "terminology",
+        "text": "The PDF retains gsutil and the historical Multi-Regional name. Modern gcloud storage supports parallel composite uploads. Temporary components are created and deleted; using Nearline directly can incur minimum-duration charges, so review temporary-object and retention settings. B remains the best transfer method offered."
+      }
+    },
+    {
+      "id": "pdf-v3-55",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 55,
+        "pages": [
+          38
+        ],
+        "printedAnswer": "A"
+      },
+      "conceptRefs": [
+        55
+      ],
+      "topic": "Controlling container log volume",
+      "question": "Your projects incurred more costs than you expected last month. Your research reveals that a development GKE container emitted a huge number of logs, which resulted in higher costs. You want to disable the logs quickly using the minimum number of steps. What should you do?",
+      "options": [
+        {
+          "text": "1. Go to the Logs ingestion window in Stackdriver Logging, and disable the log source for the GKE container resource.",
+          "explanation": "The intended action targets the noisy container logs directly. In the current console, configure a matching exclusion on the relevant Logging sink; cluster recreation is unnecessary."
+        },
+        {
+          "text": "1. Go to the Logs ingestion window in Stackdriver Logging, and disable the log source for the GKE Cluster Operations resource.",
+          "explanation": "Targeting cluster operations logs does not target the application container that is generating the excessive volume. It can also discard useful cluster diagnostic information."
+        },
+        {
+          "text": "1. Go to the GKE console, and delete existing clusters.2. Recreate a new cluster.3. Clear the option to enable legacy Stackdriver Logging.",
+          "explanation": "Deleting and recreating clusters disrupts workloads and involves extra steps. A targeted logging exclusion addresses the noisy logs without rebuilding the cluster."
+        },
+        {
+          "text": "1. Go to the GKE console, and delete existing clusters.2. Recreate a new cluster.3. Clear the option to enable legacy Stackdriver Monitoring.",
+          "explanation": "Monitoring settings concern metrics rather than the container log stream. Recreating the cluster also adds unnecessary disruption."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Controlling container log volume — official guidance",
+          "url": "https://docs.cloud.google.com/kubernetes-engine/docs/how-to/exclude-logs"
+        }
+      ],
+      "reviewNote": {
+        "kind": "legacy",
+        "text": "A is the historical intended answer; the Stackdriver Logs ingestion screen and source names have changed. Use a container-specific exclusion on the relevant Log Router sink, including all billable destination paths. This reduces future stored/routed log volume; it does not refund existing charges or necessarily stop collection at the source."
+      }
+    },
+    {
+      "id": "pdf-v3-42",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 42,
+        "pages": [
+          26,
+          27
+        ],
+        "printedAnswer": "B"
+      },
+      "conceptRefs": [
+        42
+      ],
+      "topic": "Referencing Kubernetes Secrets",
+      "question": "You’ve deployed a microservice called myapp1 to a Google Kubernetes Engine cluster using the YAML file specified below: You need to refactor this configuration so that the database password is not stored in plain text. You want to follow Google-recommended practices. What should you do?",
+      "options": [
+        {
+          "text": "Store the database password inside the Docker image of the container, not in the YAML file.",
+          "explanation": "Embedding the password in the image leaves it accessible to anyone who can inspect the image or its layers. It also couples credential changes to image builds."
+        },
+        {
+          "text": "Store the database password inside a Secret object. Modify the YAML file to populate the DB_PASSWORD environment variable from the Secret.",
+          "explanation": "A Secret reference supplies DB_PASSWORD without placing its literal value in the Deployment manifest. Protect the Secret with access controls; base64 representation alone is not encryption."
+        },
+        {
+          "text": "Store the database password inside a ConfigMap object. Modify the YAML file to populate the DB_PASSWORD environment variable from the ConfigMap.",
+          "explanation": "A ConfigMap is intended for non-confidential configuration. It does not provide the secret-specific handling appropriate for a database password."
+        },
+        {
+          "text": "Store the database password in a file inside a Kubernetes persistent volume, and use a persistent volume claim to mount the volume to the container.",
+          "explanation": "Putting an ordinary password file on a persistent disk does not establish Kubernetes secret management. It introduces storage management without solving credential exposure by itself."
+        }
+      ],
+      "answer": 1,
+      "docs": [
+        {
+          "title": "Referencing Kubernetes Secrets — official guidance",
+          "url": "https://docs.cloud.google.com/sql/docs/mysql/connect-kubernetes-engine"
+        }
+      ],
+      "reviewNote": {
+        "kind": "terminology",
+        "text": "The original YAML image and gcr.io example are preserved. Container Registry is historical; use Artifact Registry for current images. A Kubernetes Secret reference removes the literal password from the Deployment, but access controls and appropriate encryption remain necessary."
+      },
+      "questionImage": {
+        "src": "assets/pdf-q42-yaml.jpg",
+        "alt": "Original Deployment YAML for myapp1; a faithful text transcription follows."
+      },
+      "questionCode": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: myapp1-deployment\nspec:\n  selector:\n    matchLabels:\n      app: myapp1\n  replicas: 2\n  template:\n    metadata:\n      labels:\n        app: myapp1\n    spec:\n      containers:\n      - name: main-container\n        image: gcr.io/my-company-repo/myapp1:1.4\n        env:\n        - name: DB_PASSWORD\n          value: \"t0ugh2guess!\"\n        ports:\n        - containerPort: 8080"
+    },
+    {
+      "id": "pdf-v3-57",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 57,
+        "pages": [
+          39,
+          40
+        ],
+        "printedAnswer": "B"
+      },
+      "conceptRefs": [
+        57
+      ],
+      "topic": "Rolling VM updates without capacity loss",
+      "question": "You have a web application deployed as a managed instance group. You have a new version of the application to gradually deploy. Your web application is currently receiving live web traffic. You want to ensure that the available capacity does not decrease during the deployment. What should you do?",
+      "options": [
+        {
+          "text": "Perform a rolling-action start-update with maxSurge set to 0 and maxUnavailable set to 1.",
+          "explanation": "With no surge capacity and one unavailable VM allowed, the updater can remove capacity before its replacement is ready. This conflicts with maintaining available capacity."
+        },
+        {
+          "text": "Perform a rolling-action start-update with maxSurge set to 1 and maxUnavailable set to 0.",
+          "explanation": "The updater can create an extra VM and is allowed zero unavailable VMs. This expresses a rolling replacement that preserves capacity, subject to quota, readiness, and the MIG distribution."
+        },
+        {
+          "text": "Create a new managed instance group with an updated instance template. Add the group to the backend service for the load balancer. When all instances in the new managed instance group are healthy, delete the old managed instance group.",
+          "explanation": "This blue/green approach can preserve capacity, but it replaces the whole group rather than performing the requested gradual rolling update within the current group."
+        },
+        {
+          "text": "Create a new instance template with the new application version. Update the existing managed instance group with the new instance template. Delete the instances in the managed instance group to allow the managed instance group to recreate the instance using the new instance template.",
+          "explanation": "Changing the template and deleting instances manually can take serving capacity away before replacements are ready. It does not enforce a zero-unavailable rolling policy."
+        }
+      ],
+      "answer": 1,
+      "docs": [
+        {
+          "title": "Rolling VM updates without capacity loss — official guidance",
+          "url": "https://docs.cloud.google.com/compute/docs/instance-groups/rolling-out-updates-to-managed-instance-groups"
+        }
+      ],
+      "reviewNote": {
+        "kind": "source-clarification",
+        "text": "B is the intended rolling-update policy. C can also preserve capacity using a blue/green replacement, so the wording does not make B the only availability-preserving architecture. Fixed maxSurge=1 assumes a zonal MIG: a multi-zone regional MIG needs surge capacity at least equal to its zone count. Check readiness and quota before rollout."
+      }
+    },
+    {
+      "id": "pdf-v3-43",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 43,
+        "pages": [
+          28
+        ],
+        "printedAnswer": "D"
+      },
+      "conceptRefs": [
+        43
+      ],
+      "topic": "VM startup time and scaling",
+      "question": "You are running an application on multiple virtual machines within a managed instance group and have autoscaling enabled. The autoscaling policy is configured so that additional instances are added to the group if the CPU utilization of instances goes above 80%. VMs are added until the instance group reaches its maximum limit of five VMs or until CPU utilization of instances lowers to 80%. The initial delay for HTTP health checks against the instances is set to 30 seconds. The virtual machine instances take around three minutes to become available for users. You observe that when the instance group autoscales, it adds more instances then necessary to support the levels of end-user traffic. You want to properly maintain instance group sizes when autoscaling. What should you do?",
+      "options": [
+        {
+          "text": "Set the maximum number of instances to 1.",
+          "explanation": "A maximum of one instance caps capacity rather than allowing for initialization time. It can leave the application unable to handle its workload."
+        },
+        {
+          "text": "Decrease the maximum number of instances to 3.",
+          "explanation": "Lowering the maximum limits growth but does not make startup measurements representative. It can hide the symptom while leaving the underlying timing problem."
+        },
+        {
+          "text": "Use a TCP health check instead of an HTTP health check.",
+          "explanation": "Changing the probe protocol does not tell the autoscaler how long initialization takes. It can also declare a VM healthy before its application is ready."
+        },
+        {
+          "text": "Increase the initial delay of the HTTP health check to 200 seconds.",
+          "explanation": "This is the PDF-intended answer because 200 seconds exceeds the stated startup time. However, health-check delay and autoscaler initialization period are separate controls; see the historical limitation below."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "VM startup time and scaling — official guidance",
+          "url": "https://docs.cloud.google.com/compute/docs/autoscaler"
+        },
+        {
+          "title": "Autohealing initial delay is separate",
+          "url": "https://docs.cloud.google.com/compute/docs/instance-groups/autohealing-instances-in-migs"
+        }
+      ],
+      "reviewNote": {
+        "kind": "legacy",
+        "text": "The PDF retains D as its intended historical key, but conflates autohealing initial delay with the autoscaler initialization period. Current CPU autoscaling excludes initializing-VM utilization during scale-out using the autoscaler initialization period. A 200-second health-check delay alone is not a complete fix for that issue; none of the unchanged options states the full current remedy."
+      }
+    },
+    {
+      "id": "pdf-v3-60",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 60,
+        "pages": [
+          41,
+          42
+        ],
+        "printedAnswer": "A"
+      },
+      "conceptRefs": [
+        60
+      ],
+      "topic": "Exposing a GKE TCP service across VPCs",
+      "question": "You have an application running in Google Kubernetes Engine (GKE) with cluster autoscaling enabled. The application exposes a TCP endpoint. There are several replicas of this application. You have a Compute Engine instance in the same region, but in another Virtual Private Cloud (VPC), called gce- network, that has no overlapping IP ranges with the first VPC. This instance needs to connect to the application on GKE. You want to minimize effort. What should you do?",
+      "options": [
+        {
+          "text": "1. In GKE, create a Service of type LoadBalancer that uses the application's Pods as backend.2. Set the service's externalTrafficPolicy to Cluster.3. Configure the Compute Engine instance to use the address of the load balancer that has been created.",
+          "explanation": "An external LoadBalancer Service gives the client in another VPC a reachable endpoint without peering. Cluster forwards traffic to serving Pods across nodes. The prompt does not require a private path."
+        },
+        {
+          "text": "1. In GKE, create a Service of type NodePort that uses the application's Pods as backend.2. Create a Compute Engine instance called proxy with 2 network interfaces, one in each VPC.3. Use iptables on this instance to forward traffic from gce-network to the GKE nodes.4. Configure the Compute Engine instance to use the address of proxy in gce-network as endpoint.",
+          "explanation": "A proxy VM, dual interfaces, and manual packet forwarding add operational work. A managed LoadBalancer Service avoids maintaining that custom proxy."
+        },
+        {
+          "text": "1. In GKE, create a Service of type LoadBalancer that uses the application's Pods as backend.2. Add an annotation to this service: cloud.google.com/load-balancer-type: Internal3. Peer the two VPCs together.4. Configure the Compute Engine instance to use the address of the load balancer that has been created.",
+          "explanation": "An internal load balancer plus VPC peering is suitable when private connectivity is required. That requirement is absent here, and peering adds setup compared with the external endpoint."
+        },
+        {
+          "text": "1. In GKE, create a Service of type LoadBalancer that uses the application's Pods as backend.2. Add a Cloud Armor Security Policy to the load balancer that whitelists the internal IPs of the MIG's instances.3. Configure the Compute Engine instance to use the address of the load balancer that has been created.",
+          "explanation": "This does not describe the appropriate security control for a basic passthrough TCP LoadBalancer Service. The referenced MIG is also not defined in the scenario."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Exposing a GKE TCP service across VPCs — official guidance",
+          "url": "https://docs.cloud.google.com/kubernetes-engine/docs/concepts/service-load-balancer"
+        },
+        {
+          "title": "Internal GKE load balancers",
+          "url": "https://docs.cloud.google.com/kubernetes-engine/docs/how-to/internal-load-balancing"
+        }
+      ],
+      "reviewNote": {
+        "kind": "source-clarification",
+        "text": "Printed PDF key A is retained. The companion mock uses C, but neither stem requires private connectivity. A uses an external endpoint with fewer setup steps; C is appropriate if private communication is an additional requirement. The legacy internal-LB annotation in C is preserved verbatim; current GKE uses networking.gke.io/load-balancer-type: Internal. The scoring follows the stated minimum-effort constraint, not an unstated privacy requirement."
+      }
+    },
+    {
+      "id": "pdf-v3-45",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 45,
+        "pages": [
+          29
+        ],
+        "printedAnswer": "C"
+      },
+      "conceptRefs": [
+        45
+      ],
+      "topic": "App Engine version rollback",
+      "question": "You recently deployed a new version of an application to App Engine and then discovered a bug in the release. You need to immediately revert to the prior version of the application. What should you do?",
+      "options": [
+        {
+          "text": "Run gcloud app restore.",
+          "explanation": "gcloud app restore is not the command for routing a service back to a deployed version. Use the service traffic controls instead."
+        },
+        {
+          "text": "On the App Engine page of the GCP Console, select the application that needs to be reverted and click Revert.",
+          "explanation": "The proposed application-level Revert action is not the documented version traffic workflow. Select the prior deployed version and adjust traffic on the Versions page."
+        },
+        {
+          "text": "On the App Engine Versions page of the GCP Console, route 100% of the traffic to the previous version.",
+          "explanation": "Routing all traffic to the previous deployed version restores that release immediately, assuming it remains deployable and compatible with current data and dependencies."
+        },
+        {
+          "text": "Deploy the original version as a separate application. Then go to App Engine settings and split traffic between applications so that the original version serves 100% of the requests.",
+          "explanation": "Versions belong to services within the existing application. Creating a separate application is unnecessary, and traffic splitting is between versions of one service."
+        }
+      ],
+      "answer": 2,
+      "docs": [
+        {
+          "title": "App Engine version rollback — official guidance",
+          "url": "https://docs.cloud.google.com/appengine/docs/standard/splitting-traffic"
+        }
+      ]
+    },
+    {
+      "id": "pdf-v3-167",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 167,
+        "pages": [
+          110,
+          111
+        ],
+        "printedAnswer": "D"
+      },
+      "conceptRefs": [
+        56
+      ],
+      "topic": "App Engine canary releases",
+      "question": "You are developing a new web application that will be deployed on Google Cloud Platform. As part of your release cycle, you want to test updates to your application on a small portion of real user traffic. The majority of the users should still be directed towards a stable version of your application. What should you do?",
+      "options": [
+        {
+          "text": "Deploy me application on App Engine For each update, create a new version of the same service Configure traffic splitting to send a small percentage of traffic to the new version",
+          "explanation": "Create another version of the same App Engine service and allocate it a small traffic share. The existing stable version continues serving the majority of requests."
+        },
+        {
+          "text": "Deploy the application on App Engine For each update, create a new service Configure traffic splitting to send a small percentage of traffic to the new service.",
+          "explanation": "App Engine traffic splitting operates across versions within a service. Creating a new service does not provide that same version split."
+        },
+        {
+          "text": "Deploy the application on Kubernetes Engine For a new release, update the deployment to use the new version",
+          "explanation": "Updating the existing GKE Deployment does not by itself define a stable percentage of users for the new version. Additional rollout and routing design would be required."
+        },
+        {
+          "text": "Deploy the application on Kubernetes Engine For a now release, create a new deployment for the new version Update the service e to use the now deployment.",
+          "explanation": "Switching a Service to the new Deployment sends matching traffic to that deployment. It does not specify a small canary percentage while keeping most users on the stable release."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "App Engine canary releases — official guidance",
+          "url": "https://docs.cloud.google.com/appengine/docs/standard/splitting-traffic"
+        }
+      ],
+      "reviewNote": {
+        "kind": "corrected-key",
+        "text": "Printed PDF key D is corrected to A. App Engine supports percentage traffic splits between versions of the same service. Merely switching a Kubernetes Service to a new Deployment does not create a controlled small-percentage canary."
+      }
+    },
+    {
+      "id": "pdf-v3-47",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 47,
+        "pages": [
+          30
+        ],
+        "printedAnswer": "A"
+      },
+      "conceptRefs": [
+        47
+      ],
+      "topic": "Maintenance migration and restart",
+      "question": "You want to configure 10 Compute Engine instances for availability when maintenance occurs. Your requirements state that these instances should attempt to automatically restart if they crash. Also, the instances should be highly available including during system maintenance. What should you do?",
+      "options": [
+        {
+          "text": "Create an instance template for the instances. Set the ‘Automatic Restart’ to on. Set the ‘On-host maintenance’ to Migrate VM instance. Add the instance template to an instance group.",
+          "explanation": "For supported VM configurations, live migration preserves execution during host maintenance and automatic restart recovers from eligible host failures. The template applies the policy consistently."
+        },
+        {
+          "text": "Create an instance template for the instances. Set ‘Automatic Restart’ to off. Set ‘On-host maintenance’ to Terminate VM instances. Add the instance template to an instance group.",
+          "explanation": "Terminating on maintenance and disabling automatic restart conflict with both availability requirements. The instances would not attempt the requested automatic recovery."
+        },
+        {
+          "text": "Create an instance group for the instances. Set the ‘Autohealing’ health check to healthy (HTTP).",
+          "explanation": "Autohealing responds to failed application checks by recreating instances. It does not configure live migration during host maintenance or the VM restart scheduling policy."
+        },
+        {
+          "text": "Create an instance group for the instance. Verify that the ‘Advanced creation options’ setting for ‘do not retry machine creation’ is set to off.",
+          "explanation": "Retrying creation concerns provisioning failures. It does not determine how a running VM handles host maintenance or eligible host failures."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Maintenance migration and restart — official guidance",
+          "url": "https://docs.cloud.google.com/compute/docs/instances/host-maintenance-overview"
+        }
+      ],
+      "reviewNote": {
+        "kind": "source-clarification",
+        "text": "Automatic restart covers eligible host-related failures, not a guest-initiated shutdown or every application crash. Live migration is supported only for eligible VM configurations and is not a substitute for a multi-zone application availability design."
+      }
+    },
+    {
+      "id": "pdf-v3-200",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 200,
+        "pages": [
+          125
+        ],
+        "printedAnswer": "D"
+      },
+      "conceptRefs": [
+        52
+      ],
+      "topic": "Group-based BigQuery query execution",
+      "question": "You are managing a project for the Business Intelligence (BI) department in your company. A data pipeline ingests data into BigQuery via streaming. You want the users in the BI department to be able to run the custom SQL queries against the latest data in BigQuery. What should you do?",
+      "options": [
+        {
+          "text": "Create a Data Studio dashboard that uses the related BigQuery tables as a source and give the BI team view access to the Data Studio dashboard.",
+          "explanation": "A dashboard provides a predefined presentation rather than permission for team members to submit their own SQL jobs against the current data."
+        },
+        {
+          "text": "Create a Service Account for the BI team and distribute a new private key to each member of the BI team.",
+          "explanation": "Distributing service account private keys loses individual user attribution and adds key management. A team group can receive the needed query permissions directly."
+        },
+        {
+          "text": "Use Cloud Scheduler to schedule a batch Dataflow job to copy the data from BigQuery to the BI team's internal data warehouse.",
+          "explanation": "Copying data on a batch schedule adds delay and another system. It does not provide direct SQL access to the latest streamed data already in BigQuery."
+        },
+        {
+          "text": "Assign the IAM role of BigQuery User to a Google Group that contains the members of the BI team.",
+          "explanation": "The group-based grant provides individual users with query job creation through BigQuery User. Reading existing tables additionally requires data access; see the clarification below."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Group-based BigQuery query execution — official guidance",
+          "url": "https://docs.cloud.google.com/bigquery/docs/running-queries"
+        },
+        {
+          "title": "BigQuery User role",
+          "url": "https://docs.cloud.google.com/bigquery/docs/access-control"
+        }
+      ],
+      "reviewNote": {
+        "kind": "source-clarification",
+        "text": "D is the best offered option for group-based query execution, but is incomplete if the team has no existing table-read permissions. BigQuery User grants query job creation at project scope, not table data access. A current least-privilege setup normally combines BigQuery Job User on the execution project with BigQuery Data Viewer on the required data. Streaming data does not require making a batch copy before querying."
+      }
+    },
+    {
+      "id": "pdf-v3-48",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 48,
+        "pages": [
+          31
+        ],
+        "printedAnswer": "C"
+      },
+      "conceptRefs": [
+        48
+      ],
+      "topic": "Object Content-Type metadata",
+      "question": "You host a static website on Cloud Storage. Recently, you began to include links to PDF files on this site. Currently, when users click on the links to these PDF files, their browsers prompt them to save the file onto their local system. Instead, you want the clicked PDF files to be displayed within the browser window directly, without prompting the user to save the file locally. What should you do?",
+      "options": [
+        {
+          "text": "Enable Cloud CDN on the website frontend.",
+          "explanation": "A CDN changes delivery and caching behavior. It does not set the MIME type used by the browser to interpret the PDF object."
+        },
+        {
+          "text": "Enable ‘Share publicly’ on the PDF file objects.",
+          "explanation": "Public access determines who can retrieve the object. It does not correct the response type or the browser display instruction."
+        },
+        {
+          "text": "Set Content-Type metadata to application/pdf on the PDF file objects.",
+          "explanation": "The object Content-Type tells the browser that the content is a PDF. Browser support and Content-Disposition can still affect whether it displays inline."
+        },
+        {
+          "text": "Add a label to the storage bucket with a key of Content-Type and value of application/pdf.",
+          "explanation": "Bucket labels are organizational metadata, not HTTP response headers. A label called Content-Type does not change the MIME type of the stored objects."
+        }
+      ],
+      "answer": 2,
+      "docs": [
+        {
+          "title": "Object Content-Type metadata — official guidance",
+          "url": "https://docs.cloud.google.com/storage/docs/metadata"
+        }
+      ],
+      "reviewNote": {
+        "kind": "source-clarification",
+        "text": "Content-Type is object metadata. Inline display also depends on browser support and Content-Disposition; an attachment disposition can force download even when Content-Type is application/pdf."
+      }
+    },
+    {
+      "id": "pdf-v3-201",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 201,
+        "pages": [
+          126
+        ],
+        "printedAnswer": "C"
+      },
+      "conceptRefs": [
+        50,
+        53
+      ],
+      "topic": "Public and private subnet design",
+      "question": "Your company is moving its entire workload to Compute Engine. Some servers should be accessible through the Internet, and other servers should only be accessible over the internal network. All servers need to be able to talk to each other over specific ports and protocols. The current on- premises network relies on a demilitarized zone (DMZ) for the public servers and a Local Area Network (LAN) for the private servers. You need to design the networking infrastructure on Google Cloud to match these requirements. What should you do?",
+      "options": [
+        {
+          "text": "1. Create a single VPC with a subnet for the DMZ and a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public ingress traffic for the DMZ.",
+          "explanation": "One VPC supplies subnet routes for internal communication. Permit the required inter-tier traffic and public ingress only to the DMZ servers; configure external access only where required."
+        },
+        {
+          "text": "1. Create a single VPC with a subnet for the DMZ and a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public egress traffic for the DMZ.",
+          "explanation": "Public egress permits outbound traffic and does not allow clients to initiate incoming requests to the public servers. The DMZ needs the appropriate ingress rule."
+        },
+        {
+          "text": "1. Create a VPC with a subnet for the DMZ and another VPC with a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public ingress traffic for the DMZ.",
+          "explanation": "Firewall rules alone do not connect two separate VPCs. This option supplies no peering, shared network, or other routing path between the two tiers."
+        },
+        {
+          "text": "1. Create a VPC with a subnet for the DMZ and another VPC with a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public egress traffic for the DMZ.",
+          "explanation": "This leaves the VPCs disconnected and allows public egress instead of the required public ingress. Neither firewall direction nor topology meets the stated design."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Public and private subnet design — official guidance",
+          "url": "https://docs.cloud.google.com/vpc/docs/vpc"
+        }
+      ],
+      "reviewNote": {
+        "kind": "corrected-key",
+        "text": "Printed PDF key C is corrected to A. Two VPCs are not connected by firewall rules alone. A single VPC with subnet routes and suitable ingress rules meets the internal-communication requirement. Subnets alone do not enforce a DMZ; configure firewall rules and external addresses deliberately."
+      }
+    },
+    {
+      "id": "pdf-v3-49",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 49,
+        "pages": [
+          32
+        ],
+        "printedAnswer": "D"
+      },
+      "conceptRefs": [
+        49
+      ],
+      "topic": "Resizing a stopped VM",
+      "question": "You have a virtual machine that is currently configured with 2 vCPUs and 4 GB of memory. It is running out of memory. You want to upgrade the virtual machine to have 8 GB of memory. What should you do?",
+      "options": [
+        {
+          "text": "Rely on live migration to move the workload to a machine with more memory.",
+          "explanation": "Live migration moves a supported VM between physical hosts while retaining its configured resources. It does not increase the guest memory allocation."
+        },
+        {
+          "text": "Use gcloud to add metadata to the VM. Set the key to required-memory-size and the value to 8 GB.",
+          "explanation": "This arbitrary metadata key does not control machine resources. Changing metadata cannot enlarge the VM memory configuration."
+        },
+        {
+          "text": "Stop the VM, change the machine type to n1-standard-8, and start the VM.",
+          "explanation": "n1-standard-8 increases to eight vCPUs and 30 GB of memory. That is a substantially larger configuration than the requested increase to 8 GB."
+        },
+        {
+          "text": "Stop the VM, increase the memory to 8 GB, and start the VM.",
+          "explanation": "Stop the eligible VM, select a supported machine type or custom configuration with 8 GB of memory, and restart it. This is the intended resource change."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Resizing a stopped VM — official guidance",
+          "url": "https://docs.cloud.google.com/compute/docs/instances/changing-machine-type-of-stopped-instance"
+        }
+      ],
+      "reviewNote": {
+        "kind": "source-clarification",
+        "text": "D means selecting an eligible machine type or custom machine configuration while stopped; it is not arbitrary memory hot-add. Machine-family, disk, and memory-to-vCPU restrictions can require a migration instead."
+      }
+    },
+    {
+      "id": "pdf-v3-217",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 217,
+        "pages": [
+          136
+        ],
+        "printedAnswer": "D"
+      },
+      "conceptRefs": [
+        51
+      ],
+      "topic": "Diagnosing repeated autohealing",
+      "question": "You have a managed instance group comprised of preemptible VM's. All of the VM's keepdeleting and recreating themselves every minute. What is a possible cause of thisbehavior?",
+      "options": [
+        {
+          "text": "Your zonal capacity is limited, causing all preemptible VM's to be shutdown torecover capacity. Try deploying your group to another zone.",
+          "explanation": "Capacity-related preemption is possible, but it does not by itself explain a regular cycle of every VM being recreated each minute. The repeating health-check failure is the stronger explanation."
+        },
+        {
+          "text": "You have hit your instance quota for the region.",
+          "explanation": "Quota exhaustion can prevent new instances from being created. It does not normally cause all existing group members to be repeatedly deleted."
+        },
+        {
+          "text": "Your managed instance group's VM's are toggled to only last 1 minute inpreemptible settings.",
+          "explanation": "Preemptible VM settings do not provide a configurable one-minute lifetime. This is not a valid explanation for that regular recreation cycle."
+        },
+        {
+          "text": "Your managed instance group's health check is repeatedly failing, either to amisconfigured health check or misconfigured firewall rules not allowing the healthcheck to access the instance",
+          "explanation": "An autohealing check that continually fails can trigger repeated replacement. Verify the application probe, startup allowance, and firewall access from health-check probes."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Diagnosing repeated autohealing — official guidance",
+          "url": "https://docs.cloud.google.com/compute/docs/instance-groups/autohealing-instances-in-migs"
+        }
+      ]
+    },
+    {
+      "id": "pdf-v3-90",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 90,
+        "pages": [
+          61,
+          62
+        ],
+        "printedAnswer": "B"
+      },
+      "conceptRefs": [
+        18,
+        6
+      ],
+      "topic": "Lifecycle rules for previous object versions",
+      "question": "You want to configure a solution for archiving data in a Cloud Storage bucket. The solution must be cost-effective. Data with multiple versions should be archived after 30 days. Previous versions are accessed once a month for reporting. This archive data is also occasionally updated at month-end. What should you do?",
+      "options": [
+        {
+          "text": "Add a bucket lifecycle rule that archives data with newer versions after 30 days to Coldline Storage.",
+          "explanation": "Coldline has a longer minimum storage duration and higher access charges than Nearline. Monthly reads and occasional updates make Nearline the intended choice here."
+        },
+        {
+          "text": "Add a bucket lifecycle rule that archives data with newer versions after 30 days to Nearline Storage.",
+          "explanation": "Targeting versions that have newer versions keeps the live objects separate. Nearline fits the monthly reporting pattern; current lifecycle conditions can target noncurrent objects explicitly."
+        },
+        {
+          "text": "Add a bucket lifecycle rule that archives data from regional storage after 30 days to Coldline Storage.",
+          "explanation": "This does not limit the rule to previous versions and selects Coldline for frequently revisited archive data. Both scope and access pattern need attention."
+        },
+        {
+          "text": "Add a bucket lifecycle rule that archives data from regional storage after 30 days to Nearline Storage.",
+          "explanation": "The class fits monthly access, but the rule does not specify previous versions. It can transition live data rather than just the requested older versions."
+        }
+      ],
+      "answer": 1,
+      "docs": [
+        {
+          "title": "Lifecycle rules for previous object versions — official guidance",
+          "url": "https://docs.cloud.google.com/storage/docs/lifecycle"
+        },
+        {
+          "title": "Lifecycle configuration examples",
+          "url": "https://docs.cloud.google.com/storage/docs/lifecycle-configurations"
+        }
+      ],
+      "reviewNote": {
+        "kind": "source-clarification",
+        "text": "Use a lifecycle condition that targets noncurrent versions, such as isLive=false; distinguish object age from daysSinceNoncurrentTime. Nearline has a 30-day minimum storage duration. Current versioning and soft-delete settings can affect retained copies and charges."
+      }
+    },
+    {
+      "id": "pdf-v3-281",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 281,
+        "pages": [
+          168
+        ],
+        "printedAnswer": "A"
+      },
+      "conceptRefs": [
+        58
+      ],
+      "topic": "Globally scalable relational transactions",
+      "question": "You are building a backend service for an ecommerce platform that will persist transaction data from mobile and web clients. After the platform is launched, you expect a large volume of global transactions. Your business team wants to run SQL queries to analyze the data. You need to build a highly available and scalable data store for the platform. What should you do?",
+      "options": [
+        {
+          "text": "Create a multi-region Cloud Spanner instance with an optimized schema.",
+          "explanation": "A multi-region Spanner database supports relational transactions, SQL, high availability, and horizontal scaling. This fits the global transaction workload and its analytical SQL requirement."
+        },
+        {
+          "text": "Create a multi-region Firestore database with aggregation query enabled.",
+          "explanation": "Firestore supports document data and its own query model. Enabling aggregation queries does not make it a relational SQL database for this workload."
+        },
+        {
+          "text": "Create a multi-region Cloud SQL for PostgreSQL database with optimized indexes.",
+          "explanation": "Cloud SQL instances are regional; cross-region replicas do not create the proposed multi-region Cloud SQL instance. They also do not provide Spanner-style horizontal transactional scaling."
+        },
+        {
+          "text": "Create a multi-region BigQuery dataset with optimized tables.",
+          "explanation": "BigQuery is designed for analytics. A multi-region dataset does not make it a low-latency operational transaction database for web and mobile purchases."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Globally scalable relational transactions — official guidance",
+          "url": "https://docs.cloud.google.com/spanner/docs"
+        }
+      ]
+    },
+    {
+      "id": "pdf-v3-136",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 136,
+        "pages": [
+          92
+        ],
+        "printedAnswer": "D"
+      },
+      "conceptRefs": [
+        44
+      ],
+      "topic": "Batch compute that cannot tolerate interruption",
+      "question": "Your company runs one batch process in an on-premises server that takes around 30 hours to complete. The task runs monthly, can be performed offline, and must be restarted if interrupted. You want to migrate this workload to the cloud while minimizing cost. What should you do?",
+      "options": [
+        {
+          "text": "Migrate the workload to a Compute Engine Preemptible VM.",
+          "explanation": "This 30-hour job must restart after interruption. Legacy preemptible VMs have a 24-hour maximum lifetime, so one cannot run this job through to completion."
+        },
+        {
+          "text": "Migrate the workload to a Google Kubernetes Engine cluster with Preemptible nodes.",
+          "explanation": "Preemptible GKE nodes retain the interruption risk and 24-hour limit. A container scheduler restarting the task does not preserve the lost progress."
+        },
+        {
+          "text": "Migrate the workload to a Compute Engine VM. Start and stop the instance as needed.",
+          "explanation": "A standard VM can run the complete job without the preemptible lifetime limit. Starting it for the monthly run and stopping afterward avoids idle compute charges."
+        },
+        {
+          "text": "Create an Instance Template with Preemptible VMs On. Create a Managed Instance Group from the template and adjust Target CPU Utilization. Migrate the workload.",
+          "explanation": "A managed group replaces interrupted VMs but does not checkpoint the application. Preemptible replacements still cannot ensure one uninterrupted 30-hour run."
+        }
+      ],
+      "answer": 2,
+      "docs": [
+        {
+          "title": "Batch compute that cannot tolerate interruption — official guidance",
+          "url": "https://docs.cloud.google.com/compute/docs/instances/preemptible"
+        }
+      ],
+      "reviewNote": {
+        "kind": "corrected-key",
+        "text": "Printed PDF key D is corrected to C. Legacy preemptible VMs are stopped after at most 24 hours; recreating one in a MIG does not save a non-checkpointed 30-hour job. Modern Spot VMs remove that fixed limit but remain interruptible, so they still do not satisfy this workload without application changes."
+      }
+    },
+    {
+      "id": "pdf-v3-155",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 155,
+        "pages": [
+          104
+        ],
+        "printedAnswer": "D"
+      },
+      "conceptRefs": [
+        25,
+        27
+      ],
+      "topic": "Enabling storage read audit logs",
+      "question": "You are storing sensitive information in a Cloud Storage bucket. For legal reasons, you need to be able to record all requests that read any of the stored data. You want to make sure you comply with these requirements. What should you do?",
+      "options": [
+        {
+          "text": "Enable the Identity Aware Proxy API on the project.",
+          "explanation": "Identity-Aware Proxy protects supported application access paths. Enabling its API does not configure Cloud Storage object-read audit records."
+        },
+        {
+          "text": "Scan the bucker using the Data Loss Prevention API.",
+          "explanation": "Sensitive Data Protection inspects data for sensitive content. It does not provide the required record of every authorized object read."
+        },
+        {
+          "text": "Allow only a single Service Account access to read the data.",
+          "explanation": "Limiting access to one identity does not itself log the reads. It can also reduce attribution by making several callers share a single identity."
+        },
+        {
+          "text": "Enable Data Access audit logs for the Cloud Storage API.",
+          "explanation": "Configure Cloud Storage Data Access audit logging, including DATA_READ. This records eligible authenticated object reads; additional restrictions apply to public and other excluded access paths."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Enabling storage read audit logs — official guidance",
+          "url": "https://docs.cloud.google.com/storage/docs/audit-logging"
+        }
+      ],
+      "reviewNote": {
+        "kind": "source-clarification",
+        "text": "Data Access audit logs are not retroactive. Configure the relevant DATA_READ category before the access occurs. Public-object and other documented exceptions are not fully captured, so this option alone is not an unconditional guarantee of every possible read; keep the sensitive bucket private and review coverage."
+      }
+    }
+  ]
+}

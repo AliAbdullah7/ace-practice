@@ -851,3 +851,9 @@ dialog{
 .source-reference { margin-top:24px; color:var(--muted); }
 .command-text { display:block; white-space:pre-wrap; overflow-wrap:anywhere; font-size:.82rem; line-height:1.7; font-weight:500; }
 .command-image { margin-top:10px; }
+
+.question-source-image { margin: 1.5rem 0; }
+.question-source-image img { display: block; max-width: 100%; height: auto; }
+.question-code { margin: 1rem 0 1.5rem; }
+.question-code summary { cursor: pointer; }
+.question-code pre { overflow-x: auto; padding: 1rem; background: #f3f6f5; border-radius: .5rem; font-size: .875rem; }

@@ -1,3 +1,22 @@
+# Version 3 verification — November 23, 2026
+
+`npm test` passes all **17 tests**. `npm run build`, JavaScript syntax checks and `git diff --check` pass. Version 1 and Version 2 content files are byte-for-byte unchanged from the previous commit, including their content versions.
+
+- Indexed all 322 questions across all 202 PDF pages. Source hash matches Version 2's source. Compared all 19 selected stems and 76 options, in order, with normalized page-indexed extraction. Stored source fingerprints for regression checks without publishing additional source text. Inspected the original PDF 42 manifest and PDF 43 page visually; extracted the original manifest image without highlights or answer markings.
+- Tests cover all three banks, pairwise saved-state separation and cross-version restore rejection, confirmed/draft/flag/position restoration, full-correct scoring, incomplete multi-selection rejection, fifth-option handling, exact-set scoring, source fidelity and corrected-key metadata. The actual app controller is also tested for confirmation-only disclosure and restart decisions.
+- Found and fixed a restart timing bug: the old asynchronous dialog `close` handler could run after a rapid version switch and clear the new selection's attempt. Restart now captures its intended set and processes the confirmed form submission synchronously. Cancel and Escape do not clear progress. Regression tests include immediate switching after confirmation and subsequent reload.
+- In the in-app browser, completed all 19 Version 3 questions: **19/19, 100%**. Before every confirmation, there were no explanation, review-note, source-reference or documentation elements. Each confirmation rendered exactly four option explanations. Reload preserved the completed score.
+- Browser verified Version 2's five-choice choose-two question: one choice could not confirm; the fifth option was selectable; the exact correct pair confirmed. A sample Version 1 confirmation and Version 2 confirmations scored independently. Browser checks used an isolated `localhost` origin, separate from the user's live website and prior `127.0.0.1` attempts.
+- Browser verified a Version 3 draft answer, flag and position survive reload, with no answer notes revealed. Cancel preserved the draft/flag. Confirmed restart immediately cleared Version 3 while Version 2's two confirmed results and position remained. Automated controller tests verify preservation of both other versions, including rapid switches, rather than relying on browser timing alone.
+- Original YAML image loaded at 468 × 402 pixels, with a faithful expandable code transcription. At 390 px width, the open-code question had no document-level horizontal overflow; desktop layout retained the existing design. Browser console check reported no warnings/errors during the initial full-set run.
+- Packaging test builds from a clean checkout, so the existing test-before-build deployment order works. The output contains exactly nine root website files and five required images. No full PDF, mock HTML, repository files, notes, tests, credentials or unrelated materials are published.
+
+Selection/distribution: **9** upper-range and **10** lower-range questions; **11-question shortfall**, with reasons and coverage limits in [VERSION_3_NOTES.md](VERSION_3_NOTES.md). Four printed keys are corrected. Historical/ambiguous source limitations remain explicit after confirmation.
+
+Publication uses the existing repository's `main` branch and existing deployment configuration. Do not infer a Render success from a Git push or GitHub Pages success; the deployment result is reported separately after checking the live workflow.
+
+---
+
 # Version 2 verification — November 16, 2026
 
 `npm test` passes all 11 tests. `npm run build`, JavaScript syntax checks and `git diff --check` pass. Version 1’s `questions.json` is unchanged.

@@ -3,6 +3,7 @@ const $ = id => document.getElementById(id);
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const escape = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let questions, attempt, version, reviewed, activeSet = SETS[0], filter = 'all', storageOK = true;
+let restartSetId = null;
 const datasets = new Map(), attempts = new Map();
 const answerLabel = answer => answerList(answer).map(i=>letters[i]).join(', ') || 'Unanswered';
 const optionContent = o => o.image ? `<code class="command-text">${escape(o.text)}</code><img class="command-image" src="${escape(o.image)}" alt="Original PDF command image for this option">` : o.code ? `<code>${escape(o.text)}</code>` : escape(o.text);
@@ -42,6 +43,8 @@ function renderQuestion() {
   }
   const top=`<div class="question-top"><span class="question-count">QUESTION ${String(i+1).padStart(2,'0')} / ${questions.length}</span><button type="button" id="flag" class="flag-button" aria-pressed="${attempt.flags[i]}"><span aria-hidden="true">⚑</span> ${attempt.flags[i] ? 'Flagged for review':'Flag for review'}</button></div>`;
   let body=`${top}<h2 id="question-heading">${escape(q.question)}</h2>`;
+  if(q.questionImage)body+=`<figure class="question-source-image"><img src="${escape(q.questionImage.src)}" alt="${escape(q.questionImage.alt)}"></figure>`;
+  if(q.questionCode)body+=`<details class="question-code"><summary>Read the original code as text</summary><pre><code>${escape(q.questionCode)}</code></pre></details>`;
   if (!attempt.confirmed[i]) {
     const multiple=Array.isArray(q.answer);
     body+=`<p class="answer-help" id="answer-help">${multiple ? 'Choose '+q.answer.length+' answers.' : 'Choose one answer.'} Confirm to check this question and reveal its explanations.</p><fieldset aria-describedby="answer-help"><legend class="sr-only">Answer choices for question ${i+1}</legend>`;
@@ -52,7 +55,7 @@ function renderQuestion() {
     body+=`<p class="review-meta"><span class="result-badge ${result}">${result[0].toUpperCase()+result.slice(1)}</span> · ${escape(q.topic)}<br>Your selection: <strong>${answerLabel(attempt.answers[i])}</strong> · Correct ${Array.isArray(q.answer)?'answers':'answer'}: <strong>${answerLabel(q.answer)}</strong></p>`;
     if(q.reviewNote)body+=`<aside class="review-note" aria-label="Source review note"><h3>${q.reviewNote.kind==='corrected-key'?'PDF answer key corrected':q.reviewNote.kind==='legacy'?'Historical question — current guidance':'Source clarification'}</h3><p>${escape(q.reviewNote.text)}</p></aside>`;
     body+=q.options.map((o,j)=>`<article class="explanation ${correctAnswers(q).includes(j)?'correct':isSelected(attempt.answers[i],j)?'selected-wrong':''}"><span class="option-badge">${correctAnswers(q).includes(j)?'Correct answer': 'Incorrect option'}${isSelected(attempt.answers[i],j)?' · Your selection':''}</span><h3>${letters[j]}. ${optionContent(o)}</h3><p>${escape(o.explanation)}</p></article>`).join('');
-    if(q.source && typeof q.source==='object')body+=`<p class="source-reference">Source: ${escape(q.source.file)} · original question ${q.source.question} · PDF ${q.source.pages.length===1?'page':'pages'} ${q.source.pages.join(', ')}</p>`;
+    if(q.source && typeof q.source==='object')body+=`<p class="source-reference">Source: ${escape(q.source.file)} · original question ${q.source.question} · PDF ${q.source.pages.length===1?'page':'pages'} ${q.source.pages.join(', ')}${q.conceptRefs ? ' · Mock concepts '+q.conceptRefs.join(', ') : ''}</p>`;
     body+=`<div class="docs"><h3>Read the official documentation</h3>${q.docs.map(d=>`<a href="${escape(d.url)}" target="_blank" rel="noopener noreferrer">${escape(d.title)} ↗<span class="sr-only"> (opens in a new tab)</span></a>`).join('')}<p class="reviewed">Content reviewed ${escape(reviewed)}. Product behavior can change.</p></div>`;
   }
   $('workspace').innerHTML=body;
@@ -68,6 +71,8 @@ function renderProgress() {
 }
 function render() { renderProgress(); renderMap(); renderQuestion(); }
 function showRestartDialog() {
+  restartSetId=activeSet.id;
+  $('confirm-dialog').returnValue='';
   $('confirm-dialog').showModal(); $('dialog-cancel').focus();
 }
 $('navigator').addEventListener('click',e=>{
@@ -101,9 +106,16 @@ $('previous').addEventListener('click',()=>{const v=indices();const p=v.indexOf(
 $('next').addEventListener('click',()=>{const v=indices();const p=v.indexOf(attempt.current);if(p<v.length-1)go(v[p+1]);});
 $('restart').addEventListener('click',showRestartDialog);
 $('review-filter').addEventListener('change',e=>{filter=e.target.value;const v=indices();go(v.includes(attempt.current)?attempt.current:(v[0]??attempt.current),false);});
-$('confirm-dialog').addEventListener('close',()=>{
-  if($('confirm-dialog').returnValue!=='confirm')return;
-  attempt=freshAttempt(version,questions.length);attempts.set(activeSet.id,attempt);filter='all';$('review-filter').value='all';
+$('confirm-dialog').querySelector('form').addEventListener('submit',e=>{
+  // Handle the decision synchronously: a delayed close event can run after a set switch.
+  if(e.submitter?.value!=='confirm' || !restartSetId)return;
+  const id=restartSetId,data=datasets.get(id),reset=freshAttempt(data.version,data.questions.length);
+  attempts.set(id,reset);
+  if(id!==activeSet.id){
+    try{localStorage.setItem(storageKey(id),JSON.stringify(reset));}catch{storageOK=false;}
+    return;
+  }
+  attempt=reset;filter='all';$('review-filter').value='all';
   go(0);
 });
 function selectSet(id) {
@@ -120,10 +132,10 @@ function selectSet(id) {
   $('exam-version').value=id;
   $('edition').textContent=next.label.toUpperCase();
   $('intro-copy').textContent=`${next.label} · ${questions.length} scenarios. Check each answer. Learn at your own pace.`;
-  $('brief-details').textContent=`${questions.length} questions · Untimed · ${id==='v2'?'Includes one choose-two question':'One best answer each'}`;
+  $('brief-details').textContent=`${questions.length} questions · Untimed · ${questions.some(q=>Array.isArray(q.answer))?'Includes multiple-selection questions':'One best answer each'}`;
   $('map-range').textContent=`01—${questions.length}`;
   $('dialog-title').textContent=`Restart ${next.label}?`;
-  $('dialog-description').textContent=`This clears ${next.label}'s selections, confirmed answers, flags, and current position in this browser. The other version's progress is preserved. This cannot be undone.`;
+  $('dialog-description').textContent=`This clears ${next.label}'s selections, confirmed answers, flags, and current position in this browser. The other versions' progress is preserved. This cannot be undone.`;
   $('version-status').textContent=`${next.label} selected. ${questions.length} questions. Progress is saved separately for each version.`;
   save();render();
 }
