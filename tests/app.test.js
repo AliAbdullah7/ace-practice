@@ -21,7 +21,8 @@ async function appHarness(store=new Map()){
   const select=id=>get('exam-version').emit('change',{target:{value:id}});
   const click=id=>get('workspace').emit('click',{target:{closest:selector=>selector==='#'+id?{}:null}});
   const choose=index=>get('workspace').emit('change',{target:{name:'answer',value:String(index)}});
-  return {get,store,select,click,choose};
+  const go=i=>get('navigator').emit('click',{target:{closest:()=>({dataset:{go:String(i)}})}});
+  return {get,store,select,click,choose,go};
 }
 test('actual app gates all answer notes, explanations, source metadata and links until confirmation',async()=>{
   const app=await appHarness();
@@ -58,5 +59,23 @@ test('restart confirmation resets its set synchronously before a rapid switch; c
   const reloaded=await appHarness(app.store);reloaded.select('v1');
   assert.ok(reloaded.get('progress-text').textContent.startsWith('1 of 40 confirmed'));
   reloaded.select('v2');assert.ok(reloaded.get('progress-text').textContent.startsWith('1 of 30 confirmed'));
-  reloaded.select('v3');assert.ok(reloaded.get('progress-text').textContent.startsWith('0 of 19 confirmed'));
+  reloaded.select('v3');assert.ok(reloaded.get('progress-text').textContent.startsWith('0 of 30 confirmed'));
+});
+
+test('each appended V3 question reveals only its own explanations on confirmation',async()=>{
+  const app=await appHarness();app.select('v3');
+  const bank=banks.find(b=>b.id==='v3');
+  for(let i=19;i<30;i++){
+    const q=bank.questions[i];app.go(i);
+    const before=app.get('workspace').innerHTML;
+    assert.ok(!/class="(?:explanation |review-note|docs|source-reference)/.test(before));
+    for(const o of q.options)assert.ok(!before.includes(o.explanation));
+    app.choose(q.answer);app.click('confirm-answer');
+    const after=app.get('workspace').innerHTML;
+    assert.equal((after.match(/<article class="explanation/g)||[]).length,q.options.length);
+    assert.ok(after.includes('original question '+q.source.question));
+    const saved=JSON.parse(app.store.get(engine.storageKey('v3')));
+    assert.equal(saved.confirmed.filter(Boolean).length,i-18);
+    assert.ok(saved.confirmed.slice(0,19).every(x=>!x));
+  }
 });

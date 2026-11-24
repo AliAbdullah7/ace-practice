@@ -2,7 +2,7 @@
 
 [Take the practice exam](https://AliAbdullah7.github.io/ace-practice/)
 
-Three unofficial, untimed Google Cloud Associate Cloud Engineer practice sets: **Version 1**, the existing 40 original scenarios, and **Version 2**, 30 faithfully selected PDF questions matching concepts in mock questions 1–50. **Version 3** adds 19 unused PDF questions within mock 1–60: 9 matching 50–60 and 10 matching 1–49. It deliberately falls 11 short of 30 under the task-match and no-repeat constraints; see [Version 3 selection, gaps and key review](VERSION_3_NOTES.md). Choose a version above the progress strip. Each version keeps its own answers, confirmed results, score, flags and position. Version 1 retains its existing content version and browser storage key, so this upgrade preserves saved attempts. It is not comprehensive ACE coverage, an official Google exam, or a predictor of certification results. The full source exams and PDFs are not included. Version 2 contains only the requested selected question excerpts and four original command-choice images. See [Version 2 selection and coverage](VERSION_2_NOTES.md).
+Three unofficial, untimed Google Cloud Associate Cloud Engineer practice sets: **Version 1**, the existing 40 original scenarios, and **Version 2**, 30 faithfully selected PDF questions matching concepts in mock questions 1–50. **Version 3** contains 30 unused PDF questions: its original 19 within mock 1–60 (9 matching 50–60 and 10 matching 1–49), followed by 11 matching Day 5 mock 61–75. See [Version 3 selection and source review](VERSION_3_NOTES.md). Choose a version above the progress strip. Each version keeps its own answers, confirmed results, score, flags and position. Version 1 retains its existing content version and browser storage key, so its saved attempt is preserved. The November 24 Version 3 content update resets only the saved Version 3 attempt; old results are not archived. It is not comprehensive ACE coverage, an official Google exam, or a predictor of certification results. The full source exams and PDFs are not included. Version 2 contains only the requested selected question excerpts and four original command-choice images. See [Version 2 selection and coverage](VERSION_2_NOTES.md).
 
 ## Taking the exam
 
@@ -31,7 +31,7 @@ npm test
 npm run build
 ```
 
-The build copies an explicit allowlist of nine website files plus five required source images into `dist/`, excluding tests, documentation, Git metadata and unrelated materials.
+The build copies an explicit allowlist of nine website files plus six required source images into `dist/`, excluding tests, documentation, Git metadata and unrelated materials.
 
 ## Update content
 
@@ -75,4 +75,4 @@ Official references: [Render static sites](https://render.com/docs/static-sites)
 
 The repository and Pages site are public. Commit only this website and necessary project files. Do not copy full source mocks, PDFs, credentials or study directories into it. Publish only explicitly requested excerpts and their necessary assets. If adapting to an existing repository, preserve unrelated content and adjust deployment paths deliberately. Relative asset paths support a project URL such as `/ace-practice/` with no custom domain or server routing.
 
-See [TESTING.md](TESTING.md) for verification. Version 1 was reviewed November 12, Version 2 November 16, and Version 3 November 23, 2026; product behavior can change.
+See [TESTING.md](TESTING.md) for verification. Version 1 was reviewed November 12, Version 2 November 16, and Version 3 November 24, 2026; product behavior can change.

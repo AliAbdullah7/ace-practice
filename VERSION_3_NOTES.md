@@ -1,5 +1,89 @@
 # Version 3 selection and review
 
+Reviewed **November 24, 2026**. **30 questions total**: the original 19 records remain unchanged and in their original order; 11 unused PDF excerpts matching the user-completed Day 5 mock 61–75 concepts are appended as practice questions 20–30. This expands the authorized scope; it does not retroactively fill the earlier 50–60 target. Current distribution: 10 from mock 1–49, 9 from mock 50–60, and 11 from mock 61–75. No shortfall remains against the new total of 30.
+
+Content version: `ace-v3-2026-11-24`. **This resets the saved Version 3 attempt**, including its answers, score, flags and position; the old attempt is not archived. Versions 1 and 2, their content versions, and all three storage keys are unchanged. Their saved attempts are unaffected.
+
+## Day 5 additions
+
+Read the actual mock 61–75 stems/options, then selected the matching excerpts from `GCPACE 2.pdf`, not from the mock HTML. Each row maps to the same-numbered mock concept. Physical pages are one-based and include stem, choices, essential images and printed key; a page carrying only a question heading or later explanatory commentary is not needed. PDF SHA-256 remains `dfb99260f18eb2b841605c448d33001ca1ff7858e3c3bedfc3231f2f22475432`.
+
+| Practice # | PDF # | Physical pages | Mock concept | Task |
+| --- | --- | --- | --- | --- |
+| 20 | 61 | 42, 43 | 61 | Cost-effective three-year audit-log retention across projects |
+| 21 | 62 | 43 | 62 | Size memory for a low-CPU HTTP reverse proxy |
+| 22 | 63 | 44 | 63 | Private Google API access from on-premises hosts |
+| 23 | 64 | 45 | 64 | Authenticated Pub/Sub delivery to a Cloud Run service |
+| 24 | 65 | 45, 46 | 65 | Host a low-traffic HTTP container economically |
+| 25 | 67 | 46, 47 | 67 | Monitor Spanner without table-data access |
+| 26 | 68 | 47 | 68 | Route VM logs directly to BigQuery for analysis |
+| 27 | 69 | 48 | 69 | Extend a historical infrastructure deployment to Kubernetes |
+| 28 | 70 | 48, 49 | 70 | Authenticate an on-premises application to Google APIs |
+| 29 | 72 | 50, 51 | 72 | Investigate a Pending Pod’s status/events |
+| 30 | 75 | 52 | 75 | List enabled APIs for an explicitly identified project |
+
+These 11 source numbers occur in neither Version 2 nor the original Version 3. The earlier no-padding/task-match rule remains in force. Mock/PDF 66 repeats centralized billing already covered by V2 193; 73 is already used in V2; 74 overlaps V2 307’s OS Login access management. PDF 71 is unused, but image-pull authorization is adjacent to the existing V2 173 container-delivery workflow and was not needed to reach 11. No extra neighboring or unrelated question was added.
+
+The added tasks are distinct from earlier exercises: audit-file archival versus lifecycle cleanup; VM RAM sizing for a new proxy versus resizing an existing VM; on-premises API routing versus subnet-to-subnet VM traffic; event delivery versus low-traffic hosting; monitoring permission versus database-query permission; log export versus enabling or reading audit records; Kubernetes API type integration versus writing general infrastructure templates; external workload authentication versus attached-VM identity; Pod diagnosis versus deploying an image; and listing APIs versus enabling one. Log archival and BigQuery analysis deliberately test different destination requirements.
+
+## Fidelity and necessary assets
+
+Preserved all 11 PDF stems and 44 text choices, their order, and their four-choice/single-answer format. Normalized line-wrap whitespace only, joined the extraction split “dat / a.” in PDF 67, and rejoined `--available` across its line break in PDF 75. Retained PDF 65’s missing final question mark, historical names, command punctuation and apparent SQL formatting errors. No mock text was copied as substitute PDF wording.
+
+PDF 72 requires two original embedded images: the Deployment/Service manifest and the Pod-status table. Extracted their original pixels (PDF objects 693 and 694) without the page watermark, answer highlighting, choices or key, and placed them vertically together on white in `assets/pdf-q72-context.png`. The existing image/transcription interface displays both with a faithful accessible text transcription; no interface behavior changed. All other new prompts/choices are text-only. The deployment has nine root website files and six necessary image assets; it contains neither the full PDF nor mock HTML.
+
+## Answer review and limitations (maintainer spoilers)
+
+Every new option has an individual explanation and current official Google Cloud references, all shown only after that question is confirmed.
+
+- **PDF 62:** printed A is corrected to B. Managed Redis does not run an arbitrary HTTP proxy. Explain the source’s N1 memory/vCPU ratio and that current machine families/extended memory can improve sizing beyond the offered choices.
+- **PDF 61:** retain B as best offered archival choice; explain aggregated sinks, separate retention enforcement, modern Archive storage and why a storage class alone is not a compliance lock.
+- **PDF 63:** retain D; explain full DNS/VIP/route/firewall configuration, API support boundaries, and that Interconnect uses VLAN attachments rather than VPN tunnels.
+- **PDF 64/65:** retain C/A; explain authenticated push prerequisites, request-based billing/zero minimum instances, modern pull-runtime possibilities, and historical Cloud Run on GKE terminology.
+- **PDF 67/68:** retain A/C; explain current Monitoring roles/metrics scopes, Stackdriver → Cloud Logging, current Log Router/Ops Agent terminology, destination writer permissions, charges and absence of automatic historical backfill.
+- **PDF 69:** retain historical A with a prominent legacy notice. The current official notice updated October 26, 2026 states normal support ended April 1, 2026, new customers were blocked June 30, 2026, and existing-customer service ends June 30, 2027. Do not incorrectly call this service already shut down or recommend it for new deployments. The unchanged choices omit a current new-customer solution.
+- **PDF 70:** retain historical intended B, explicitly acknowledge that A also describes a valid credential-use outcome. Current best practice is Workload Identity Federation; none of these unchanged choices spells out that preferred setup. Explain that key creation alone does not configure authentication, and keys are a policy-controlled fallback.
+- **PDF 72/75:** retain C/A; distinguish Pod events from nonexistent container logs, and enabled services from merely available services. Do not infer a specific scheduling cause from Pending alone.
+
+The prior four scored-key corrections remain unchanged, so Version 3 now has five corrected PDF keys. These maintenance notes contain answer details; the site keeps them in the individual explanation-only view.
+
+## Official references checked for the additions
+
+- [Log routing and destinations](https://docs.cloud.google.com/logging/docs/routing/overview)
+- [Organization-wide aggregated sinks](https://docs.cloud.google.com/logging/docs/export/aggregated_sinks_overview)
+- [Storage classes and minimum durations](https://docs.cloud.google.com/storage/docs/storage-classes)
+- [Enforcing retention with Bucket Lock](https://docs.cloud.google.com/storage/docs/bucket-lock)
+- [Custom machine memory and vCPU constraints](https://docs.cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type)
+- [General-purpose machine families](https://docs.cloud.google.com/compute/docs/general-purpose-machines)
+- [Private Google Access for on-premises hosts](https://docs.cloud.google.com/vpc/docs/configure-private-google-access-hybrid)
+- [Pub/Sub push integration with Cloud Run](https://docs.cloud.google.com/run/docs/tutorials/pubsub)
+- [Cloud Run scaling behavior](https://docs.cloud.google.com/run/docs/about-instance-autoscaling)
+- [Cloud Run request-based billing](https://docs.cloud.google.com/run/docs/configuring/billing-settings)
+- [App Engine Flexible scaling](https://docs.cloud.google.com/appengine/docs/flexible/how-instances-are-managed)
+- [Cloud Monitoring IAM roles](https://docs.cloud.google.com/monitoring/access-control)
+- [Spanner role permissions](https://docs.cloud.google.com/iam/docs/roles-permissions/spanner)
+- [Configure sinks and destination permissions](https://docs.cloud.google.com/logging/docs/export/configure_export_v2)
+- [Logs routed to BigQuery](https://docs.cloud.google.com/logging/docs/export/bigquery)
+- [Historical API type providers](https://docs.cloud.google.com/deployment-manager/docs/configuration/type-providers/creating-type-provider)
+- [Current Deployment Manager lifecycle](https://docs.cloud.google.com/deployment-manager/docs/deprecations?hl=en)
+- [Create and delete service-account keys](https://docs.cloud.google.com/iam/docs/keys-create-delete)
+- [Workload Identity Federation for external workloads](https://docs.cloud.google.com/iam/docs/workload-identity-federation)
+- [Service-account key best practices](https://docs.cloud.google.com/iam/docs/best-practices-for-managing-service-account-keys)
+- [Troubleshoot deployed workloads](https://docs.cloud.google.com/kubernetes-engine/docs/troubleshooting/deployed-workloads)
+- [Inspect resource details and events with kubectl](https://docs.cloud.google.com/kubernetes-engine/docs/troubleshooting/introduction-kubectl)
+- [gcloud services list flags and defaults](https://docs.cloud.google.com/sdk/gcloud/reference/services/list)
+- [Listing project services](https://docs.cloud.google.com/service-usage/docs/list-services)
+
+- [What Memorystore for Redis runs](https://docs.cloud.google.com/memorystore/docs/redis/memorystore-for-redis-overview)
+
+## Verification
+
+See the November 24 entry in [TESTING.md](TESTING.md). Regression fixtures protect the unchanged 19-record prefix and byte-identical Version 1/2 banks. Source fidelity checks cover all 30 stems and choice lists, physical pages, printed keys and both prompt-image assets. The previous selection audit follows as historical context; its 11-question shortfall describes the former 1–60 scope, not the expanded set.
+
+---
+
+# Original 19-question selection — historical review, November 23, 2026
+
 Reviewed November 23, 2026. **19 questions selected; shortfall: 11.** The requested target was 20 questions matching mock 50–60 and 10 matching mock 1–49. The retained distribution is **9 / 10** (47.4% / 52.6%). No questions were invented, taken from outside the mock 1–60 concept scope, or added merely to reach 30. The smaller set is deliberate under the no-substantial-repeat requirement.
 
 ## Search and selection method

@@ -66,3 +66,7 @@ Spanner Database User includes schema-update permissions. The scenario explicitl
 ## Version 2
 
 The separate PDF-derived set is documented in [VERSION_2_NOTES.md](VERSION_2_NOTES.md), including the full 1–50 concept map, original PDF pages, selection limits, key corrections and historical terminology. Version 1 content remains unchanged.
+
+## Version 3
+
+[VERSION_3_NOTES.md](VERSION_3_NOTES.md) records the original 19 PDF excerpts and the 11 Day 5 additions, with original question/page references, mock concept mapping, key review and historical limitations. The November 24, 2026 update expands only Version 3 to 30 questions and resets only its saved attempt. Versions 1 and 2 remain unchanged.

@@ -1,3 +1,14 @@
+# Version 3 Day 5 expansion — November 24, 2026
+
+- Added 11 PDF excerpts as questions 20–30, matching mock 61–75. Reviewed each new key and all option explanations against current official Google Cloud documentation. The source/concept/page map and historical/ambiguous-key limits are in [VERSION_3_NOTES.md](VERSION_3_NOTES.md).
+- `npm test`: **19/19 passed**. `npm run build`, JavaScript syntax checks and `git diff --check` passed. Fixtures verify all 30 stems/choice lists, source pages and printed keys, the unchanged 19-question prefix, byte-identical Version 1/2 banks, independent attempts/restarts, rejection of old Version 3 attempts, and exact-set scoring for the unchanged Version 2 choose-two question.
+- The actual app controller and Chromium browser each exercised all 11 appended questions. Each was hidden before confirmation; confirming revealed exactly four explanations, its source and official links. The original 19 remained unconfirmed during that browser test. Reload preserved the 11 test confirmations and position; the preview-only Version 3 test attempt was cleared afterward.
+- PDF 72’s two original embedded prompt images were inspected and combined without answer highlighting/watermarks, with an expandable faithful text transcription. The 763 × 568 composite loaded in Chromium. At 320 and 390 CSS pixels the image/transcription view had no document horizontal overflow; desktop layout retained the existing interface. No browser warnings/errors were reported. These are simulated phone widths, not physical-device or screen-reader tests.
+- The built output contains exactly nine root website files and six required images. No full PDF, source mock HTML, notes, tests or unrelated materials are deployed. Versions 1 and 2 were not edited; Version 3’s content version is `ace-v3-2026-11-24`, and its older saved attempt resets without archival.
+- Publishing continues through the existing `main` branch and GitHub Pages workflow. Render configuration is preserved; no verified Render URL or status is available from the repository’s deployment records. GitHub Pages success must not be described as Render success.
+
+---
+
 # Version 3 verification — November 23, 2026
 
 `npm test` passes all **17 tests**. `npm run build`, JavaScript syntax checks and `git diff --check` pass. Version 1 and Version 2 content files are byte-for-byte unchanged from the previous commit, including their content versions.
