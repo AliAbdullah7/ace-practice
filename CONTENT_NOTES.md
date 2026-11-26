@@ -70,3 +70,7 @@ The separate PDF-derived set is documented in [VERSION_2_NOTES.md](VERSION_2_NOT
 ## Version 3
 
 [VERSION_3_NOTES.md](VERSION_3_NOTES.md) records the original 19 PDF excerpts and the 11 Day 5 additions, with original question/page references, mock concept mapping, key review and historical limitations. The November 24, 2026 update expands only Version 3 to 30 questions and resets only its saved attempt. Versions 1 and 2 remain unchanged.
+
+## Version 4
+
+[VERSION_4_NOTES.md](VERSION_4_NOTES.md) records 17 unused PDF excerpts for Days 5–6 (9 / 8), the 13-question shortfall, all source/page/concept/key mappings and current-behavior caveats. [The full-source audit](VERSION_4_SELECTION_AUDIT.json) accounts for all 322 PDF questions. Versions 1–3 are byte-for-byte unchanged. Version 4 uses its own content version and saved attempt.

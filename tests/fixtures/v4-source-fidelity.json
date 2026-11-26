@@ -1,0 +1,155 @@
+{
+  "pdfSha256": "dfb99260f18eb2b841605c448d33001ca1ff7858e3c3bedfc3231f2f22475432",
+  "preservedBankSha256": {
+    "questions.json": "7767f2f8aab6a08c9dbc327da8ffe4a0bcd06aff9507b13e3d890acf5cacba4b",
+    "questions-v2.json": "db1028dd01cf734a6a55c7127bdfac0e39aef51525dab7a209ce6fe18cee4f53",
+    "questions-v3.json": "b176fe8424f63aa31f17043d605d25eba4d1143bcc1ac2e99d2064a13dbbad74"
+  },
+  "questions": [
+    {
+      "number": 94,
+      "pages": [
+        64,
+        65
+      ],
+      "printedAnswer": "B",
+      "sha256": "afb218e241497057fb9b7132b2c7424910e06295e0804c78f2f173d7114b37da"
+    },
+    {
+      "number": 108,
+      "pages": [
+        73
+      ],
+      "printedAnswer": "A",
+      "sha256": "038820ce2ebab8a475b669695a8114fb2097fff7a182de2653079d2ad6117ffe"
+    },
+    {
+      "number": 221,
+      "pages": [
+        138
+      ],
+      "printedAnswer": "D",
+      "sha256": "3fdf9d71b7ffcfb6cfdd071649de9c6e63aa5c552a5723825e1f1351645216a0"
+    },
+    {
+      "number": 111,
+      "pages": [
+        74,
+        75
+      ],
+      "printedAnswer": "C",
+      "sha256": "2e8d4a8727d6454718c91788824b361288f8b7dfd758a086497c8a21c6b55c26"
+    },
+    {
+      "number": 222,
+      "pages": [
+        138,
+        139
+      ],
+      "printedAnswer": "B",
+      "sha256": "ecdc2a6f42eab8bc2dc55fa1677e01a8fa1b6aeebb3e9b71db32b55e350a777c"
+    },
+    {
+      "number": 126,
+      "pages": [
+        84,
+        85
+      ],
+      "printedAnswer": "A",
+      "sha256": "318a65fe5b98692b5df4e36a4abd17bdcf7ed6bb78898624db75517a9df7c841"
+    },
+    {
+      "number": 152,
+      "pages": [
+        101
+      ],
+      "printedAnswer": "D",
+      "sha256": "6c1c10f1c6755bfa553991f13fdeea95db65cb0ec9117011406001606146ee6c"
+    },
+    {
+      "number": 146,
+      "pages": [
+        98
+      ],
+      "printedAnswer": "D",
+      "sha256": "09c9bd2db0519ce55ea2a432499b6af59d7a8bc3074f3edd98cf9c468c0e58d0"
+    },
+    {
+      "number": 276,
+      "pages": [
+        166
+      ],
+      "printedAnswer": "A",
+      "sha256": "d87619e6851fced197acba8d9f0d87e21105628c26216757b56edbd07f55a053"
+    },
+    {
+      "number": 229,
+      "pages": [
+        141,
+        142
+      ],
+      "printedAnswer": "B",
+      "sha256": "e54bb290c36a5db1a26400200c062f5420b7e6c1b221fdd313070f58a65a723a"
+    },
+    {
+      "number": 283,
+      "pages": [
+        169
+      ],
+      "printedAnswer": "B",
+      "sha256": "81064709d75842afb4a1292300dc64b3abf21315cdab673bc865446a13c429ea"
+    },
+    {
+      "number": 258,
+      "pages": [
+        156
+      ],
+      "printedAnswer": "AE",
+      "sha256": "5a313b54783c32a391299a73b97726ca8efe23530d10edfb0e4ebc422720cb47"
+    },
+    {
+      "number": 299,
+      "pages": [
+        180,
+        181
+      ],
+      "printedAnswer": "B",
+      "sha256": "fb9b8eca4e7292baf9f7bc33495847e8b1ca8be937d3fbd401f6047b44752ac3"
+    },
+    {
+      "number": 312,
+      "pages": [
+        193,
+        194
+      ],
+      "printedAnswer": "D",
+      "sha256": "1d2ac313d15888df12760ddb863dbe510e5f91c1d69f79f194acf2af22b5f5bb"
+    },
+    {
+      "number": 296,
+      "pages": [
+        177,
+        178
+      ],
+      "printedAnswer": "D",
+      "sha256": "4d977718a261bc787d8125d2de08a01ec872910df1490023bfc68841946a8c14"
+    },
+    {
+      "number": 315,
+      "pages": [
+        197
+      ],
+      "printedAnswer": "D",
+      "sha256": "9e77fee81ed5447577adb57078c143180f7b6fa2f4174bb0319dd8ef992215c0"
+    },
+    {
+      "number": 310,
+      "pages": [
+        191
+      ],
+      "printedAnswer": "D",
+      "sha256": "defd10c51703030f5bdb9a6fad0d636eecb454c9f903b7c39131ab47803bdb82"
+    }
+  ],
+  "statusImageSha256": "99e4e6fe630a68cb20c148d3253be298c55d00c8d7ac40684263958a52e389bd"
+}

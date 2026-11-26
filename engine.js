@@ -2,7 +2,8 @@ export const STORAGE_KEY = 'cloud-fieldnotes-ace-attempt-v1';
 export const SETS = [
   {id:'v1', label:'Version 1', file:'questions.json', count:40},
   {id:'v2', label:'Version 2', file:'questions-v2.json', count:30},
-  {id:'v3', label:'Version 3', file:'questions-v3.json', count:30}
+  {id:'v3', label:'Version 3', file:'questions-v3.json', count:30},
+  {id:'v4', label:'Version 4', file:'questions-v4.json', count:17}
 ];
 export const ACTIVE_SET_KEY = 'cloud-fieldnotes-ace-active-set';
 // Retain the original key so existing Version 1 attempts survive the upgrade.

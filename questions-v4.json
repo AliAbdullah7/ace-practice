@@ -1,0 +1,895 @@
+{
+  "version": "ace-v4-2026-11-26",
+  "reviewed": "November 26, 2026",
+  "questions": [
+    {
+      "id": "pdf-v4-94",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 94,
+        "pages": [
+          64,
+          65
+        ],
+        "printedAnswer": "B",
+        "verifiedAnswer": "B"
+      },
+      "conceptRefs": [
+        72
+      ],
+      "studyDay": 5,
+      "topic": "Diagnosing an unscheduled replica",
+      "question": "You create a Deployment with 2 replicas in a Google Kubernetes Engine cluster that has a single preemptible node pool. After a few minutes, you use kubectl to examine the status of your Pod and observe that one of them is still in Pending status: What is the most likely cause?",
+      "options": [
+        {
+          "text": "The pending Pod's resource requests are too large to fit on a single node of the cluster.",
+          "explanation": "The two replicas use the same Pod template, and one already runs on this single node pool. That makes an individually oversized request less likely than insufficient remaining capacity."
+        },
+        {
+          "text": "Too many Pods are already running in the cluster, and there are not enough resources left to schedule the pending Pod.",
+          "explanation": "This is the best-supported explanation: one replica fits, but the remaining cluster capacity may not fit the second. Check the pending Pod’s scheduling events to confirm the actual shortage."
+        },
+        {
+          "text": "The node pool is configured with a service account that does not have permission to pull the container image used by the pending Pod.",
+          "explanation": "An image authorization failure usually appears as an image-pull error in the Pod’s events or container status. The running identical replica makes a general node-account image-permission problem less likely."
+        },
+        {
+          "text": "The pending Pod was originally scheduled on a node that has been preempted between the creation of the Deployment and your verification of the Pods’ status. It is currently being rescheduled on a new node.",
+          "explanation": "Preemption can interrupt scheduling, but the table alone does not establish a preemption event. A replica still waiting after several minutes more strongly suggests unavailable capacity among these choices."
+        }
+      ],
+      "answer": 1,
+      "docs": [
+        {
+          "title": "Troubleshoot deployed workloads",
+          "url": "https://docs.cloud.google.com/kubernetes-engine/docs/troubleshooting/deployed-workloads"
+        },
+        {
+          "title": "Node pools and shared configuration",
+          "url": "https://docs.cloud.google.com/kubernetes-engine/docs/concepts/node-pools"
+        }
+      ],
+      "reviewNote": {
+        "kind": "clarification",
+        "text": "The status table supports a most-likely answer, not a proven diagnosis. Pending can have several causes; inspect kubectl describe pod and scheduling events before changing a real cluster. The original term preemptible and the original table are preserved."
+      },
+      "questionImage": {
+        "src": "assets/pdf-q94-status.jpg",
+        "alt": "Original PDF kubectl status output: one Pending replica and one Running replica."
+      },
+      "questionCode": "$ kubectl get pods -l app=myapp\nNAME                                   READY   STATUS    RESTART   AGE\nmyapp-deployment-58ddbbb995-lp86m         0/1     Pending   0         9m\nmyapp-deployment-58ddbbb995-qjpkg         1/1     Running   0         9m"
+    },
+    {
+      "id": "pdf-v4-108",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 108,
+        "pages": [
+          73
+        ],
+        "printedAnswer": "A",
+        "verifiedAnswer": "A"
+      },
+      "conceptRefs": [
+        81
+      ],
+      "studyDay": 6,
+      "topic": "Infrequent GPU jobs without preemption",
+      "question": "A team of data scientists infrequently needs to use a Google Kubernetes Engine (GKE) cluster that you manage. They require GPUs for some long-running, non-restartable jobs. You want to minimize cost. What should you do?",
+      "options": [
+        {
+          "text": "Enable node auto-provisioning on the GKE cluster.",
+          "explanation": "Node auto-provisioning can create a suitable GPU node pool when workload requests need it and remove unused capacity afterward. Use standard provisioning for these non-restartable jobs, rather than interruptible nodes."
+        },
+        {
+          "text": "Create a VerticalPodAutscaler for those workloads.",
+          "explanation": "Vertical Pod Autoscaler adjusts or recommends container CPU and memory requests. It does not itself supply the GPU nodes this workload needs."
+        },
+        {
+          "text": "Create a node pool with preemptible VMs and GPUs attached to those VMs.",
+          "explanation": "Preemptible VMs can be terminated before a job finishes. That is a poor match for long-running work that cannot restart."
+        },
+        {
+          "text": "Create a node pool of instances with GPUs, and enable autoscaling on this node pool with a minimum size of 1.",
+          "explanation": "This can provide usable GPU nodes, but keeping at least one node running also charges for idle GPU capacity. Infrequent work benefits from creating capacity only when needed."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Configure node pool auto-creation and GPU limits",
+          "url": "https://docs.cloud.google.com/kubernetes-engine/docs/how-to/node-auto-provisioning"
+        },
+        {
+          "title": "Preemptible VM behavior",
+          "url": "https://docs.cloud.google.com/compute/docs/instances/preemptible"
+        }
+      ],
+      "reviewNote": {
+        "kind": "clarification",
+        "text": "Enablement alone is not the entire GPU setup: configure permitted GPU types/resource limits, workload GPU requests and compatible drivers. Current documentation calls this node pool auto-creation and still describes cluster-level node auto-provisioning. Non-restartable does not mean immune to every failure; use non-preemptible nodes and plan job recovery."
+      }
+    },
+    {
+      "id": "pdf-v4-221",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 221,
+        "pages": [
+          138
+        ],
+        "printedAnswer": "D",
+        "verifiedAnswer": "C"
+      },
+      "conceptRefs": [
+        63
+      ],
+      "studyDay": 5,
+      "topic": "Private API access from internal-only VMs",
+      "question": "You have an application that runs on Compute Engine VM instances in a custom Virtual Private Cloud (VPC). Your company's security policies only allow the use to internal IP addresses on VM instances and do not let VM instances connect to the internet. You need to ensure that the application can access a file hosted in a Cloud Storage bucket within your project. What should you do?",
+      "options": [
+        {
+          "text": "Enable Private Service Access on the Cloud Storage Bucket.",
+          "explanation": "Private services access connects a consumer VPC to supported service-producer networks. It is not a setting enabled on a Cloud Storage bucket for this purpose."
+        },
+        {
+          "text": "Add slorage.googleapis.com to the list of restricted services in a VPC Service Controls perimeter and add your project to the list to protected projects.",
+          "explanation": "VPC Service Controls restricts access to protected services to reduce data exfiltration risk. Creating a perimeter does not supply the network path that these VMs are missing."
+        },
+        {
+          "text": "Enable Private Google Access on the subnet within the custom VPC.",
+          "explanation": "Private Google Access is enabled on the VMs’ subnet. It lets internal-only VMs reach supported Google APIs, including Cloud Storage, without giving the VMs public IP addresses."
+        },
+        {
+          "text": "Deploy a Cloud NAT instance and route the traffic to the dedicated IP address of the Cloud Storage bucket.",
+          "explanation": "Cloud NAT is unnecessary for this Google API access pattern. Cloud Storage is not reached by routing to a dedicated bucket IP, and general internet egress conflicts with the stated policy."
+        }
+      ],
+      "answer": 2,
+      "docs": [
+        {
+          "title": "Private Google Access",
+          "url": "https://docs.cloud.google.com/vpc/docs/private-google-access"
+        },
+        {
+          "title": "Configure Private Google Access",
+          "url": "https://docs.cloud.google.com/vpc/docs/configure-private-google-access"
+        }
+      ],
+      "reviewNote": {
+        "kind": "corrected-key",
+        "text": "Printed PDF key D is corrected to C. Internal-only Compute Engine VMs use subnet-level Private Google Access for Google APIs. Ensure the required DNS, routes, egress rules and bucket IAM permissions also exist. This differs from on-premises Private Google Access, which needs hybrid routing and DNS configuration. Source typos are retained."
+      }
+    },
+    {
+      "id": "pdf-v4-111",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 111,
+        "pages": [
+          74,
+          75
+        ],
+        "printedAnswer": "C",
+        "verifiedAnswer": "C"
+      },
+      "conceptRefs": [
+        80,
+        83
+      ],
+      "studyDay": 6,
+      "topic": "Auditor access within a restricted domain",
+      "question": "Your management has asked an external auditor to review all the resources in a specific project. The security team has enabled the Organization Policy called Domain Restricted Sharing on the organization node by specifying only your Cloud Identity domain. You want the auditor to only be able to view, but not modify, the resources in that project. What should you do?",
+      "options": [
+        {
+          "text": "Ask the auditor for their Google account, and give them the Viewer role on the project.",
+          "explanation": "The auditor’s outside-domain account is blocked by the stated domain restriction, even though Viewer is a read-oriented role. The allowed identity domain must be addressed first."
+        },
+        {
+          "text": "Ask the auditor for their Google account, and give them the Security Reviewer role on the project.",
+          "explanation": "This still uses the blocked external account. Security Reviewer also focuses on security and access configuration rather than general project-resource viewing."
+        },
+        {
+          "text": "Create a temporary account for the auditor in Cloud Identity, and give that account the Viewer role on the project.",
+          "explanation": "An account in your allowed Cloud Identity domain satisfies the domain restriction. Project Viewer then provides broad read-oriented project access without granting resource modification."
+        },
+        {
+          "text": "Create a temporary account for the auditor in Cloud Identity, and give that account the Security Reviewer role on the project.",
+          "explanation": "The identity is in the allowed domain, but Security Reviewer targets security metadata and access policies. It does not provide the general resource-viewing scope requested here."
+        }
+      ],
+      "answer": 2,
+      "docs": [
+        {
+          "title": "Domain-restricted sharing",
+          "url": "https://docs.cloud.google.com/organization-policy/restrict-domains"
+        },
+        {
+          "title": "Basic and predefined IAM roles",
+          "url": "https://docs.cloud.google.com/iam/docs/roles-overview"
+        }
+      ],
+      "reviewNote": {
+        "kind": "clarification",
+        "text": "Viewer is the best offered role for this broad project-resource review; it does not promise access to every data object or private audit log. Prefer narrower predefined roles for a real audit when its precise scope is known. Remove the temporary account and grant when the engagement ends."
+      }
+    },
+    {
+      "id": "pdf-v4-222",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 222,
+        "pages": [
+          138,
+          139
+        ],
+        "printedAnswer": "B",
+        "verifiedAnswer": "A"
+      },
+      "conceptRefs": [
+        66
+      ],
+      "studyDay": 5,
+      "topic": "Moving project ownership and billing separately",
+      "question": "Your company completed the acquisition of a startup and is now merging the IT systems of both companies. The startup had a production Google Cloud project in their organization. You need to move this project into your organization and ensure that the project is billed lo your organization. You want to accomplish this task with minimal effort. What should you do?",
+      "options": [
+        {
+          "text": "Use the projects. move method to move the project to your organization. Update the billing account of the project to that of your organization.",
+          "explanation": "Move the existing project through Resource Manager, then change its billing association explicitly. These are separate operations; moving the project preserves its resources and does not automatically move its billing."
+        },
+        {
+          "text": "Ensure that you have an Organization Administrator Identity and Access Management (IAM) role assigned to you in both organizations. Navigate to the Resource Manager in the startup's Google Cloud organization, and drag the project to your company's organization.",
+          "explanation": "Organization Administrator in both organizations is not the complete migration permission setup. More importantly, moving a project alone leaves its original billing association in place, so this misses a stated requirement."
+        },
+        {
+          "text": "Create a Private Catalog tor the Google Cloud Marketplace, and upload the resources of the startup’s production project to the Catalog. Share the Catalog with your organization, and deploy the resources in your company’s project.",
+          "explanation": "A catalog is not a migration mechanism for an existing project, its organization parent and its billing association. Redeploying products does not preserve the requested project."
+        },
+        {
+          "text": "Create an infrastructure-as-code template tor all resources in the project by using Terraform. and deploy that template to a new project in your organization. Delete the protect from the startup's Google Cloud organization.",
+          "explanation": "Rebuilding resources in another project adds effort and migration risk. Moving the existing project and changing its billing association directly meets the requested objective."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Migrate projects between organizations",
+          "url": "https://docs.cloud.google.com/resource-manager/docs/project-migration"
+        },
+        {
+          "title": "Migration permissions and execution",
+          "url": "https://docs.cloud.google.com/resource-manager/docs/perform-migration"
+        },
+        {
+          "title": "Change a project’s billing account",
+          "url": "https://docs.cloud.google.com/billing/docs/how-to/modify-project"
+        }
+      ],
+      "reviewNote": {
+        "kind": "corrected-key",
+        "text": "Printed PDF key B is corrected to A. A explicitly includes both the project move and the billing change. The source writes projects. move with a space; the API operation is projects.move. A real migration also requires the appropriate project/folder migration permissions, organization-policy allowances and destination billing permissions."
+      }
+    },
+    {
+      "id": "pdf-v4-126",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 126,
+        "pages": [
+          84,
+          85
+        ],
+        "printedAnswer": "A",
+        "verifiedAnswer": "A"
+      },
+      "conceptRefs": [
+        77
+      ],
+      "studyDay": 6,
+      "topic": "Estimating a multi-product monthly bill",
+      "question": "You have designed a solution on Google Cloud Platform (GCP) that uses multiple GCP products. Your company has asked you to estimate the costs of the solution. You need to provide estimates for the monthly total cost. What should you do?",
+      "options": [
+        {
+          "text": "For each GCP product in the solution, review the pricing details on the products pricing page. Use the pricing calculator to total the monthly costs for each GCP product.",
+          "explanation": "Build the estimate from each service’s pricing and expected usage in the Pricing Calculator. This gives a combined monthly estimate before you provision and pay for the solution."
+        },
+        {
+          "text": "For each GCP product in the solution, review the pricing details on the products pricing page. Create a Google Sheet that summarizes the expected monthly costs for each product.",
+          "explanation": "A spreadsheet can produce a valid estimate, but it requires you to maintain the pricing logic yourself. The calculator is the more direct supplied tool for a combined multi-product estimate."
+        },
+        {
+          "text": "Provision the solution on GCP. Leave the solution provisioned for 1 week. Navigate to the Billing Report page in the Google Cloud Platform Console. Multiply the 1 week cost to determine the monthly costs.",
+          "explanation": "This creates billable resources just to estimate them. One week may also miss monthly usage patterns, storage growth or commitments, so multiplying it is not a reliable planning method."
+        },
+        {
+          "text": "Provision the solution on GCP. Leave the solution provisioned for 1 week. Use Stackdriver to determine the provisioned and used resource amounts. Multiply the 1 week cost to determine the monthly costs.",
+          "explanation": "Monitoring usage is not the same as calculating charges under each product’s billing rules. This also requires running the solution and assumes one week represents the whole month."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Google Cloud Pricing Calculator",
+          "url": "https://cloud.google.com/products/calculator"
+        }
+      ],
+      "reviewNote": {
+        "kind": "clarification",
+        "text": "This is a best-tool choice, not a claim that spreadsheet estimates are impossible. Calculator output depends on the regions, usage, storage, network traffic and pricing assumptions you enter; it is an estimate, not an invoice. Stackdriver is historical branding for Google Cloud’s observability services."
+      }
+    },
+    {
+      "id": "pdf-v4-152",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 152,
+        "pages": [
+          101
+        ],
+        "printedAnswer": "D",
+        "verifiedAnswer": "D"
+      },
+      "conceptRefs": [
+        74
+      ],
+      "studyDay": 5,
+      "topic": "SSH access without Google accounts",
+      "question": "Your company runs its Linux workloads on Compute Engine instances. Your company will be working with a new operations partner that does not use Google Accounts. You need to grant access to the instances to your operations partner so they can maintain the installed tooling. What should you do?",
+      "options": [
+        {
+          "text": "Enable Cloud IAP for the Compute Engine instances, and add the operations partner as a Cloud IAP Tunnel User.",
+          "explanation": "IAP tunnel access requires an authenticated identity and IAM authorization. Assigning an IAP role does not solve the stated absence of Google accounts or provide the VM’s Linux login credentials."
+        },
+        {
+          "text": "Tag all the instances with the same network tag. Create a firewall rule in the VPC to grant TCP access on port 22 for traffic from the operations partner to instances with the network tag.",
+          "explanation": "A firewall rule opens a network path, but it does not authenticate someone to the Linux operating system. The partner still needs a valid SSH login identity and key."
+        },
+        {
+          "text": "Set up Cloud VPN between your Google Cloud VPC and the internal network of the operations partner.",
+          "explanation": "A VPN provides private network connectivity. It does not create Linux accounts or authorize an SSH login to the instances."
+        },
+        {
+          "text": "Ask the operations partner to generate SSH key pairs, and add the public keys to the VM instances.",
+          "explanation": "The partner can keep each private key and supply its matching public key for the relevant VM metadata. Metadata-based SSH access can authenticate Linux users without giving them Google accounts."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Add SSH keys to VMs",
+          "url": "https://docs.cloud.google.com/compute/docs/connect/add-ssh-keys"
+        },
+        {
+          "title": "SSH connection methods",
+          "url": "https://docs.cloud.google.com/compute/docs/connect/ssh-connections"
+        }
+      ],
+      "reviewNote": {
+        "kind": "clarification",
+        "text": "This choice assumes metadata-based SSH is allowed, OS Login is disabled on these VMs, and network access is already available or configured separately. With OS Login enabled, metadata SSH keys are ignored. Keep private keys with their owners and remove access when the engagement ends."
+      }
+    },
+    {
+      "id": "pdf-v4-146",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 146,
+        "pages": [
+          98
+        ],
+        "printedAnswer": "D",
+        "verifiedAnswer": "D"
+      },
+      "conceptRefs": [
+        85
+      ],
+      "studyDay": 6,
+      "topic": "Joining external data without a new pipeline",
+      "question": "You have an application that uses Cloud Spanner as a database backend to keep current state information about users. Cloud Bigtable logs all events triggered by users. You export Cloud Spanner data to Cloud Storage during daily backups. One of your analysts asks you to join data from Cloud Spanner and Cloud Bigtable for specific users. You want to complete this ad hoc request as efficiently as possible. What should you do?",
+      "options": [
+        {
+          "text": "Create a dataflow job that copies data from Cloud Bigtable and Cloud Storage for specific users.",
+          "explanation": "This builds a data-copying pipeline for an ad hoc request. It neither states the required join nor uses the simpler SQL interface already available through external tables."
+        },
+        {
+          "text": "Create a dataflow job that copies data from Cloud Bigtable and Cloud Spanner for specific users.",
+          "explanation": "This also introduces a custom pipeline and does not state how to produce the requested join. It adds work compared with querying the available external sources."
+        },
+        {
+          "text": "Create a Cloud Dataproc cluster that runs a Spark job to extract data from Cloud Bigtable and Cloud Storage for specific users.",
+          "explanation": "A Spark job can perform this kind of analysis, but provisioning a Dataproc cluster and writing the extraction job adds setup for this one-off request."
+        },
+        {
+          "text": "Create two separate BigQuery external tables on Cloud Storage and Cloud Bigtable. Use the BigQuery console to join these tables through user fields, and apply appropriate filters.",
+          "explanation": "BigQuery external tables can read the exported files in Cloud Storage and the event data in Bigtable. SQL can join them on user fields and filter the requested users without building a separate processing cluster."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "External data sources and joins",
+          "url": "https://docs.cloud.google.com/bigquery/docs/external-data-sources"
+        },
+        {
+          "title": "Query Bigtable external tables",
+          "url": "https://docs.cloud.google.com/bigquery/docs/external-data-bigtable"
+        },
+        {
+          "title": "External table limitations and locations",
+          "url": "https://docs.cloud.google.com/bigquery/docs/external-tables"
+        }
+      ],
+      "reviewNote": {
+        "kind": "clarification",
+        "text": "The Cloud Storage side reads the exported snapshot, so its state is only as recent as that backup. Configure supported export formats, schemas, permissions and compatible locations, and filter Bigtable reads carefully. The question does not require a live read of Spanner; a current-state requirement would need a different design."
+      }
+    },
+    {
+      "id": "pdf-v4-276",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 276,
+        "pages": [
+          166
+        ],
+        "printedAnswer": "A",
+        "verifiedAnswer": "A"
+      },
+      "conceptRefs": [
+        61
+      ],
+      "studyDay": 5,
+      "topic": "Protecting department log-routing policy",
+      "question": "You are a Google Cloud organization administrator. You need to configure organization policies and log sinks on Google Cloud projects that cannot be removed by project users to comply with your company's security policies. The security policies are different for each company department Each company department has a user with the Project Owner role assigned to their projects. What should you do?",
+      "options": [
+        {
+          "text": "Organize projects under folders for each department. Configure both organization policies and log sinks on the folders",
+          "explanation": "Department folders provide the right scope for different departmental requirements. Folder policies and aggregated log sinks are administered above the projects, so a project-only Owner cannot delete the folder’s configuration."
+        },
+        {
+          "text": "Organize projects under folders for each department. Configure organization policies on the organization and log sinks on the folders.",
+          "explanation": "Folder sinks separate departments, but one organization-level policy does not express the different departmental policies described. Folder-level policies provide the needed departmental scope."
+        },
+        {
+          "text": "Use a standard naming convention for projects that includes the department name. Configure organization policies on the organization and log sinks on the projects.",
+          "explanation": "A naming convention is not an enforcement boundary. Project-level sinks remain under project administration, and one organization-level policy does not express the department-specific requirements."
+        },
+        {
+          "text": "Use a standard naming convention for projects that includes the department name. Configure both organization policies and log sinks on the projects.",
+          "explanation": "Names do not enforce inherited controls. Keeping both configurations at project level does not place them beyond the authority of each project’s administrators."
+        }
+      ],
+      "answer": 0,
+      "docs": [
+        {
+          "title": "Aggregated log sinks",
+          "url": "https://docs.cloud.google.com/logging/docs/export/aggregated_sinks_overview"
+        },
+        {
+          "title": "Configure folder and organization sinks",
+          "url": "https://docs.cloud.google.com/logging/docs/export/aggregated_sinks"
+        },
+        {
+          "title": "Organization policy hierarchy",
+          "url": "https://docs.cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy"
+        }
+      ],
+      "reviewNote": {
+        "kind": "clarification",
+        "text": "Configure each folder sink to include children and grant its writer identity access to the destination. Protect destination retention and permissions separately. The answer assumes project users have no additional folder or organization administration grants; folder placement does not itself enforce a storage retention period."
+      }
+    },
+    {
+      "id": "pdf-v4-229",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 229,
+        "pages": [
+          141,
+          142
+        ],
+        "printedAnswer": "B",
+        "verifiedAnswer": "B"
+      },
+      "conceptRefs": [
+        83
+      ],
+      "studyDay": 6,
+      "topic": "Scaling access for Workspace identities",
+      "question": "Your company is using Google Workspace to manage employee accounts. Anticipated growth will increase the number of personnel from 100 employees to 1.000 employees within 2 years. Most employees will need access to your company's Google Cloud account. The systems and processes will need to support 10x growth without performance degradation, unnecessary complexity, or security issues. What should you do?",
+      "options": [
+        {
+          "text": "Migrate the users to Active Directory. Connect the Human Resources system to Active Directory. Turn on Google Cloud Directory Sync (GCDS) for Cloud Identity. Turn on Identity Federation from Cloud Identity to Active Directory.",
+          "explanation": "Employees already have managed Google Workspace identities. Introducing Active Directory and directory synchronization adds an identity system and operational work that this growth requirement does not need."
+        },
+        {
+          "text": "Organize the users in Cloud Identity into groups. Enforce multi-factor authentication in Cloud Identity.",
+          "explanation": "Use groups to manage access for teams as membership grows, and enforce multi-factor authentication for their accounts. Existing managed identities can support this without introducing another identity provider."
+        },
+        {
+          "text": "Turn on identity federation between Cloud Identity and Google Workspace. Enforce multi-factor authentication for domain wide delegation.",
+          "explanation": "Workspace and Cloud Identity already share Google’s managed account system. Domain-wide delegation authorizes applications to act for users; it is not the method for enforcing users’ multi-factor authentication."
+        },
+        {
+          "text": "Use a third-party identity provider service through federation. Synchronize the users from Google Workplace to the third-party provider in real time.",
+          "explanation": "A third-party provider can serve other requirements, but none is stated here. Migrating identities and building real-time synchronization adds complexity without solving a missing capability."
+        }
+      ],
+      "answer": 1,
+      "docs": [
+        {
+          "title": "Best practices for using Google groups",
+          "url": "https://docs.cloud.google.com/iam/docs/groups-best-practices"
+        },
+        {
+          "title": "Identity and zero-trust security",
+          "url": "https://docs.cloud.google.com/architecture/framework/security/implement-zero-trust"
+        }
+      ],
+      "reviewNote": {
+        "kind": "clarification",
+        "text": "Google Workspace accounts already provide managed identities usable with Google Cloud IAM. Group membership alone does not grant cloud permissions: assign the required IAM roles to the groups at the appropriate resources. Preserve the source’s 1.000, Google Workplace and other wording."
+      }
+    },
+    {
+      "id": "pdf-v4-283",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 283,
+        "pages": [
+          169
+        ],
+        "printedAnswer": "B",
+        "verifiedAnswer": "B"
+      },
+      "conceptRefs": [
+        68
+      ],
+      "studyDay": 5,
+      "topic": "SQL analysis without exporting another log copy",
+      "question": "You use Cloud Logging lo capture application logs. You now need to use SOL to analyze the application logs in Cloud Logging, and you want to follow Google-recommended practices. What should you do?",
+      "options": [
+        {
+          "text": "Develop SQL queries by using Gemini for Google Cloud.",
+          "explanation": "An assistant can help write SQL, but it does not by itself make the log bucket available to a SQL query engine. The storage/query integration still needs configuration."
+        },
+        {
+          "text": "Enable Log Analytics for the log bucket and create a linked dataset in BigQuery.",
+          "explanation": "Upgrade the log bucket for analytics and link it to BigQuery. The linked dataset exposes the log data for SQL analysis without copying it into separate BigQuery storage."
+        },
+        {
+          "text": "Create a schema for the storage bucket and run SQL queries for the data in the bucket.",
+          "explanation": "These are logs in Cloud Logging, not a set of structured files already available in a Cloud Storage bucket. Defining a bucket schema alone does not enable this analysis."
+        },
+        {
+          "text": "Export logs to a storage bucket and create an external view in BigQuery.",
+          "explanation": "An export can support another analysis design, but it adds an unnecessary copy and external-table setup. The native analytics-enabled bucket and linked dataset are the direct offered solution."
+        }
+      ],
+      "answer": 1,
+      "docs": [
+        {
+          "title": "Create a linked BigQuery dataset on a log bucket",
+          "url": "https://docs.cloud.google.com/logging/docs/analyze/query-linked-dataset"
+        }
+      ],
+      "reviewNote": {
+        "kind": "clarification",
+        "text": "The source says SOL and lo; these typos are preserved. Its Log Analytics feature is now documented as Observability Analytics. A linked dataset is read-only and does not duplicate the log storage. It is needed for BigQuery-side querying and joins; the native analytics page can run SQL without a link."
+      }
+    },
+    {
+      "id": "pdf-v4-258",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 258,
+        "pages": [
+          156
+        ],
+        "printedAnswer": "AE",
+        "verifiedAnswer": "AE"
+      },
+      "conceptRefs": [
+        84
+      ],
+      "studyDay": 6,
+      "topic": "Preparing CLI authentication and project context",
+      "question": "You just installed the Google Cloud CLI on your new corporate laptop. You need to list the existing instances of your company on Google Cloud. What must you do before you run the gcloud compute instances list command? Choose 2 answers",
+      "options": [
+        {
+          "text": "Run gcloud auth login, enter your login credentials in the dialog window, and paste the received login token to gcloud CLI.",
+          "explanation": "Authenticate the CLI as your user so it can call Google Cloud APIs using your granted IAM permissions. The browser or terminal authorization flow establishes credentials; merely installing the CLI does not."
+        },
+        {
+          "text": "Create a Google Cloud service account, and download the service account key. Place the key file in a folder on your machine where gcloud CLI can find it.",
+          "explanation": "Simply placing a service-account key in an arbitrary folder does not authenticate the CLI. Creating a new long-lived key is also unnecessary for this user’s interactive listing task."
+        },
+        {
+          "text": "Download your Cloud Identity user account key. Place the key file in a folder on your machine where gcloud CLI can find it.",
+          "explanation": "Cloud Identity users do not download a private user-account key of the type described. Use the supported user sign-in flow instead."
+        },
+        {
+          "text": "Run gcloud config set compute/zone $my_zone to set the default zone for gcloud CLI.",
+          "explanation": "Listing instances is project-wide by default and can include every zone. A default zone is useful for some other commands, but is not required for this list operation."
+        },
+        {
+          "text": "Run gcloud config set project $my_project to set the default project for gcloud CLI.",
+          "explanation": "Set the target project in the active CLI configuration so the unqualified list command runs against the intended project. The user must already have permission to list instances there."
+        }
+      ],
+      "answer": [
+        0,
+        4
+      ],
+      "docs": [
+        {
+          "title": "Authenticate for the gcloud CLI",
+          "url": "https://docs.cloud.google.com/sdk/docs/authenticate"
+        },
+        {
+          "title": "Set CLI configuration properties",
+          "url": "https://docs.cloud.google.com/sdk/gcloud/reference/config/set"
+        },
+        {
+          "title": "List instances across a project",
+          "url": "https://docs.cloud.google.com/sdk/gcloud/reference/compute/instances/list"
+        }
+      ],
+      "reviewNote": {
+        "kind": "clarification",
+        "text": "The original five choices and Choose 2 answers format are preserved. Current browser sign-in can finish without manually pasting a token; that detail depends on the authorization flow. An explicit --project flag could also select the project, but the question’s command supplies none. Scoring requires exactly the original two answers, with no partial credit."
+      }
+    },
+    {
+      "id": "pdf-v4-299",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 299,
+        "pages": [
+          180,
+          181
+        ],
+        "printedAnswer": "B",
+        "verifiedAnswer": "B"
+      },
+      "conceptRefs": [
+        68
+      ],
+      "studyDay": 5,
+      "topic": "Streaming logs to a third-party system",
+      "question": "(Your company uses a multi-cloud strategy that includes Google Cloud. You want to centralize application logs in a third-party software-as-a-service (SaaS) tool from all environments. You need to integrate logs originating from Cloud Logging, and you want to ensure the export occurs with the least amount of delay possible. What should you do?)",
+      "options": [
+        {
+          "text": "Use a Cloud Scheduler cron job to trigger a Cloud Function that queries Cloud Logging and sends the logs to the SaaS tool.",
+          "explanation": "Periodic queries only see new logs on the polling schedule and require custom code. This adds delay and maintenance compared with a streaming sink."
+        },
+        {
+          "text": "Create a Cloud Logging sink and configure Pub/Sub as the destination. Configure the SaaS tool to subscribe to the Pub/Sub topic to retrieve the logs.",
+          "explanation": "A Logging sink can send new matching entries to Pub/Sub as they arrive. The SaaS subscriber consumes that stream, which is the documented integration pattern for low-delay third-party log export."
+        },
+        {
+          "text": "Create a Cloud Logging sink and configure Cloud Storage as the destination. Configure the SaaS tool to read the Cloud Storage bucket to retrieve the logs.",
+          "explanation": "Cloud Storage export writes files in batches. The SaaS tool then has to discover and read those files, which introduces more delay than the Pub/Sub stream."
+        },
+        {
+          "text": "Create a Cloud Logging sink and configure BigQuery as the destination. Configure the SaaS tool to query BigQuery to retrieve the logs.",
+          "explanation": "BigQuery is well suited to SQL analysis, but querying it repeatedly adds a polling step to deliver logs to the external tool. Pub/Sub directly supplies the requested event stream."
+        }
+      ],
+      "answer": 1,
+      "docs": [
+        {
+          "title": "View logs routed to Pub/Sub",
+          "url": "https://docs.cloud.google.com/logging/docs/export/pubsub"
+        },
+        {
+          "title": "Configure sinks and destination permissions",
+          "url": "https://docs.cloud.google.com/logging/docs/export/configure_export_v2"
+        }
+      ],
+      "reviewNote": {
+        "kind": "clarification",
+        "text": "Near real-time is not a zero-delay or exactly-once guarantee. Grant the sink writer permission to publish, give the SaaS integration subscription access, and handle retries/duplicates. A sink routes newly received matching logs; it does not automatically backfill all historical entries."
+      }
+    },
+    {
+      "id": "pdf-v4-312",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 312,
+        "pages": [
+          193,
+          194
+        ],
+        "printedAnswer": "D",
+        "verifiedAnswer": "D"
+      },
+      "conceptRefs": [
+        79
+      ],
+      "studyDay": 6,
+      "topic": "Shared VPC with organization firewall controls",
+      "question": "You are planning to migrate your on-premises VMs to Google Cloud. You need to set up a landing zone in Google Cloud before migrating the VMs. You must ensure that all VMs in your production environment can communicate with each other through private IP addresses. You need to allow all VMs in your Google Cloud organization to accept connections on specific TCP ports. You want to follow Google-recommended practices, and you need to minimize your operational costs. What should you do?",
+      "options": [
+        {
+          "text": "Create individual VPCs per Google Cloud project. Peer all the VPCs together. Apply organization policies on the organization level.",
+          "explanation": "A full mesh of project VPCs adds management work. Organization policies express constraints, but do not themselves define the required TCP ingress allow rules."
+        },
+        {
+          "text": "Create individual VPCs for each Google Cloud project. Peer all the VPCs together. Apply hierarchical firewall policies on the organization level.",
+          "explanation": "Hierarchical firewall policies can express the port rules, but maintaining separate peered VPCs for a common production landing zone adds network administration compared with a Shared VPC."
+        },
+        {
+          "text": "Create a host VPC project with each production project as its service project. Apply organization policies on the organization level.",
+          "explanation": "A host project and service projects provide the common private network. Organization policies alone, however, do not supply the requested organization-wide TCP ingress rules."
+        },
+        {
+          "text": "Create a host VPC project with each production project as its service project. Apply hierarchical firewall policies on the organization level.",
+          "explanation": "Shared VPC lets production service projects use one centrally managed network. An associated organization-level hierarchical firewall policy applies the required TCP rules across the intended descendant networks."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Shared VPC",
+          "url": "https://docs.cloud.google.com/vpc/docs/shared-vpc"
+        },
+        {
+          "title": "Hierarchical firewall policies",
+          "url": "https://docs.cloud.google.com/firewall/docs/firewall-policies"
+        }
+      ],
+      "reviewNote": {
+        "kind": "clarification",
+        "text": "Create and associate the hierarchical policy; creating it alone does not enforce it. In Shared VPC, interfaces inherit the host network’s firewall policy hierarchy. Use the required source ranges and ports, account for higher-priority rules and routing, and keep network address ranges compatible."
+      }
+    },
+    {
+      "id": "pdf-v4-296",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 296,
+        "pages": [
+          177,
+          178
+        ],
+        "printedAnswer": "D",
+        "verifiedAnswer": "D"
+      },
+      "conceptRefs": [
+        70
+      ],
+      "studyDay": 5,
+      "topic": "Keyless workload API authentication",
+      "question": "(You are deploying an application to Google Kubernetes Engine (GKE). The application needs to make API calls to a private Cloud Storage bucket. You need to configure your application Pods to authenticate to the Cloud Storage API, but your organization policy prevents the usage of service account keys. You want to follow Google-recommended practices. What should you do?)",
+      "options": [
+        {
+          "text": "Create the GKE cluster and deploy the application. Request a security exception to create a Google service account key. Set the constraints/iam.serviceAccountKeyExpiryHours organization policy to 8 hours.",
+          "explanation": "Requesting an exception and creating a key conflicts with the stated key prohibition. Limiting its lifetime does not make a forbidden key the recommended authentication design."
+        },
+        {
+          "text": "Create the GKE cluster and deploy the application. Request a security exception to create a Google service account key. Set the constraints/iam.serviceAccountKeyExpiryHours organization policy to 24 hours.",
+          "explanation": "This still creates a forbidden service-account key. Changing the proposed expiry to 24 hours does not solve the policy requirement."
+        },
+        {
+          "text": "Create the GKE cluster with Workload Identity Federation. Configure the default node service account to access the bucket. Deploy the application into the cluster so the application can use the node service account permissions. Use Identity and Access Management (IAM) to grant the service account access to the bucket.",
+          "explanation": "Granting access to the node identity does not configure the Pod’s own federated identity. It also couples application access to a shared node account instead of the intended workload."
+        },
+        {
+          "text": "Create the GKE cluster with Workload Identity Federation. Create a Google service account and a Kubernetes ServiceAccount, and configure both service accounts to use Workload Identity Federation. Attach the Kubernetes ServiceAccount to the application Pods and configure the Google service account to access the bucket with Identity and Access Management (IAM).",
+          "explanation": "Bind the Kubernetes ServiceAccount to the intended Google service account through Workload Identity Federation, attach it to the Pods and grant bucket access to that Google identity. This supplies short-lived workload credentials without a downloaded key."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Authenticate to Google Cloud APIs from GKE workloads",
+          "url": "https://docs.cloud.google.com/kubernetes-engine/docs/how-to/workload-identity"
+        }
+      ],
+      "reviewNote": {
+        "kind": "clarification",
+        "text": "The offered service-account impersonation pattern remains supported. Configure the Kubernetes-to-Google service-account IAM binding and annotation as documented. Current GKE also supports granting suitable resources directly to federated Kubernetes principals; that alternative is not one of the printed choices. This is Pod API access, not node permission to pull a container image."
+      }
+    },
+    {
+      "id": "pdf-v4-315",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 315,
+        "pages": [
+          197
+        ],
+        "printedAnswer": "D",
+        "verifiedAnswer": "D"
+      },
+      "conceptRefs": [
+        78
+      ],
+      "studyDay": 6,
+      "topic": "Private HTTP ingress to GKE from Cloud Run",
+      "question": "You are deploying an application to Cloud Run. Your application requires the use of an API that runs on Google Kubernetes Engine (GKE). You need to ensure that your Cloud Run service can privately reach the API on GKE, and you want to follow Google-recommended practices. What should you do?",
+      "options": [
+        {
+          "text": "Deploy an ingress resource on the GKE cluster to expose the API to the internet. Use Cloud Armor to filter for IP addresses that can connect to the API. On the Cloud Run service, configure the application to fetch its public IP address and update the Cloud Armor policy on startup to allow this IP address to call the API on ports 80 and 443.",
+          "explanation": "This exposes the API through an internet-facing endpoint. Filtering public source addresses does not meet the private-connectivity requirement, and dynamically discovering a Cloud Run public IP is not a stable private network design."
+        },
+        {
+          "text": "Create an egress firewall rule on the VPC to allow connections to 0.0.0.0/0 on ports 80 and 443.",
+          "explanation": "An egress allow rule does not create the API endpoint, private DNS or Cloud Run’s route into the VPC. Allowing every destination also adds no private-access boundary."
+        },
+        {
+          "text": "Create an ingress firewall rule on the VPC to allow connections from 0.0.0.0/0 on ports 80 and 443.",
+          "explanation": "An ingress allow rule alone does not create a load-balanced API endpoint or connect Cloud Run to the VPC. Allowing all source addresses is broader than needed."
+        },
+        {
+          "text": "Deploy an internal Application Load Balancer to expose the API on GKE to the VPC. Configure Cloud DNS with the IP address of the internal Application Load Balancer. Deploy a Serverless VPC Access connector to allow the Cloud Run service to call the API through the FQDN on Cloud DNS.",
+          "explanation": "The internal Application Load Balancer exposes the GKE API on a private endpoint. Private DNS names it, and the VPC connector gives Cloud Run a path to that VPC address."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Internal Application Load Balancers with GKE Ingress",
+          "url": "https://docs.cloud.google.com/kubernetes-engine/docs/how-to/internal-load-balance-ingress"
+        },
+        {
+          "title": "Cloud Run VPC connectors",
+          "url": "https://docs.cloud.google.com/run/docs/configuring/vpc-connectors"
+        }
+      ],
+      "reviewNote": {
+        "kind": "clarification",
+        "text": "Serverless VPC Access connectors remain supported. Current Cloud Run also offers Direct VPC egress, which is not among these choices. Configure connector egress, regional reachability, DNS visibility, the GKE backend/health checks and firewall permissions; the printed option names the architecture rather than a complete configuration."
+      }
+    },
+    {
+      "id": "pdf-v4-310",
+      "source": {
+        "file": "GCPACE 2.pdf",
+        "question": 310,
+        "pages": [
+          191
+        ],
+        "printedAnswer": "D",
+        "verifiedAnswer": "D"
+      },
+      "conceptRefs": [
+        64,
+        65
+      ],
+      "studyDay": 5,
+      "topic": "Migrating asynchronous processing to managed services",
+      "question": "You have an application that is currently processing transactions by using a group of managed VM instances. You need to migrate the application so that it is serverless and scalable. You want to implement an asynchronous transaction processing system, while minimizing management overhead. What should you do?",
+      "options": [
+        {
+          "text": "Install Kafka on VM instances to acknowledge incoming transactions. Use Cloud Run to process transactions.",
+          "explanation": "Cloud Run supplies managed compute, but installing Kafka on VMs leaves you responsible for the messaging infrastructure. That does not minimize management for the entire system."
+        },
+        {
+          "text": "Install Kafka on VM Instances to acknowledge incoming transactions. Use VM Instances to process transactions.",
+          "explanation": "Both messaging and processing still run on VMs you operate. This does not provide the requested serverless migration."
+        },
+        {
+          "text": "Use Pub/Sub to acknowledge incoming transactions. Use VM instances to process transactions.",
+          "explanation": "Pub/Sub supplies managed asynchronous messaging, but the processing tier remains on managed VM instances rather than serverless compute."
+        },
+        {
+          "text": "Use Pub/Sub to acknowledge incoming transactions. Use Cloud Run to process transactions.",
+          "explanation": "Pub/Sub decouples transaction intake from processing, and Cloud Run provides managed scalable execution for the consumer. Together they replace both self-managed messaging and the VM processing tier."
+        }
+      ],
+      "answer": 3,
+      "docs": [
+        {
+          "title": "Use Pub/Sub with Cloud Run",
+          "url": "https://docs.cloud.google.com/run/docs/tutorials/pubsub"
+        }
+      ],
+      "reviewNote": {
+        "kind": "clarification",
+        "text": "For a Cloud Run service, configure authenticated Pub/Sub push with a service account that can invoke the service. Acknowledging message receipt is not proof that a business transaction completed: return success only after durable processing, and make processing safe for retries. The original choices describe the architecture, not all delivery settings."
+      }
+    }
+  ]
+}

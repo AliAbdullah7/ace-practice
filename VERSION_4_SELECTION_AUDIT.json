@@ -1,0 +1,1626 @@
+{
+  "reviewed": "2026-11-26",
+  "sourceQuestionCount": 322,
+  "sourcePhysicalPages": 202,
+  "sourceSha256": "dfb99260f18eb2b841605c448d33001ca1ff7858e3c3bedfc3231f2f22475432",
+  "summary": {
+    "mock-repeat": 60,
+    "already-used": 60,
+    "outside-task-scope": 122,
+    "near-duplicate": 58,
+    "selected": 17,
+    "invalid-or-ambiguous": 5
+  },
+  "decisions": [
+    {
+      "pdfQuestion": 1,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 1, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 2,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 2, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 3,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 3, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 4,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 4, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 5,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 5, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 6,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 6, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 7,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 7, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 8,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 8, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 9,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 9, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 10,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 10, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 11,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 11, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 12,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 12, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 13,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 13, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 14,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 14, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 15,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 15, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 16,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 16, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 17,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 17, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 18,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 18, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 19,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 19, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 20,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 20, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 21,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 21, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 22,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 22, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 23,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 23, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 24,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 24, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 25,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 25, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 26,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 26, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 27,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 27, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 28,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 28, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 29,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 29, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 30,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 30, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 31,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 31, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 32,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 32, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 33,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 33, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 34,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 34, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 35,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 35, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 36,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 36, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 37,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 37, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 38,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 38, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 39,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 39, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 40,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 40, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 41,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 42,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 43,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 44,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 44, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 45,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 46,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 46, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 47,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 48,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 49,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 50,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 50, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 51,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 52,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 52, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 53,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 53, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 54,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 55,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 56,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 56, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 57,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 58,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 58, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 59,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 60,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 61,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 62,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 63,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 64,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 65,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 66,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 66, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 67,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 68,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 69,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 70,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 71,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 71, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 72,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 73,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 74,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 74, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 75,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 76,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 76, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 77,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 77, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 78,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 78, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 79,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 79, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 80,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 80, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 81,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 81, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 82,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 82, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 83,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 83, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 84,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 84, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 85,
+      "decision": "mock-repeat",
+      "reason": "Same scenario/task as mock 85, within the mandatory 1\u201385 comparison range."
+    },
+    {
+      "pdfQuestion": 86,
+      "decision": "outside-task-scope",
+      "reason": "Audit an account creation timestamp, rather than retain/route logs or grant monitoring-only access."
+    },
+    {
+      "pdfQuestion": 87,
+      "decision": "outside-task-scope",
+      "reason": "Open an application UDP firewall port, rather than cross-project routing or GKE HTTP ingress."
+    },
+    {
+      "pdfQuestion": 88,
+      "decision": "outside-task-scope",
+      "reason": "Budget alert scoping, rather than monthly infrastructure estimation or billing consolidation."
+    },
+    {
+      "pdfQuestion": 89,
+      "decision": "outside-task-scope",
+      "reason": "96-vCPU capacity selection, rather than memory-heavy low-CPU proxy sizing."
+    },
+    {
+      "pdfQuestion": 90,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 91,
+      "decision": "outside-task-scope",
+      "reason": "Hybrid workload-to-workload VPN connectivity, not private Google API access."
+    },
+    {
+      "pdfQuestion": 92,
+      "decision": "near-duplicate",
+      "reason": "Storage-class/lifecycle archival choice repeats V2 107/154 and V1 6/18; no new organization-wide log-retention decision."
+    },
+    {
+      "pdfQuestion": 93,
+      "decision": "outside-task-scope",
+      "reason": "Dataset schema discovery, not querying external files."
+    },
+    {
+      "pdfQuestion": 94,
+      "decision": "selected",
+      "reason": "Day 5; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 95,
+      "decision": "outside-task-scope",
+      "reason": "Investigate IAM-change audit events, not monitoring-without-table-data permissions."
+    },
+    {
+      "pdfQuestion": 96,
+      "decision": "outside-task-scope",
+      "reason": "BigQuery query cost controls, not external-table analysis or infrastructure calculator estimates."
+    },
+    {
+      "pdfQuestion": 97,
+      "decision": "outside-task-scope",
+      "reason": "Isolation of arbitrary customer Pods, not GPU pool placement or Pending diagnosis."
+    },
+    {
+      "pdfQuestion": 98,
+      "decision": "outside-task-scope",
+      "reason": "Spanner primary-key/schema performance design, not monitoring-only IAM."
+    },
+    {
+      "pdfQuestion": 99,
+      "decision": "near-duplicate",
+      "reason": "Billing-report reader boundary repeats V2 59 billing permissions; not invoice consolidation."
+    },
+    {
+      "pdfQuestion": 100,
+      "decision": "outside-task-scope",
+      "reason": "Access Approval for Google support, not project resource-read access."
+    },
+    {
+      "pdfQuestion": 101,
+      "decision": "outside-task-scope",
+      "reason": "Protect a VM from accidental operation, not SSH permissions or sizing."
+    },
+    {
+      "pdfQuestion": 102,
+      "decision": "near-duplicate",
+      "reason": "BigQuery query grants overlap V3 200 and mock 52; not external-table analysis."
+    },
+    {
+      "pdfQuestion": 103,
+      "decision": "outside-task-scope",
+      "reason": "Datastore emulator installation, not project inventory/configuration."
+    },
+    {
+      "pdfQuestion": 104,
+      "decision": "outside-task-scope",
+      "reason": "Browser access to hierarchy metadata only; not the broad project-resource audit in mock 80."
+    },
+    {
+      "pdfQuestion": 105,
+      "decision": "outside-task-scope",
+      "reason": "Configure SAML SSO; target 83 already has managed Workspace identities and asks about authorization."
+    },
+    {
+      "pdfQuestion": 106,
+      "decision": "outside-task-scope",
+      "reason": "Service-account administration role, not workload authentication or read-only monitoring."
+    },
+    {
+      "pdfQuestion": 107,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 108,
+      "decision": "selected",
+      "reason": "Day 6; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 109,
+      "decision": "outside-task-scope",
+      "reason": "AD identity synchronization/source of truth, not using existing Workspace identities for IAM."
+    },
+    {
+      "pdfQuestion": 110,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 111,
+      "decision": "selected",
+      "reason": "Day 6; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 112,
+      "decision": "outside-task-scope",
+      "reason": "Disk snapshot schedule/recovery, not pricing snapshot storage."
+    },
+    {
+      "pdfQuestion": 113,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 114,
+      "decision": "invalid-or-ambiguous",
+      "reason": "No offered sink configuration retrieves the already-existing past 60 days: sinks route newly received entries and do not automatically backfill. Do not invent prior sink setup."
+    },
+    {
+      "pdfQuestion": 115,
+      "decision": "outside-task-scope",
+      "reason": "Disable all services/project shutdown, not list enabled APIs."
+    },
+    {
+      "pdfQuestion": 116,
+      "decision": "near-duplicate",
+      "reason": "Cross-project dataset service-account grants repeat V2 130 and mock 36."
+    },
+    {
+      "pdfQuestion": 117,
+      "decision": "near-duplicate",
+      "reason": "Investigation of already-enabled data-access logs repeats V1 27."
+    },
+    {
+      "pdfQuestion": 118,
+      "decision": "outside-task-scope",
+      "reason": "Custom role production launch stages, not a predefined role for the target scopes."
+    },
+    {
+      "pdfQuestion": 119,
+      "decision": "outside-task-scope",
+      "reason": "Stage unstructured data for ETL, not SQL over existing external data."
+    },
+    {
+      "pdfQuestion": 120,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 121,
+      "decision": "outside-task-scope",
+      "reason": "MIG instance-creation recovery, not Pending Pod diagnosis."
+    },
+    {
+      "pdfQuestion": 122,
+      "decision": "outside-task-scope",
+      "reason": "Deploy isolated Cassandra development instances, not the target container hosting constraints."
+    },
+    {
+      "pdfQuestion": 123,
+      "decision": "outside-task-scope",
+      "reason": "Create CPU alert policies, not grant monitoring-only access."
+    },
+    {
+      "pdfQuestion": 124,
+      "decision": "outside-task-scope",
+      "reason": "Schedule Spanner capacity changes, not observe it without data access."
+    },
+    {
+      "pdfQuestion": 125,
+      "decision": "outside-task-scope",
+      "reason": "Egress-spend alert implementation, not an upfront monthly estimate."
+    },
+    {
+      "pdfQuestion": 126,
+      "decision": "selected",
+      "reason": "Day 6; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 127,
+      "decision": "outside-task-scope",
+      "reason": "Global non-HTTP TLS proxy load balancer, not GKE HTTPS exposure."
+    },
+    {
+      "pdfQuestion": 128,
+      "decision": "outside-task-scope",
+      "reason": "Resize SSD throughput, not enter IOPS/snapshot requirements in a cost estimate."
+    },
+    {
+      "pdfQuestion": 129,
+      "decision": "near-duplicate",
+      "reason": "Exhausted primary subnet expansion repeats mock 82; Dataproc names do not change the decision."
+    },
+    {
+      "pdfQuestion": 130,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 131,
+      "decision": "outside-task-scope",
+      "reason": "Clone an existing VM, not size memory for a new proxy."
+    },
+    {
+      "pdfQuestion": 132,
+      "decision": "outside-task-scope",
+      "reason": "Read application log files during an incident, not route them for SQL analysis."
+    },
+    {
+      "pdfQuestion": 133,
+      "decision": "near-duplicate",
+      "reason": "VM bucket-write grant overlaps V1 26/V2 177; not external workload API authentication."
+    },
+    {
+      "pdfQuestion": 134,
+      "decision": "near-duplicate",
+      "reason": "Attached VM ADC identity repeats V1 19/V2 187."
+    },
+    {
+      "pdfQuestion": 135,
+      "decision": "outside-task-scope",
+      "reason": "Create a project and VM, not list enabled APIs."
+    },
+    {
+      "pdfQuestion": 136,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 137,
+      "decision": "near-duplicate",
+      "reason": "Jenkins Marketplace deployment repeats mock 13/V1 13/V2 226."
+    },
+    {
+      "pdfQuestion": 138,
+      "decision": "outside-task-scope",
+      "reason": "Set a default zone, rather than authenticate/select project before project-wide instance inventory."
+    },
+    {
+      "pdfQuestion": 139,
+      "decision": "outside-task-scope",
+      "reason": "Atomic sensor-event storage choice, not external-table SQL."
+    },
+    {
+      "pdfQuestion": 140,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 141,
+      "decision": "near-duplicate",
+      "reason": "Consolidated billing export/reporting overlaps V2 220 and mock 17; not consolidating invoices."
+    },
+    {
+      "pdfQuestion": 142,
+      "decision": "outside-task-scope",
+      "reason": "Prevent public VM ingress, not provide private access to Google APIs."
+    },
+    {
+      "pdfQuestion": 143,
+      "decision": "outside-task-scope",
+      "reason": "Share proposed IaC in version control; not Deployment Manager Kubernetes API extensibility."
+    },
+    {
+      "pdfQuestion": 144,
+      "decision": "outside-task-scope",
+      "reason": "Schedule disk backups, not estimate their cost."
+    },
+    {
+      "pdfQuestion": 145,
+      "decision": "near-duplicate",
+      "reason": "Adding a specialized node pool repeats mock 81; a high-memory machine instead of a GPU is insufficient novelty."
+    },
+    {
+      "pdfQuestion": 146,
+      "decision": "selected",
+      "reason": "Day 6; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 147,
+      "decision": "outside-task-scope",
+      "reason": "Multi-zone VM high availability, not target application ingress."
+    },
+    {
+      "pdfQuestion": 148,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 149,
+      "decision": "near-duplicate",
+      "reason": "Node primary subnet exhaustion resolves through the same expansion decision as mock 82."
+    },
+    {
+      "pdfQuestion": 150,
+      "decision": "near-duplicate",
+      "reason": "Interruption-tolerant nightly batch choice repeats V2 303."
+    },
+    {
+      "pdfQuestion": 151,
+      "decision": "outside-task-scope",
+      "reason": "Restrict firewall egress ports, not Google API private access configuration."
+    },
+    {
+      "pdfQuestion": 152,
+      "decision": "selected",
+      "reason": "Day 5; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 153,
+      "decision": "outside-task-scope",
+      "reason": "Storage-triggered function code deployment, not Pub/Sub delivery to an existing Cloud Run application."
+    },
+    {
+      "pdfQuestion": 154,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 155,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 156,
+      "decision": "outside-task-scope",
+      "reason": "Per-project spending alerts, not upfront cost estimation."
+    },
+    {
+      "pdfQuestion": 157,
+      "decision": "outside-task-scope",
+      "reason": "Deletion protection, not VM memory sizing."
+    },
+    {
+      "pdfQuestion": 158,
+      "decision": "outside-task-scope",
+      "reason": "Future-stable custom IAM permissions, not target read-only resource scope."
+    },
+    {
+      "pdfQuestion": 159,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 160,
+      "decision": "near-duplicate",
+      "reason": "Auditor read-access to Data Access logs repeats V1 25/V2 113."
+    },
+    {
+      "pdfQuestion": 161,
+      "decision": "near-duplicate",
+      "reason": "Cross-project BigQuery service-account access repeats V2 130."
+    },
+    {
+      "pdfQuestion": 162,
+      "decision": "outside-task-scope",
+      "reason": "Synchronize on-premises files, not configure external workload authentication."
+    },
+    {
+      "pdfQuestion": 163,
+      "decision": "near-duplicate",
+      "reason": "Idle container scale-to-zero runtime selection repeats mock 65/V3 65."
+    },
+    {
+      "pdfQuestion": 164,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 165,
+      "decision": "outside-task-scope",
+      "reason": "Broken reporting table/visualization investigation, not external-table query design."
+    },
+    {
+      "pdfQuestion": 166,
+      "decision": "outside-task-scope",
+      "reason": "Long-term SQL database export backup, not audit-log retention across projects."
+    },
+    {
+      "pdfQuestion": 167,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 168,
+      "decision": "outside-task-scope",
+      "reason": "Department billing attribution for a new initiative, not consolidation of existing organizations."
+    },
+    {
+      "pdfQuestion": 169,
+      "decision": "outside-task-scope",
+      "reason": "HA VPN tunnel topology/failover, not Google API private access."
+    },
+    {
+      "pdfQuestion": 170,
+      "decision": "outside-task-scope",
+      "reason": "Analytics object storage locality/access frequency, not log-routing retention."
+    },
+    {
+      "pdfQuestion": 171,
+      "decision": "outside-task-scope",
+      "reason": "Regional transactional database migration, not external file SQL."
+    },
+    {
+      "pdfQuestion": 172,
+      "decision": "outside-task-scope",
+      "reason": "Project creation/resource organization, not billing consolidation."
+    },
+    {
+      "pdfQuestion": 173,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 174,
+      "decision": "near-duplicate",
+      "reason": "A specialized CPU node pool versus general-purpose nodes repeats the pool-separation decision in mock 81."
+    },
+    {
+      "pdfQuestion": 175,
+      "decision": "outside-task-scope",
+      "reason": "Spanner query performance, not monitoring permission."
+    },
+    {
+      "pdfQuestion": 176,
+      "decision": "outside-task-scope",
+      "reason": "OS patch verification, not target log-routing analytics."
+    },
+    {
+      "pdfQuestion": 177,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 178,
+      "decision": "near-duplicate",
+      "reason": "Multi-project Monitoring scope/dashboard setup repeats V2 140/V1 32."
+    },
+    {
+      "pdfQuestion": 179,
+      "decision": "outside-task-scope",
+      "reason": "AD federation implementation, not authorization using existing Workspace accounts."
+    },
+    {
+      "pdfQuestion": 180,
+      "decision": "outside-task-scope",
+      "reason": "IAP/bastion private SSH transport, not targeted identity authorization in mock 74; no service-name-only match."
+    },
+    {
+      "pdfQuestion": 181,
+      "decision": "near-duplicate",
+      "reason": "Immediate archival storage-class change is already within V1/V2 storage-class/lifecycle practice, not a new log-routing task."
+    },
+    {
+      "pdfQuestion": 182,
+      "decision": "outside-task-scope",
+      "reason": "Billing/hierarchy initial setup, not moving an acquired project and its billing."
+    },
+    {
+      "pdfQuestion": 183,
+      "decision": "outside-task-scope",
+      "reason": "Managed MongoDB marketplace choice, not target compute or external SQL."
+    },
+    {
+      "pdfQuestion": 184,
+      "decision": "outside-task-scope",
+      "reason": "Resolve conflicting accounts before Cloud Identity adoption; target 83 already has managed accounts."
+    },
+    {
+      "pdfQuestion": 185,
+      "decision": "outside-task-scope",
+      "reason": "Enable Spanner API, not list enabled APIs."
+    },
+    {
+      "pdfQuestion": 186,
+      "decision": "near-duplicate",
+      "reason": "Target-cluster CLI configuration overlaps V2 249 and mock 5."
+    },
+    {
+      "pdfQuestion": 187,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 188,
+      "decision": "outside-task-scope",
+      "reason": "Create storage buckets through CLI, not instance inventory."
+    },
+    {
+      "pdfQuestion": 189,
+      "decision": "invalid-or-ambiguous",
+      "reason": "Single-answer ambiguity under current CLI: both auth login --cred-file and auth activate-service-account can use JSON service-account keys. Printed B is not uniquely defensible."
+    },
+    {
+      "pdfQuestion": 190,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 191,
+      "decision": "near-duplicate",
+      "reason": "Inspecting project IAM policy repeats V2 148 and mock 34."
+    },
+    {
+      "pdfQuestion": 192,
+      "decision": "outside-task-scope",
+      "reason": "Hybrid DNS forwarding to a database, not restricted Google API DNS/VIP access."
+    },
+    {
+      "pdfQuestion": 193,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 194,
+      "decision": "near-duplicate",
+      "reason": "Percentage canary traffic split repeats mock 56/76 and V3 167."
+    },
+    {
+      "pdfQuestion": 195,
+      "decision": "outside-task-scope",
+      "reason": "UDP game ingress, not public GKE HTTPS."
+    },
+    {
+      "pdfQuestion": 196,
+      "decision": "outside-task-scope",
+      "reason": "Log-based error alert, not log destination analysis."
+    },
+    {
+      "pdfQuestion": 197,
+      "decision": "near-duplicate",
+      "reason": "Global relational database selection repeats V3 281/mock 58."
+    },
+    {
+      "pdfQuestion": 198,
+      "decision": "near-duplicate",
+      "reason": "Memory-dominant workload machine selection overlaps mock 62/V3 62; ERP names alone do not justify another sizing scenario."
+    },
+    {
+      "pdfQuestion": 199,
+      "decision": "outside-task-scope",
+      "reason": "Scale microservice Deployments independently, not diagnose a pending replica."
+    },
+    {
+      "pdfQuestion": 200,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 201,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 202,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 203,
+      "decision": "outside-task-scope",
+      "reason": "General cluster autoscaling, not specialist GPU lifecycle/placement."
+    },
+    {
+      "pdfQuestion": 204,
+      "decision": "near-duplicate",
+      "reason": "Switching named gcloud configurations repeats V2 120 and mock 21/46."
+    },
+    {
+      "pdfQuestion": 205,
+      "decision": "near-duplicate",
+      "reason": "Age-based log-object deletion repeats V1 18/V2 154; logs as object names do not change the lifecycle decision."
+    },
+    {
+      "pdfQuestion": 206,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 207,
+      "decision": "outside-task-scope",
+      "reason": "Image transformation service choice, not hosting the supplied HTTP container or authenticated Pub/Sub delivery."
+    },
+    {
+      "pdfQuestion": 208,
+      "decision": "near-duplicate",
+      "reason": "Age-based object expiry repeats V1 18/V2 159; not organization log-retention routing."
+    },
+    {
+      "pdfQuestion": 209,
+      "decision": "outside-task-scope",
+      "reason": "WebSocket/session affinity, not public GKE HTTPS endpoint configuration."
+    },
+    {
+      "pdfQuestion": 210,
+      "decision": "outside-task-scope",
+      "reason": "First SSH connection/automatic key deployment, not grant selected users narrowly scoped VM access."
+    },
+    {
+      "pdfQuestion": 211,
+      "decision": "outside-task-scope",
+      "reason": "Generic Deployment Manager cluster creation; not adding a Kubernetes API Type Provider to the same deployment."
+    },
+    {
+      "pdfQuestion": 212,
+      "decision": "outside-task-scope",
+      "reason": "Find Pods by label, not investigate scheduling failures."
+    },
+    {
+      "pdfQuestion": 213,
+      "decision": "outside-task-scope",
+      "reason": "Delete a controller to stop recreation, not Pending diagnosis."
+    },
+    {
+      "pdfQuestion": 214,
+      "decision": "invalid-or-ambiguous",
+      "reason": "Single-answer ambiguity: Cloud Run and event-driven Cloud Functions can both consume Pub/Sub and scale to zero. The unchanged stem does not distinguish them."
+    },
+    {
+      "pdfQuestion": 215,
+      "decision": "near-duplicate",
+      "reason": "Cross-project legacy registry image delivery overlaps mock 71/12 and V2 173; also historical Container Registry wording."
+    },
+    {
+      "pdfQuestion": 216,
+      "decision": "near-duplicate",
+      "reason": "Temporary signed-URL sharing repeats V1 29/V2 159."
+    },
+    {
+      "pdfQuestion": 217,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 218,
+      "decision": "outside-task-scope",
+      "reason": "Preserve source IP for TCP LDAP-style ingress, not HTTP GKE load balancing."
+    },
+    {
+      "pdfQuestion": 219,
+      "decision": "near-duplicate",
+      "reason": "Global scalable data-store choice repeats V3 281."
+    },
+    {
+      "pdfQuestion": 220,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 221,
+      "decision": "selected",
+      "reason": "Day 5; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 222,
+      "decision": "selected",
+      "reason": "Day 5; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 223,
+      "decision": "outside-task-scope",
+      "reason": "Location constraints, not access for Workspace users."
+    },
+    {
+      "pdfQuestion": 224,
+      "decision": "outside-task-scope",
+      "reason": "DNS alias/apex records, not GKE Service/Ingress wiring."
+    },
+    {
+      "pdfQuestion": 225,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 226,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 227,
+      "decision": "near-duplicate",
+      "reason": "Central billing setup for engineers repeats V1 7 and mock 7/35."
+    },
+    {
+      "pdfQuestion": 228,
+      "decision": "outside-task-scope",
+      "reason": "Enable service APIs, not list enabled APIs."
+    },
+    {
+      "pdfQuestion": 229,
+      "decision": "selected",
+      "reason": "Day 6; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 230,
+      "decision": "near-duplicate",
+      "reason": "Managed autoscaled container runtime choice repeats mock 65/V3 65."
+    },
+    {
+      "pdfQuestion": 231,
+      "decision": "near-duplicate",
+      "reason": "IAM/IAP-based fleet SSH access overlaps existing V1 1/V2 307; retain 152 for the changed no-Google-account constraint."
+    },
+    {
+      "pdfQuestion": 232,
+      "decision": "outside-task-scope",
+      "reason": "Disk availability across zones, not estimating snapshot costs."
+    },
+    {
+      "pdfQuestion": 233,
+      "decision": "outside-task-scope",
+      "reason": "Compute administration role, not read-only project audit or monitoring."
+    },
+    {
+      "pdfQuestion": 234,
+      "decision": "near-duplicate",
+      "reason": "Container-to-serverless runtime choice is too close to mock 65/V3 65 to add another Cloud Run selection slot."
+    },
+    {
+      "pdfQuestion": 235,
+      "decision": "outside-task-scope",
+      "reason": "Mitigate Cloud Run cold starts by retaining capacity; target 65 instead chooses a low-cost idle HTTP runtime."
+    },
+    {
+      "pdfQuestion": 236,
+      "decision": "outside-task-scope",
+      "reason": "Delete a Config Connector managed resource, not extend Deployment Manager with a Kubernetes API provider."
+    },
+    {
+      "pdfQuestion": 237,
+      "decision": "outside-task-scope",
+      "reason": "Shielded/private GKE cluster creation, not expose an application via HTTPS."
+    },
+    {
+      "pdfQuestion": 238,
+      "decision": "outside-task-scope",
+      "reason": "Design a two-permission custom role, not broad project resource viewing or monitoring-only access."
+    },
+    {
+      "pdfQuestion": 239,
+      "decision": "outside-task-scope",
+      "reason": "Choose runtimes for a mixed web/API/ETL migration, not the targeted single HTTP container/event-delivery task."
+    },
+    {
+      "pdfQuestion": 240,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 241,
+      "decision": "outside-task-scope",
+      "reason": "Proxy credential logging, not project selection or instance inventory."
+    },
+    {
+      "pdfQuestion": 242,
+      "decision": "outside-task-scope",
+      "reason": "Spot/non-Spot reliability pool placement, not GPU hardware placement; no hardware-name-only match."
+    },
+    {
+      "pdfQuestion": 243,
+      "decision": "near-duplicate",
+      "reason": "Small-percentage serverless canary repeats mock 76/V3 167."
+    },
+    {
+      "pdfQuestion": 244,
+      "decision": "outside-task-scope",
+      "reason": "OS vulnerability inventory visibility, not application monitoring without database-row access."
+    },
+    {
+      "pdfQuestion": 245,
+      "decision": "outside-task-scope",
+      "reason": "Bulk migration tool selection, not querying existing external data in place."
+    },
+    {
+      "pdfQuestion": 246,
+      "decision": "outside-task-scope",
+      "reason": "Replace an unhealthy MIG VM, not GKE Pending scheduling."
+    },
+    {
+      "pdfQuestion": 247,
+      "decision": "outside-task-scope",
+      "reason": "Reliable regional Kubernetes provisioning, not the target GPU/Ingress operations."
+    },
+    {
+      "pdfQuestion": 248,
+      "decision": "outside-task-scope",
+      "reason": "Organization-wide custom/predefined permission design, not authorizing existing Workspace identities."
+    },
+    {
+      "pdfQuestion": 249,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 250,
+      "decision": "near-duplicate",
+      "reason": "Enabling database read/write audit records is too close to V3 155 enabling object read audit records; retain 299 for a distinct streaming-export decision."
+    },
+    {
+      "pdfQuestion": 251,
+      "decision": "outside-task-scope",
+      "reason": "Nightly batch job scheduling, not a sparse HTTP service or low-CPU proxy."
+    },
+    {
+      "pdfQuestion": 252,
+      "decision": "outside-task-scope",
+      "reason": "Cross-organization permission parity, not basic Workspace principal grants."
+    },
+    {
+      "pdfQuestion": 253,
+      "decision": "outside-task-scope",
+      "reason": "Detect infrastructure changes, not retain/export logs or grant monitoring rights."
+    },
+    {
+      "pdfQuestion": 254,
+      "decision": "near-duplicate",
+      "reason": "Inspecting existing project service-account grants overlaps V2 148 IAM-policy inspection."
+    },
+    {
+      "pdfQuestion": 255,
+      "decision": "near-duplicate",
+      "reason": "Attaching a least-privileged VM service account overlaps V1 19/V2 187."
+    },
+    {
+      "pdfQuestion": 256,
+      "decision": "outside-task-scope",
+      "reason": "Service-account key-expiry policy, not establishing workload API authentication."
+    },
+    {
+      "pdfQuestion": 257,
+      "decision": "near-duplicate",
+      "reason": "External Linux SSH without a Google account repeats selected PDF 152; keep one representative."
+    },
+    {
+      "pdfQuestion": 258,
+      "decision": "selected",
+      "reason": "Day 6; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 259,
+      "decision": "outside-task-scope",
+      "reason": "Organization-wide domain-restricted sharing and cleanup of existing grants, not authorizing known Workspace principals (83) or admitting one auditor under an existing policy (selected 111). Option D correctly separates restriction from retrospective removal; it is excluded for task scope, not an incorrect key."
+    },
+    {
+      "pdfQuestion": 260,
+      "decision": "outside-task-scope",
+      "reason": "Latency alerting, not monitoring-only permissions."
+    },
+    {
+      "pdfQuestion": 261,
+      "decision": "near-duplicate",
+      "reason": "Buffered stream processing repeats V2 240/V1 23; not the Cloud Run authenticated-delivery task."
+    },
+    {
+      "pdfQuestion": 262,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 263,
+      "decision": "near-duplicate",
+      "reason": "Project Owner IAM-policy inspection repeats V2 148."
+    },
+    {
+      "pdfQuestion": 264,
+      "decision": "near-duplicate",
+      "reason": "Secure public HTTPS MIG setup repeats V2 305 and mock 40."
+    },
+    {
+      "pdfQuestion": 265,
+      "decision": "near-duplicate",
+      "reason": "Managed instance-group VM autoscaling overlaps V2 262; not the target memory/proxy sizing task."
+    },
+    {
+      "pdfQuestion": 266,
+      "decision": "near-duplicate",
+      "reason": "Public HTTPS load balancing with static storage overlaps V1 40/V2 305; no GKE HTTP exposure requirement."
+    },
+    {
+      "pdfQuestion": 267,
+      "decision": "outside-task-scope",
+      "reason": "VPA recommendations/HPA availability, not specialized GPU nodes or fixed VM memory sizing."
+    },
+    {
+      "pdfQuestion": 268,
+      "decision": "outside-task-scope",
+      "reason": "Storage-event Speech API function, not authenticated Pub/Sub delivery to Cloud Run."
+    },
+    {
+      "pdfQuestion": 269,
+      "decision": "near-duplicate",
+      "reason": "Object version retention and lifecycle handling overlaps V2 159/V3 90; no organization log-sink task."
+    },
+    {
+      "pdfQuestion": 270,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 271,
+      "decision": "outside-task-scope",
+      "reason": "BigQuery quota troubleshooting, not external file query setup."
+    },
+    {
+      "pdfQuestion": 272,
+      "decision": "outside-task-scope",
+      "reason": "Cloud SQL API quota mitigation through Run scaling caps, not choosing inexpensive sparse HTTP hosting."
+    },
+    {
+      "pdfQuestion": 273,
+      "decision": "outside-task-scope",
+      "reason": "Database/streaming migration product selection, not external-table SQL analysis."
+    },
+    {
+      "pdfQuestion": 274,
+      "decision": "outside-task-scope",
+      "reason": "Private Cloud Run ingress through PSC, not on-premises Google API access or GKE application ingress."
+    },
+    {
+      "pdfQuestion": 275,
+      "decision": "near-duplicate",
+      "reason": "Age-triggered storage transition repeats V1 18/V2 154."
+    },
+    {
+      "pdfQuestion": 276,
+      "decision": "selected",
+      "reason": "Day 5; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 277,
+      "decision": "near-duplicate",
+      "reason": "Primary-subnet expansion repeats mock 82."
+    },
+    {
+      "pdfQuestion": 278,
+      "decision": "near-duplicate",
+      "reason": "Monthly multi-resource calculator estimate overlaps selected 126; web/SQL names alone do not provide a second estimating task."
+    },
+    {
+      "pdfQuestion": 279,
+      "decision": "near-duplicate",
+      "reason": "Cloud Run canary traffic allocation repeats mock 76/V3 167."
+    },
+    {
+      "pdfQuestion": 280,
+      "decision": "near-duplicate",
+      "reason": "Two existing VPCs in two projects needing communication repeats mock 79\u2019s scenario, despite a different offered key/topology."
+    },
+    {
+      "pdfQuestion": 281,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 3; excluded without exception."
+    },
+    {
+      "pdfQuestion": 282,
+      "decision": "outside-task-scope",
+      "reason": "Approved Terraform catalog/modules, not Deployment Manager Kubernetes type-provider integration."
+    },
+    {
+      "pdfQuestion": 283,
+      "decision": "selected",
+      "reason": "Day 5; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 284,
+      "decision": "outside-task-scope",
+      "reason": "Production regional GKE high availability, not targeted GPU/Ingress configuration."
+    },
+    {
+      "pdfQuestion": 285,
+      "decision": "outside-task-scope",
+      "reason": "Choose Autopilot for Kubernetes manifests, not the supplied sparse HTTP container hosting decision."
+    },
+    {
+      "pdfQuestion": 286,
+      "decision": "outside-task-scope",
+      "reason": "Fast local disk plus failure recovery, not pricing disk/snapshot storage."
+    },
+    {
+      "pdfQuestion": 287,
+      "decision": "outside-task-scope",
+      "reason": "Whole-disk scheduled recovery, not upfront snapshot cost estimation."
+    },
+    {
+      "pdfQuestion": 288,
+      "decision": "outside-task-scope",
+      "reason": "Right-size Pod requests with VPA, not specialized node pool placement."
+    },
+    {
+      "pdfQuestion": 289,
+      "decision": "near-duplicate",
+      "reason": "Cross-project workload dataset IAM repeats V2 130."
+    },
+    {
+      "pdfQuestion": 290,
+      "decision": "outside-task-scope",
+      "reason": "IAM-authenticated Cloud SQL connections and TLS proxy, not on-premises Google API credentials."
+    },
+    {
+      "pdfQuestion": 291,
+      "decision": "outside-task-scope",
+      "reason": "Combine predefined/custom roles, not broad read-only scope or existing Workspace identities."
+    },
+    {
+      "pdfQuestion": 292,
+      "decision": "outside-task-scope",
+      "reason": "Bandwidth-controlled file migration, not log retention/routing."
+    },
+    {
+      "pdfQuestion": 293,
+      "decision": "outside-task-scope",
+      "reason": "Low-latency sensor store selection, not external SQL."
+    },
+    {
+      "pdfQuestion": 294,
+      "decision": "invalid-or-ambiguous",
+      "reason": "Conservative exclusion: revision-level minimums only start a zero-traffic revision when it has a traffic tag (or traffic allocation). No offered choice states that prerequisite for prewarming before redirecting traffic."
+    },
+    {
+      "pdfQuestion": 295,
+      "decision": "outside-task-scope",
+      "reason": "Large PostgreSQL migration, not external file analysis."
+    },
+    {
+      "pdfQuestion": 296,
+      "decision": "selected",
+      "reason": "Day 5; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 297,
+      "decision": "near-duplicate",
+      "reason": "Preserving fixed internal addresses for hard-coded clients overlaps V2 270 and mock 8; not cross-project shared-network setup."
+    },
+    {
+      "pdfQuestion": 298,
+      "decision": "near-duplicate",
+      "reason": "Global scalable relational selection repeats V3 281."
+    },
+    {
+      "pdfQuestion": 299,
+      "decision": "selected",
+      "reason": "Day 5; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 300,
+      "decision": "near-duplicate",
+      "reason": "Exhausted subnet growth without downtime repeats mock 82."
+    },
+    {
+      "pdfQuestion": 301,
+      "decision": "outside-task-scope",
+      "reason": "Detect stuck Dataflow jobs, not Pub/Sub authentication or log export."
+    },
+    {
+      "pdfQuestion": 302,
+      "decision": "near-duplicate",
+      "reason": "Dedicated least-privileged VM identity for dataset access overlaps V1 19/26 and V2 177/187."
+    },
+    {
+      "pdfQuestion": 303,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 304,
+      "decision": "outside-task-scope",
+      "reason": "Autopilot/private cluster platform provisioning, not exposing a GKE HTTP backend."
+    },
+    {
+      "pdfQuestion": 305,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 306,
+      "decision": "near-duplicate",
+      "reason": "Billing export into BigQuery repeats V2 220."
+    },
+    {
+      "pdfQuestion": 307,
+      "decision": "already-used",
+      "reason": "Exact PDF source already in Version 2; excluded without exception."
+    },
+    {
+      "pdfQuestion": 308,
+      "decision": "outside-task-scope",
+      "reason": "Single-replica VPA CPU scaling, not fixed memory VM sizing or GPU placement."
+    },
+    {
+      "pdfQuestion": 309,
+      "decision": "near-duplicate",
+      "reason": "Global website HTTPS balancing overlaps V1 40/V2 305; not GKE ingress configuration."
+    },
+    {
+      "pdfQuestion": 310,
+      "decision": "selected",
+      "reason": "Day 5; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 311,
+      "decision": "outside-task-scope",
+      "reason": "Static NAT egress IPs for third-party APIs, not private access to Google APIs."
+    },
+    {
+      "pdfQuestion": 312,
+      "decision": "selected",
+      "reason": "Day 6; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 313,
+      "decision": "outside-task-scope",
+      "reason": "Multicloud Terraform provisioning, not integrating a Kubernetes API into one existing Deployment Manager deployment."
+    },
+    {
+      "pdfQuestion": 314,
+      "decision": "outside-task-scope",
+      "reason": "Reusable infrastructure modules, not the target API type-provider operation."
+    },
+    {
+      "pdfQuestion": 315,
+      "decision": "selected",
+      "reason": "Day 6; see selected mapping and novelty review in VERSION_4_NOTES.md."
+    },
+    {
+      "pdfQuestion": 316,
+      "decision": "outside-task-scope",
+      "reason": "Managed NFS migration, not target external SQL or log archival."
+    },
+    {
+      "pdfQuestion": 317,
+      "decision": "outside-task-scope",
+      "reason": "Stateful GKE migration/PVC plus cluster scaling, not Pending diagnosis."
+    },
+    {
+      "pdfQuestion": 318,
+      "decision": "outside-task-scope",
+      "reason": "Autopilot high availability/upgrade selection, not GPU resource requirements."
+    },
+    {
+      "pdfQuestion": 319,
+      "decision": "outside-task-scope",
+      "reason": "Three-store architecture has only a generic log-archive subpart; no log routing or retention operation. Storage choices overlap existing practice."
+    },
+    {
+      "pdfQuestion": 320,
+      "decision": "outside-task-scope",
+      "reason": "SQL access troubleshooting, not the specified read-only project/Spanner monitoring scopes."
+    },
+    {
+      "pdfQuestion": 321,
+      "decision": "near-duplicate",
+      "reason": "Billing SQL/dashboard export analysis repeats V2 220."
+    },
+    {
+      "pdfQuestion": 322,
+      "decision": "invalid-or-ambiguous",
+      "reason": "Damaged option structure: the Cloud Run choice is merged into B as CMove rather than a separately labelled choice. Do not invent a fourth option or alter the original format to score it; also mixed static-site hosting is outside the focused task scope."
+    }
+  ]
+}

@@ -12,6 +12,7 @@ async function appHarness(store=new Map()){
     addEventListener(name,fn){(this.handlers[name]??=[]).push(fn);}
     emit(name,event={}){for(const fn of this.handlers[name]||[])fn(event);}
     focus(){} scrollIntoView(){} showModal(){this.open=true;}
+    querySelectorAll(){return this.checkedInputs||[];}
     querySelector(selector){return selector==='form'?(this.form??=new Element()):new Element();}
   }
   const elements=new Map(),get=id=>{if(!elements.has(id))elements.set(id,new Element());return elements.get(id);};
@@ -20,7 +21,7 @@ async function appHarness(store=new Map()){
   runInNewContext(source,context);await context.ready;
   const select=id=>get('exam-version').emit('change',{target:{value:id}});
   const click=id=>get('workspace').emit('click',{target:{closest:selector=>selector==='#'+id?{}:null}});
-  const choose=index=>get('workspace').emit('change',{target:{name:'answer',value:String(index)}});
+  const choose=index=>{const values=Array.isArray(index)?index:[index];get('workspace').checkedInputs=values.map(v=>({value:String(v)}));get('workspace').emit('change',{target:{name:'answer',value:String(values.at(-1))}});};
   const go=i=>get('navigator').emit('click',{target:{closest:()=>({dataset:{go:String(i)}})}});
   return {get,store,select,click,choose,go};
 }
@@ -78,4 +79,38 @@ test('each appended V3 question reveals only its own explanations on confirmatio
     assert.equal(saved.confirmed.filter(Boolean).length,i-18);
     assert.ok(saved.confirmed.slice(0,19).every(x=>!x));
   }
+});
+
+test('every V4 selection stays hidden until independent confirmation, including its choose-two question',async()=>{
+  const app=await appHarness(),bank=banks.find(b=>b.id==='v4');
+  for(const b of banks.filter(b=>b.id!=='v4')){app.select(b.id);app.choose(b.questions[0].answer);app.click('confirm-answer');}
+  const preserved=new Map(app.store);app.select('v4');
+  for(let i=0;i<bank.questions.length;i++){
+    const q=bank.questions[i];app.go(i);
+    const hidden=()=>{
+      const html=app.get('workspace').innerHTML;
+      assert.ok(!/class="(?:explanation |review-note|review-meta|docs|source-reference)/.test(html));
+      assert.ok(!html.includes(q.topic));assert.ok(!html.includes(q.reviewNote.text));
+      for(const o of q.options)assert.ok(!html.includes(o.explanation));
+    };
+    hidden();
+    if(Array.isArray(q.answer)){
+      app.choose([q.answer[0]]);assert.equal(app.get('confirm-answer').disabled,true);
+      app.click('confirm-answer');hidden();
+      assert.equal(JSON.parse(app.store.get(engine.storageKey('v4'))).confirmed[i],false);
+    }
+    app.choose(q.answer);hidden();app.click('confirm-answer');
+    const html=app.get('workspace').innerHTML;
+    assert.equal((html.match(/<article class="explanation/g)||[]).length,q.options.length);
+    assert.ok(html.includes('original question '+q.source.question));
+    assert.ok(html.includes(q.reviewNote.text.replaceAll('&','&amp;')));
+    const saved=JSON.parse(app.store.get(engine.storageKey('v4')));
+    assert.equal(saved.confirmed.filter(Boolean).length,i+1);
+    assert.ok(saved.confirmed.slice(i+1).every(x=>!x));
+  }
+  for(const b of banks.filter(b=>b.id!=='v4'))assert.equal(app.store.get(engine.storageKey(b.id)),preserved.get(engine.storageKey(b.id)));
+  const reloaded=await appHarness(app.store);reloaded.select('v4');
+  assert.ok(reloaded.get('progress-text').textContent.startsWith('17 of 17 confirmed'));
+  reloaded.get('restart').emit('click');reloaded.get('confirm-dialog').querySelector('form').emit('submit',{submitter:{value:'confirm'}});
+  for(const b of banks.filter(b=>b.id!=='v4'))assert.equal(reloaded.store.get(engine.storageKey(b.id)),preserved.get(engine.storageKey(b.id)));
 });

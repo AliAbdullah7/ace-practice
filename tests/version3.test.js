@@ -15,7 +15,7 @@ test('V3 appends 11 Day 5 questions to its preserved 19-question prefix',()=>{
   assert.equal(new Set(v3.questions.map(q=>q.source.question)).size,30);
   assert.deepEqual(v3.questions.slice(19).map(q=>q.source.question),[61,62,63,64,65,67,68,69,70,72,75]);
   assert.equal(digest(v3.questions.slice(0,19)),fidelity.originalPrefixSha256);
-  for(const b of banks.filter(b=>b.id!=='v3'))assert.equal(createHash('sha256').update(readFileSync(new URL('../'+b.file,import.meta.url))).digest('hex'),fidelity.preservedBankSha256[b.id]);
+  for(const b of banks.filter(b=>['v1','v2'].includes(b.id)))assert.equal(createHash('sha256').update(readFileSync(new URL('../'+b.file,import.meta.url))).digest('hex'),fidelity.preservedBankSha256[b.id]);
   for(const q of v3.questions){
     assert.ok(!v2.questions.some(old=>old.source.question===q.source.question));
     assert.ok(!banks.filter(b=>b.id!=='v3').flatMap(b=>b.questions).some(old=>old.question===q.question));
@@ -43,7 +43,7 @@ test('V3 stems, option wording/order, counts and code image match the reviewed P
   assert.ok(pending.questionCode.includes('myapp-deployment-58ddbbb995-lp86m'));
   assert.ok(q.questionCode.includes('value: "t0ugh2guess!"'));
 });
-test('all three versions preserve every other version on restart and reject cross-version restoration',()=>{
+test('all four versions preserve every other version on restart and reject cross-version restoration',()=>{
   const saved=new Map();
   for(const b of banks){
     const a=freshAttempt(b.version,b.questions.length);
@@ -51,7 +51,7 @@ test('all three versions preserve every other version on restart and reject cros
     chooseAnswer(a,2,b.questions[2].answer,b.questions[2]);a.flags[2]=true;a.current=2;
     saved.set(storageKey(b.id),JSON.stringify(a));
   }
-  assert.equal(new Set(banks.map(b=>storageKey(b.id))).size,3);
+  assert.equal(new Set(banks.map(b=>storageKey(b.id))).size,4);
   for(const b of banks){
     const store=new Map(saved);store.set(storageKey(b.id),JSON.stringify(freshAttempt(b.version,b.questions.length)));
     for(const other of banks.filter(o=>o.id!==b.id)){
@@ -68,7 +68,7 @@ test('deployment output contains exactly the website files and required assets, 
   const root=new URL('../dist/',import.meta.url);
   const walk=(dir,prefix='')=>readdirSync(dir).flatMap(f=>statSync(new URL(f,dir)).isDirectory()?walk(new URL(f+'/',dir),prefix+f+'/'):[prefix+f]);
   const files=walk(root).sort();
-  assert.deepEqual(files,['.nojekyll','app.js','assets/pdf-q249-a.png','assets/pdf-q249-b.png','assets/pdf-q249-c.png','assets/pdf-q249-d.png','assets/pdf-q42-yaml.jpg','assets/pdf-q72-context.png','engine.js','icon.svg','index.html','questions-v2.json','questions-v3.json','questions.json','styles.css'].sort());
+  assert.deepEqual(files,['.nojekyll','app.js','assets/pdf-q249-a.png','assets/pdf-q249-b.png','assets/pdf-q249-c.png','assets/pdf-q249-d.png','assets/pdf-q42-yaml.jpg','assets/pdf-q72-context.png','assets/pdf-q94-status.jpg','engine.js','icon.svg','index.html','questions-v2.json','questions-v3.json','questions-v4.json','questions.json','styles.css'].sort());
   const html=readFileSync(new URL('index.html',root),'utf8');
   for(const bank of banks){assert.ok(html.includes(`value="${bank.id}"`));assert.deepEqual(JSON.parse(readFileSync(new URL(bank.file,root))).questions,bank.questions);}
 });
